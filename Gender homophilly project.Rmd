@@ -1,5 +1,5 @@
 ---
-title: "Homophily in science: do researchers preferentially collaborate with same-gendered colleagues?"
+title: "Do researchers preferentially collaborate with same-gendered colleagues?"
 subtitle: Online Supplementary Material
 author: "Luke Holman and Claire Morandin"
 output:
@@ -41,6 +41,8 @@ journals_sqlite <- tbl(pubmed_db, "journals") # information about each journal
 
 ```{r echo=FALSE, results='hide'}
 library(knitr) # set up cacheing to save time when re-building the html document - chunks are not re-evaluated if the code has not changed
+opts_chunk$set(warning=FALSE, message=FALSE) # Suppress warnings in the HTML output
+
 figure.counter <- 2  # Counters for numbering figures and tables
 supp.figure.counter <- 1
 table.counter <- 1
@@ -172,7 +174,7 @@ find.alpha <- function(nMales, nFemales){
 # This version uses bootstrapping to also estimate the 95% confidence limits on alpha
 # Note that papers with lots of authors are more likely to be picked, ensuring that 
 # each individual author is equally likely to end up in the sample. So if
-# 2-author vs 10-author papers have different amounts of homophilly, or 
+# 2-author vs 10-author papers have different amounts of homophily, or 
 # different gender ratios, the CIs should not be biased
 find.alpha.CIs <- function(nMales, nFemales, nBoots, correction = NULL){
   
@@ -446,7 +448,7 @@ supp.table.counter <- supp.table.counter + 1
 ```
 
 
-```{r}
+```{r get_data}
 minimum.n <- 50   # Only include journals with at least 50 papers in the specified range of time
 unique.journals <- pubmed_sqlite %>% 
   select(journal) %>% distinct() %>% 
@@ -500,11 +502,13 @@ make.sample.size.table <- function(filename){
                        median(rowSums(do.call("rbind", count.data)[,1:2])))) 
 }
 
-make.sample.size.table("older.papers") %>% 
+sample.size.table <- make.sample.size.table("older.papers") %>% 
   rename(`n (2005-2006)` = Value) %>% 
   left_join(make.sample.size.table("last.year") %>% 
-              rename(`n (2015-2016)` = Value), by = "Quantity") %>% 
-    pander(split.cell = 40, split.table = Inf)
+              rename(`n (2015-2016)` = Value), by = "Quantity")
+write.csv(sample.size.table, file = "manuscript/sample.size.table.csv", row.names = FALSE)
+
+sample.size.table %>% pander(split.cell = 40, split.table = Inf)
 ```
 
 
@@ -517,7 +521,7 @@ Here, 'sufficient data' means that there are at least 50 papers, for which there
 2. First authors; this alpha statistic is positive if the average man first author has a co-author gender ratio that is more male-biased than the average woman first author.
 3. Last authors; this alpha statistic is positive if the average man last author has a co-author gender ratio that is more male-biased than the average woman last author.
 
-```{r}
+```{r get_alpha}
 # Calculate alpha across all authorship positions for all suitable NEW papers
 gender.grouping.test.many.journals(readRDS("last.year.rds"),
                                    "all",
@@ -790,36 +794,33 @@ supp.figure.counter <- supp.figure.counter + 1
 Most journals show gender homophily (i.e. $\alpha' > 0$), not heterophily, meaning that people are more likely to co-publish with colleagues of the same gender. 
 
 ```{r fig.width=5, fig.height=8}
-figure2 <- master.dataset %>%
+figure2A <- master.dataset %>%
   filter(Age == "New") %>% 
   mutate(Significant = 1 * (adjusted.p.value < 0.05),
          Significant = replace(Significant, Significant == 0, "No"),
          Significant = replace(Significant, Significant == 1, "Yes")) 
-n.sig.homo <- sum(figure2$Significant[figure2$Subset == "All authors"] == "Yes" & 
-                    figure2$alpha.adjusted[figure2$Subset == "All authors"] > 0)
-n.sig.hetero <- sum(figure2$Significant[figure2$Subset == "All authors"] == "Yes" & 
-                    figure2$alpha.adjusted[figure2$Subset == "All authors"] < 0)
-n.journals <- sum(figure2$Subset == "All authors")
+n.sig.homo <- with(figure2A, sum(Significant[Subset == "All authors"] == "Yes" & 
+                                   alpha.adjusted[Subset == "All authors"] > 0))
+n.sig.hetero <- with(figure2A, sum(Significant[Subset == "All authors"] == "Yes" & 
+                                     alpha.adjusted[Subset == "All authors"] < 0))
+n.journals <- sum(figure2A$Subset == "All authors")
 
-figure2 <- figure2 %>%
+figure2A <- figure2A %>%
   ggplot(aes(x = alpha.adjusted, fill = Significant)) + 
   geom_vline(xintercept = 0, linetype = 2) +
-  geom_histogram(binwidth = 0.01, colour = "black") + 
+  geom_area(binwidth = 0.01, colour = "black", stat = "bin") + 
   scale_fill_manual(values = c("skyblue", "white")) +
   xlab("Coefficient of homophily (\u03B1')") + 
   ylab("Number of journals") +
   facet_wrap(~Subset, scales = "free_y", ncol=1) + 
   theme_minimal(12) + 
-  theme(legend.position = "top")
-ggsave(plot = figure2, filename = "figures/figure2.pdf",  width = 5, height = 8, device = cairo_pdf)
-figure2
+  theme(legend.position = c(0.9, 0.96))
+figure2A
 ```
-<br></br> 
-**Figure `r figure.counter`**: Of the `r n.journals` journals for which we had adequate data in 2015-2016, `r n.sig.homo` showed statistically significant evidence of homophily (denoted by $\alpha' > 0$), and `r n.sig.hetero` showed statistically significant evidence of heterophily ($\alpha' < 0$), after adjusting p-values using Benjamini-Hochberg false discovery rate correction. The white area shows the number of journals for which homophily was significantly stronger than expected under the null hypothesis (p < 0.05), while the blue area shows all the remainder. Patterns were similar whether $\alpha'$ was calculated for all authors, for first authors only, or for last authors only.
+<br></br>
+**Figure 2A**: See the legend for Figure 2 below. 
 
 ```{r echo=FALSE, results='hide'}
-figure.counter <- figure.counter + 1
-
 # Save these figures for manuscript too:
 saveRDS(c("n.journals" = n.journals, "n.sig.homo" = n.sig.homo, "n.sig.hetero" = n.sig.hetero), file ="manuscript/fig2_numbers.RData")
 ```
@@ -981,20 +982,24 @@ disc.summary$n.significant.homophily[disc.summary$n.significant.homophily == "0 
 disc.summary$n.significant.heterophily[disc.summary$n.significant.heterophily == "0 (0)"] <- 0
 names(disc.summary) <- gsub("[.]", " ", names(disc.summary))
 
-gender.homophily.all %>% 
+figure2B <- gender.homophily.all %>% 
   filter(discipline %in% disc.summary$Discipline[disc.summary$`n journals` > 10]) %>%
   mutate(Discipline = factor(discipline, levels = rev(disc.summary$Discipline))) %>%
-  ggplot(aes(x = Discipline, y = alpha.adjusted, fill = Discipline)) +
+  ggplot(aes(x = Discipline, y = alpha.adjusted)) +
   geom_hline(yintercept = 0, linetype = 2) + 
-  geom_boxplot(outlier.size = 0.5, outlier.shape = NA) + 
   geom_quasirandom(aes(colour = Discipline), alpha = 0.3, bandwidth = 0.25) + 
-  ylab("Coefficient of homophily (\u03B1')") + 
+  geom_boxplot(outlier.size = 0.5, outlier.shape = NA, fill = NA) +
+  ylab(NULL) + 
   coord_flip() + 
   theme_minimal() + 
   theme(legend.position = "none")
+
+grid.arrange(figure2A + xlab(NULL), figure2B, nrow = 1, bottom = "Coefficient of homophily (\u03B1')")  
+
+ggsave(grid.arrange(figure2A + xlab(NULL), figure2B, nrow = 1, bottom = "Coefficient of homophily (\u03B1')"), filename = "figures/figure2.pdf", height = 8, width = 7, device = cairo_pdf)
 ```
 <br></br>
-**Figure `r figure.counter`**: Distribution of the $\alpha'$ values across journals, split by the research discipline of the journal. The points show the $\alpha'$ for each journal, and the boxes show quartiles 1, 2 and 3. The boxplot whiskers show the distance of the farthest point that is within 1.5 times the interquartile range from the edge of the box.
+**Figure `r figure.counter`**: Of the `r n.journals` journals for which we had adequate data in 2015-2016, `r n.sig.homo` showed statistically significant evidence of homophily (denoted by $\alpha' > 0$), and `r n.sig.hetero` showed statistically significant evidence of heterophily ($\alpha' < 0$), after adjusting p-values using Benjamini-Hochberg false discovery rate correction. In the left panels, the white area shows the number of journals for which homophily was significantly stronger than expected under the null hypothesis (p < 0.05), while the blue area shows the remainder. Patterns were similar whether $\alpha'$ was calculated for all authors, for first authors only, or for last authors only. The right panel shows the distribution of the $\alpha'$ values across journals, split by the research discipline of the journal. The points show the $\alpha'$ for individual journals, and the boxes show quartiles 1, 2 and 3. The boxplot whiskers show the distance of the farthest point that is within 1.5 times the interquartile range from the edge of the box.
 
 ```{r echo=FALSE, results='hide'}
 figure.counter <- figure.counter + 1
@@ -1027,7 +1032,7 @@ gender.ratio <- master.dataset %>%
   geom_hline(yintercept = 0, linetype = 2) +
   geom_vline(xintercept = 0, linetype = 2) +
   geom_point(alpha = 0.4, size = 0.7) + 
-  stat_smooth(method = "gam", formula = y ~ s(x, k = 3), colour = "black", fill = "skyblue") + 
+  stat_smooth(method = "gam", formula = y ~ s(x, k = 3), colour = "tomato", fill = "skyblue") + 
   xlab("Deviation from gender parity for all authors in this journal") + 
   ylab("Coefficient of homophily (\u03B1')") +
   facet_wrap(~Subset) + 
@@ -1072,16 +1077,19 @@ R2 <- model$adj.r.squared %>%
 
 model$coefficients %>% pander(split.cell = 40, split.table = Inf) # The model coefficients and p-values
 
-gender.homophily.all %>% 
+figure4 <- gender.homophily.all %>% 
   filter(!is.na(standardised.IF)) %>% 
   ggplot(aes(x = standardised.IF, y = alpha.adjusted)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_vline(xintercept = 0, linetype = 2) +
-  stat_smooth(method = "lm", colour = "black", fill = "skyblue") +
+  stat_smooth(method = "lm", colour = "tomato", fill = "skyblue") +
   geom_point(size = 0.5, alpha = 0.9) + 
   xlab("Standardised journal impact factor") + 
   ylab("Coefficient of homophily (\u03B1')") + 
   theme_minimal()
+ggsave(figure4, file = "figures/figure4.pdf", height = 5, width = 5, device = cairo_pdf)
+saveRDS(R2, "manuscript/R2_for_figure4.RData")
+figure4
 ```
 <br></br>
 **Figure `r figure.counter`**: Journal impact factor (expressed relative to the average for the discipline) is negatively correlated with $\alpha'$. The relationship is weak ($R^2$ = `r R2`), but the results suggest that journals with strong homophily tend to have lower impact factors than journals with weak homophily in the same discipline.
@@ -1090,7 +1098,7 @@ gender.homophily.all %>%
 figure.counter <- figure.counter + 1
 ```
 
-### Gender homophilly is also observed within countries
+### Gender homophily is also observed within countries
 
 #### Histogram of $\alpha'$ for unique journal-country combinations
 
@@ -1107,7 +1115,6 @@ country.histo <- country.data %>%
   ylab("Number of journals") +
   theme_minimal() + 
   theme(legend.position = "top")
-ggsave(plot = country.histo, filename = "figures/figure4.pdf", device = cairo_pdf, width = 6, height = 5)
 country.histo
 ```
 <br></br>
