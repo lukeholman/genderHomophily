@@ -1202,3 +1202,97 @@ mean.inflation.due.to.country %>%
 ```{r echo=FALSE, results='hide'}
 supp.figure.counter <- supp.figure.counter + 1
 ```
+
+## Theoretical expectations for $\alpha$ when there is a gender gap between career stages
+
+This section makes Figure 6, by deriving the expected $\alpha$ under various assumptions, assuming that there is (potentially) a gender gap between career stages but no direct choice of collaborators by gender. 
+
+```{r}
+simulate <- function(params){
+  
+  # Attach the vectors of paramters from the dataframe input
+  GR.stage1 <- params$GR.stage1
+  GR.stage2 <- params$GR.stage2
+  prop.student.prof <- params$prop.student.prof
+  prop.student.student <- params$prop.student.student
+  
+  # This is the proportion of each type of collaboration:
+  # early-early, early-late, late-late respectively
+  p1.1 <- (1 - prop.student.prof) * prop.student.student
+  p1.2 <- prop.student.prof
+  p2.2 <- (1 - prop.student.prof) * (1-prop.student.student)
+  
+  # given the gender ratio at career stages a and b, find the proportion of collaborations that are man-man, woman-woman, or mixed gender
+  man.man <- function(GR_a, GR_b) (1-GR_a) * (1-GR_b)
+  woman.woman <- function(GR_a, GR_b) GR_a * GR_b
+  mixed <- function(GR_a, GR_b) (1-GR_a) * GR_b + (1-GR_b) * GR_a
+  
+  # Find the frequencies of the 3 kinds of collaboration
+  man.man <- p1.1 * man.man(GR.stage1, GR.stage1) +
+    p1.2 * man.man(GR.stage1, GR.stage2) +
+    p2.2 * man.man(GR.stage2, GR.stage2)
+  
+  woman.woman <- p1.1 * woman.woman(GR.stage1, GR.stage1) +
+    p1.2 * woman.woman(GR.stage1, GR.stage2) +
+    p2.2 * woman.woman(GR.stage2, GR.stage2)
+  
+  mixed <- p1.1 * mixed(GR.stage1, GR.stage1) +
+    p1.2 * mixed(GR.stage1, GR.stage2) +
+    p2.2 * mixed(GR.stage2, GR.stage2)
+  
+  # Find p and q, which are used to calcualte alpha
+  
+  # p is proportion of men coauthoring with men
+  p <- 1 - mixed / (2 * man.man + mixed)
+  # q is proportion of women coauthoring with men
+  q <- mixed / (2 * woman.woman + mixed)
+  
+  data.frame(alpha = p - q, 
+             GR.stage1,
+             GR.stage2,
+             prop.student.prof,
+             prop.student.student)
+}
+
+results <- expand.grid(
+  GR.stage1 = seq(0.01, 0.7, length = 201),
+  GR.stage2 = seq(0.01, 0.7, length = 201),
+  prop.student.prof = c(0.01, 0.25, 0.5, 0.75, .99), 
+  prop.student.student = c(0.01, 0.25, 0.5, 0.75, .99)) %>% 
+  filter(GR.stage1 >= GR.stage2) %>%
+  simulate() %>% 
+  mutate(GR.stage1 = round(GR.stage1 * 100),
+         GR.stage2 = round(GR.stage2 * 100),
+         prop.student.prof = prop.student.prof * 100,
+         prop.student.student = prop.student.student * 100) %>%
+  filter(!duplicated(paste(GR.stage1,GR.stage2,prop.student.prof,prop.student.student)))
+
+simulation.figure <- results %>%
+  ggplot(aes(GR.stage1, GR.stage2, z = alpha, fill = alpha)) + 
+  facet_grid(prop.student.prof ~ prop.student.student) + 
+  geom_tile() + 
+  #stat_contour(binwidth = 0.1, colour = "grey20", size = 0.3) + 
+  scale_fill_distiller(name = "\u03B1",
+                       palette = "RdYlBu",
+                       limits = c(-1,1) * max(abs(results$alpha))) +
+  scale_x_continuous(expand = c(0,0), limits = c(0,70))+
+  scale_y_continuous(expand = c(0,0), limits = c(0,70))+
+  xlab("% women among early-career authors") + 
+  ylab("% women among established authors") +
+  theme_bw() + 
+  theme(panel.grid.minor = element_blank(),
+        strip.background = element_blank(),
+        legend.position = "bottom") + 
+  ggtitle("Rows show % between-stage collaborations ", 
+          subtitle = "Columns show % within-stage collaborations that involve two early-career researchers")
+
+simulation.figure
+ggsave(simulation.figure, file = "figures/figure5.pdf", 
+       height = 5.6, width = 5)#, device = cairo_pdf)
+```
+
+### R session info
+```{r}
+sessionInfo() %>% pander()
+```
+
