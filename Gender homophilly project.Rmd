@@ -1220,7 +1220,7 @@ supp.figure.counter <- supp.figure.counter + 1
 
 This section makes Figure 6, by deriving the expected $\alpha$ under various assumptions, assuming that there is (potentially) a gender gap between career stages but no direct choice of collaborators by gender. 
 
-```{r}
+```{r warning=FALSE}
 simulate <- function(params){
   
   # Attach the vectors of paramters from the dataframe input
@@ -1235,7 +1235,8 @@ simulate <- function(params){
   p1.2 <- prop.student.prof
   p2.2 <- (1 - prop.student.prof) * (1-prop.student.student)
   
-  # given the gender ratio at career stages a and b, find the proportion of collaborations that are man-man, woman-woman, or mixed gender
+  # given the gender ratio at career stages a and b, find the 
+  # proportion of collaborations that are man-man, woman-woman, or mixed gender
   man.man <- function(GR_a, GR_b) (1-GR_a) * (1-GR_b)
   woman.woman <- function(GR_a, GR_b) GR_a * GR_b
   mixed <- function(GR_a, GR_b) (1-GR_a) * GR_b + (1-GR_b) * GR_a
@@ -1253,8 +1254,7 @@ simulate <- function(params){
     p1.2 * mixed(GR.stage1, GR.stage2) +
     p2.2 * mixed(GR.stage2, GR.stage2)
   
-  # Find p and q, which are used to calcualte alpha
-  
+  # Find p and q, which are used to calculate alpha:
   # p is proportion of men coauthoring with men
   p <- 1 - mixed / (2 * man.man + mixed)
   # q is proportion of women coauthoring with men
@@ -1278,13 +1278,14 @@ results <- expand.grid(
          GR.stage2 = round(GR.stage2 * 100),
          prop.student.prof = prop.student.prof * 100,
          prop.student.student = prop.student.student * 100) %>%
-  filter(!duplicated(paste(GR.stage1,GR.stage2,prop.student.prof,prop.student.student)))
+  filter(!duplicated(paste(GR.stage1, GR.stage2, prop.student.prof, prop.student.student)))
 
 simulation.figure <- results %>%
-  ggplot(aes(GR.stage1, GR.stage2, z = alpha, fill = alpha)) + 
+  ggplot(aes(GR.stage1, GR.stage2, z = round(alpha,2), fill = alpha)) + 
   facet_grid(prop.student.prof ~ prop.student.student) + 
   geom_tile() + 
-  #stat_contour(binwidth = 0.1, colour = "grey20", size = 0.3) + 
+  geom_abline(colour = "grey20", size = 0.3) +
+  stat_contour(breaks = c(-5:-1, 1:5)/10, colour = "grey20", size = 0.3) + 
   scale_fill_distiller(name = "\u03B1",
                        palette = "RdYlBu",
                        limits = c(-1,1) * max(abs(results$alpha))) +
