@@ -1047,7 +1047,7 @@ gender.ratio <- master.dataset %>%
   stat_smooth(method = "gam", 
               formula = y ~ s(x, k = 3), 
               colour = "tomato", fill = "skyblue") + 
-  xlab("% women authors (realtive to gender parity)") + 
+  xlab("% women authors (relative to gender parity)") + 
   ylab("Coefficient of homophily (\u03B1')") +
   facet_wrap(~Subset) + 
   theme_minimal() +

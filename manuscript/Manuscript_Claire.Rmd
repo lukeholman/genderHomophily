@@ -17,7 +17,7 @@ header-includes: \usepackage{microtype} \usepackage[all]{hypcap} \usepackage{ams
   \postdate{\par\end{flushleft}} \usepackage{fancyhdr} \pagestyle{fancy} \fancyhead[LO,LE]{\textsl{\leftmark}}
   \rhead[]{Gender and coauthorship} \usepackage[noabbrev,capitalise]{cleveref} \usepackage{titlefoot}
   \usepackage{amssymb} \usepackage{rotating} \usepackage{lineno} \linenumbers
-csl: the-american-naturalist.csl
+csl: plos.csl
 abstract: Evidence suggests that women in academia are hindered by conscious and unconscious
   biases, and often feel excluded from formal and informal opportunities for research
   collaboration. In addition to ensuring fairness and helping to redress gender imbalance
@@ -74,7 +74,7 @@ In the present study, we test whether life sciences researchers tend to co-publi
 
 # Results
 ## Gender homophily by discipline, time period, and authorship position
-\autoref{alpha_histograms} shows the distribution of $\alpha'$ estimates in 2015-2016 across all journals for which we recovered sufficient data, when $\alpha'$ was calculated for all authors, first authors only, or last authors only. The great majority of journals had $\alpha' > 0$, and for many of these the FDR-corrected p-values suggested that $\alpha'$ was significantly greater than zero (1469/2077 journals were significant in 2015-16, and 404/1192 in 2005-6). Only 2/2077 journals had statistically significantly heterophily (i.e. $\alpha' < 0$) in 2015-16, and 1/1192 in 2005-6 (S2 Table). The remaining 606 or 787 journals (in 2015 and 2005 respectively) had a value of $\alpha'$ not significantly different from zero, consistent with the null hypothesis of random assortment with respect to gender.
+\autoref{alpha_histograms} shows the distribution of $\alpha'$ estimates in 2015-2016 across all journals for which we recovered sufficient data, when $\alpha'$ was calculated for all authors, first authors only, or last authors only. The great majority of journals had $\alpha' > 0$, and for many of these the FDR-corrected p-values suggested that $\alpha'$ was significantly greater than zero (1469/2077 journals were significant in 2015-16, and 404/1192 in 2005-6; S1 Data). Only 2/2077 journals had statistically significantly heterophily (i.e. $\alpha' < 0$) in 2015-16, and 1/1192 in 2005-6 (S2 Table). The remaining 606 or 787 journals (in 2015 and 2005 respectively) had a value of $\alpha'$ not significantly different from zero, consistent with the null hypothesis of random assortment with respect to gender.
 
 ![Of the `r n.journals` journals for which we had adequate data in 2015-2016, `r n.sig.homo` showed statistically significant evidence of gender homophily (denoted by $\alpha' > 0$), and `r n.sig.hetero` showed statistically significant evidence of heterophily ($\alpha' < 0$), after false discovery rate correction. The white area shows the number of journals for which homophily was significantly stronger than expected under the null hypothesis (p < 0.05), while the blue area shows all the remainder. Patterns were similar whether $\alpha'$ was calculated for all authors, for first authors only, or for last authors only. \label{alpha_histograms}](../figures/figure2.pdf)
 
@@ -188,11 +188,11 @@ S5 Fig. Histogram of $\alpha'$ for 325 unique combinations of journal and countr
 S6 Fig. Plot showing the 68 combinations of journal and author country of affiliation for which $\alpha'$ is significantly higher than expected.
 
 S7 Fig. Histogram showing the estimated degree to which $\alpha'$ is inflated by inter-country differences in author gender ratio, across the 285 journals for which we had adequate data after restricting the analysis by country. The average inflation in $\alpha'$ is negligible, suggesting that Wahlund effects resulting from inter-country differences have a neglible effect on our estimates of gender homophily.
- 
-S1 Table. The $\alpha'$ values calculated for each journal, in the 2005 and 2015 samples, for each type of author (i.e. all authors, first authors, and last authors). The tables gives the impact factor of each journal, the sample size, $\alpha$ and $\alpha'$ and their 95% CIs, and the p-value from a 2-tailed test evaluating the null hypothesis that $\alpha$ is zero (both raw and FDR-corrected p-values are shown).
+
+S1 Table. Sample sizes for the two datasets, which comprise papers published in the timeframes August 2005 - August 2006, and August 2015 - August 2016.
 
 S2 Table. Number of journals showing statistically significant homophily or heterophily, in two one-year periods. The significance threshold was p < 0.05, and p-values were adjused using Benjamini-Hochberg false discovery rate correction. Note that the power of our test is lower for the 2005-2006 data because fewer papers were recovered per journal: thus, it is not meaningful to compare the % significant journals (i.e. 11% vs 24%) between the two time periods.
 
 S3 Table. The table shows similar information to S3 Fig, namely the distribution of the $\alpha'$ values across journals, split by the research discipline. The gender ratio column shows the percentage of women authors in the sample used to calculate $\alpha'$, across all authorship positions. In the last two columns, the numbers outside parentheses give the number of journals that deviate statistically significantly from zero, while the numbers inside parentheses give the number that remain significant after false discovery rate correction.
 
-
+S1 Data: This spreadsheet shows the $\alpha$ values calculated for each journal, in the 2005 and 2015 samples, and for each type of author (all authors, first authors, and last authors). The tables gives the impact factor of each journal, the sample size, $\alpha$ and $\alpha'$ and their 95% CIs, and the p-value from a 2-tailed test evaluating the null hypothesis that $\alpha$ is zero (both raw and FDR-corrected p-values are shown).
