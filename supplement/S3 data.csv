@@ -1,0 +1,556 @@
+"Discipline","author_number","count","percent"
+"AIDS","1",4854,15.5
+"AIDS","2",3089,9.9
+"AIDS","3",2858,9.1
+"AIDS","4",2914,9.3
+"AIDS","5+",17541,56.1
+"Allergy and Immunology","1",4699,7
+"Allergy and Immunology","2",7175,10.7
+"Allergy and Immunology","3",7503,11.2
+"Allergy and Immunology","4",8016,12
+"Allergy and Immunology","5+",39416,59
+"Anatomy","1",1467,10.9
+"Anatomy","2",2407,17.8
+"Anatomy","3",2480,18.3
+"Anatomy","4",2156,16
+"Anatomy","5+",5005,37
+"Anesthesiology","1",6378,14.1
+"Anesthesiology","2",7565,16.8
+"Anesthesiology","3",7229,16
+"Anesthesiology","4",6792,15.1
+"Anesthesiology","5+",17142,38
+"Anthropology","1",1190,14.6
+"Anthropology","2",1453,17.8
+"Anthropology","3",1393,17
+"Anthropology","4",1112,13.6
+"Anthropology","5+",3027,37
+"Anti-Infective Agents","1",1289,4.3
+"Anti-Infective Agents","2",2378,8
+"Anti-Infective Agents","3",3052,10.2
+"Anti-Infective Agents","4",3654,12.2
+"Anti-Infective Agents","5+",19484,65.3
+"Antineoplastic Agents","1",154,3.9
+"Antineoplastic Agents","2",324,8.1
+"Antineoplastic Agents","3",384,9.6
+"Antineoplastic Agents","4",367,9.2
+"Antineoplastic Agents","5+",2762,69.2
+"Audiology","1",1086,12.8
+"Audiology","2",1847,21.8
+"Audiology","3",1708,20.1
+"Audiology","4",1406,16.6
+"Audiology","5+",2432,28.7
+"Behavioral Sciences","1",2968,20
+"Behavioral Sciences","2",3954,26.6
+"Behavioral Sciences","3",3031,20.4
+"Behavioral Sciences","4",2068,13.9
+"Behavioral Sciences","5+",2856,19.2
+"Biochemistry","1",14798,4.2
+"Biochemistry","2",44685,12.8
+"Biochemistry","3",52579,15.1
+"Biochemistry","4",54016,15.5
+"Biochemistry","5+",182627,52.4
+"Bioinformatics","1",1210,5.2
+"Bioinformatics","2",4723,20.3
+"Bioinformatics","3",5231,22.4
+"Bioinformatics","4",4329,18.6
+"Bioinformatics","5+",7827,33.6
+"Biology","1",17750,11.1
+"Biology","2",30805,19.3
+"Biology","3",28222,17.7
+"Biology","4",23788,14.9
+"Biology","5+",59095,37
+"Biomedical Engineering","1",3198,3.7
+"Biomedical Engineering","2",10332,12
+"Biomedical Engineering","3",14418,16.7
+"Biomedical Engineering","4",15376,17.8
+"Biomedical Engineering","5+",43035,49.8
+"Biophysics","1",8365,6.7
+"Biophysics","2",23567,18.8
+"Biophysics","3",23912,19
+"Biophysics","4",19086,15.2
+"Biophysics","5+",50735,40.4
+"Biotechnology","1",6138,7.5
+"Biotechnology","2",10122,12.4
+"Biotechnology","3",12652,15.5
+"Biotechnology","4",13723,16.8
+"Biotechnology","5+",38867,47.7
+"Botany","1",3073,6.2
+"Botany","2",8319,16.7
+"Botany","3",8518,17.1
+"Botany","4",7704,15.4
+"Botany","5+",22265,44.6
+"Brain","1",3438,5.6
+"Brain","2",8982,14.6
+"Brain","3",10325,16.8
+"Brain","4",9829,16
+"Brain","5+",28915,47
+"Cardiology","1",29104,11.4
+"Cardiology","2",30734,12.1
+"Cardiology","3",30199,11.9
+"Cardiology","4",27281,10.7
+"Cardiology","5+",137166,53.9
+"Cell Biology","1",11655,6.7
+"Cell Biology","2",26394,15.3
+"Cell Biology","3",21959,12.7
+"Cell Biology","4",20373,11.8
+"Cell Biology","5+",92665,53.5
+"Chemistry","1",14296,3.3
+"Chemistry","2",63573,14.8
+"Chemistry","3",80814,18.9
+"Chemistry","4",77828,18.2
+"Chemistry","5+",191997,44.8
+"Chemistry Techniques, Analytical","1",6842,4.6
+"Chemistry Techniques, Analytical","2",19056,12.8
+"Chemistry Techniques, Analytical","3",28672,19.2
+"Chemistry Techniques, Analytical","4",31120,20.8
+"Chemistry Techniques, Analytical","5+",63673,42.6
+"Clinical Laboratory Techniques","1",2052,14.2
+"Clinical Laboratory Techniques","2",2218,15.3
+"Clinical Laboratory Techniques","3",2064,14.3
+"Clinical Laboratory Techniques","4",1878,13
+"Clinical Laboratory Techniques","5+",6250,43.2
+"Communicable Diseases","1",5109,9.7
+"Communicable Diseases","2",5599,10.6
+"Communicable Diseases","3",5533,10.5
+"Communicable Diseases","4",5331,10.1
+"Communicable Diseases","5+",31106,59
+"Complementary Therapies","1",2896,9.1
+"Complementary Therapies","2",3477,11
+"Complementary Therapies","3",5839,18.4
+"Complementary Therapies","4",4026,12.7
+"Complementary Therapies","5+",15428,48.7
+"Computational Biology","1",830,6.4
+"Computational Biology","2",2448,18.9
+"Computational Biology","3",2747,21.2
+"Computational Biology","4",2175,16.8
+"Computational Biology","5+",4753,36.7
+"Critical Care","1",3798,19.5
+"Critical Care","2",4097,21.1
+"Critical Care","3",2803,14.4
+"Critical Care","4",2036,10.5
+"Critical Care","5+",6701,34.5
+"Dentistry","1",24376,24.2
+"Dentistry","2",13213,13.1
+"Dentistry","3",14903,14.8
+"Dentistry","4",15943,15.8
+"Dentistry","5+",32422,32.1
+"Dermatology","1",8452,10.2
+"Dermatology","2",12608,15.2
+"Dermatology","3",14057,17
+"Dermatology","4",13814,16.7
+"Dermatology","5+",33800,40.9
+"Diagnostic Imaging","1",2390,6.8
+"Diagnostic Imaging","2",4527,12.8
+"Diagnostic Imaging","3",5165,14.6
+"Diagnostic Imaging","4",5176,14.6
+"Diagnostic Imaging","5+",18108,51.2
+"Drug Therapy","1",3380,16.3
+"Drug Therapy","2",4108,19.8
+"Drug Therapy","3",2883,13.9
+"Drug Therapy","4",2391,11.5
+"Drug Therapy","5+",7967,38.4
+"Education","1",531,20.8
+"Education","2",535,21
+"Education","3",471,18.4
+"Education","4",402,15.7
+"Education","5+",614,24.1
+"Embryology","1",416,9.4
+"Embryology","2",944,21.4
+"Embryology","3",799,18.1
+"Embryology","4",582,13.2
+"Embryology","5+",1676,37.9
+"Emergency Medicine","1",1047,12.3
+"Emergency Medicine","2",1301,15.3
+"Emergency Medicine","3",1296,15.3
+"Emergency Medicine","4",1215,14.3
+"Emergency Medicine","5+",3629,42.8
+"Endocrinology","1",11273,11.4
+"Endocrinology","2",12049,12.2
+"Endocrinology","3",11365,11.5
+"Endocrinology","4",11423,11.6
+"Endocrinology","5+",52544,53.3
+"Environmental Health","1",9698,7.3
+"Environmental Health","2",18472,13.9
+"Environmental Health","3",23640,17.8
+"Environmental Health","4",23955,18.1
+"Environmental Health","5+",56818,42.9
+"Epidemiology","1",3986,14.4
+"Epidemiology","2",3630,13.1
+"Epidemiology","3",3507,12.6
+"Epidemiology","4",3544,12.8
+"Epidemiology","5+",13063,47.1
+"Ethics","1",9075,63.3
+"Ethics","2",2968,20.7
+"Ethics","3",1102,7.7
+"Ethics","4",528,3.7
+"Ethics","5+",664,4.6
+"Gastroenterology","1",17970,11
+"Gastroenterology","2",20247,12.4
+"Gastroenterology","3",18544,11.3
+"Gastroenterology","4",16745,10.2
+"Gastroenterology","5+",90045,55.1
+"General Surgery","1",35899,10.9
+"General Surgery","2",39137,11.9
+"General Surgery","3",45306,13.8
+"General Surgery","4",49944,15.2
+"General Surgery","5+",157609,48.1
+"Genetics","1",7394,6.2
+"Genetics","2",14869,12.4
+"Genetics","3",14869,12.4
+"Genetics","4",14436,12.1
+"Genetics","5+",67980,56.9
+"Genetics, Medical","1",873,6.9
+"Genetics, Medical","2",1123,8.8
+"Genetics, Medical","3",1082,8.5
+"Genetics, Medical","4",1063,8.4
+"Genetics, Medical","5+",8563,67.4
+"Geriatrics","1",5582,15.1
+"Geriatrics","2",5115,13.9
+"Geriatrics","3",5241,14.2
+"Geriatrics","4",5116,13.9
+"Geriatrics","5+",15817,42.9
+"Gynecology","1",8307,11.9
+"Gynecology","2",8996,12.9
+"Gynecology","3",9612,13.8
+"Gynecology","4",9799,14.1
+"Gynecology","5+",32810,47.2
+"Health Services","1",24901,58.6
+"Health Services","2",6213,14.6
+"Health Services","3",3921,9.2
+"Health Services","4",2668,6.3
+"Health Services","5+",4825,11.3
+"Health Services Research","1",8616,32.5
+"Health Services Research","2",3793,14.3
+"Health Services Research","3",3556,13.4
+"Health Services Research","4",3179,12
+"Health Services Research","5+",7348,27.7
+"Hematology","1",8774,10.2
+"Hematology","2",8793,10.2
+"Hematology","3",7893,9.2
+"Hematology","4",7635,8.9
+"Hematology","5+",52724,61.4
+"History of Medicine","1",3405,48.9
+"History of Medicine","2",1126,16.2
+"History of Medicine","3",591,8.5
+"History of Medicine","4",530,7.6
+"History of Medicine","5+",1315,18.9
+"Hospitals","1",5991,77.6
+"Hospitals","2",993,12.9
+"Hospitals","3",345,4.5
+"Hospitals","4",150,1.9
+"Hospitals","5+",238,3.1
+"Immunology","1",7890,7.1
+"Immunology","2",13996,12.5
+"Immunology","3",13133,11.7
+"Immunology","4",13172,11.8
+"Immunology","5+",63612,56.9
+"Internal Medicine","1",1215,27.7
+"Internal Medicine","2",901,20.5
+"Internal Medicine","3",488,11.1
+"Internal Medicine","4",321,7.3
+"Internal Medicine","5+",1467,33.4
+"Jurisprudence","1",1932,26.5
+"Jurisprudence","2",1309,18
+"Jurisprudence","3",1299,17.8
+"Jurisprudence","4",926,12.7
+"Jurisprudence","5+",1825,25
+"Laboratory Animal Science","1",1861,31.1
+"Laboratory Animal Science","2",1000,16.7
+"Laboratory Animal Science","3",733,12.3
+"Laboratory Animal Science","4",651,10.9
+"Laboratory Animal Science","5+",1732,29
+"Medical Informatics","1",3751,12.9
+"Medical Informatics","2",6782,23.4
+"Medical Informatics","3",6765,23.3
+"Medical Informatics","4",4727,16.3
+"Medical Informatics","5+",7017,24.2
+"Medicine","1",288913,19
+"Medicine","2",221318,14.5
+"Medicine","3",211980,13.9
+"Medicine","4",194844,12.8
+"Medicine","5+",605568,39.8
+"Metabolism","1",3041,12.6
+"Metabolism","2",3055,12.7
+"Metabolism","3",2288,9.5
+"Metabolism","4",2259,9.4
+"Metabolism","5+",13462,55.8
+"Microbiology","1",7745,4.5
+"Microbiology","2",20784,12.1
+"Microbiology","3",25474,14.8
+"Microbiology","4",28171,16.4
+"Microbiology","5+",89848,52.2
+"Midwifery","1",5311,58
+"Midwifery","2",1219,13.3
+"Midwifery","3",1055,11.5
+"Midwifery","4",759,8.3
+"Midwifery","5+",811,8.9
+"Molecular Biology","1",12497,8.4
+"Molecular Biology","2",27915,18.9
+"Molecular Biology","3",25111,17
+"Molecular Biology","4",21642,14.6
+"Molecular Biology","5+",60785,41.1
+"Multidisciplinary","1",45071,12.1
+"Multidisciplinary","2",36678,9.8
+"Multidisciplinary","3",40020,10.7
+"Multidisciplinary","4",42195,11.3
+"Multidisciplinary","5+",210024,56.2
+"Nanotechnology","1",1674,2.7
+"Nanotechnology","2",5268,8.6
+"Nanotechnology","3",7569,12.4
+"Nanotechnology","4",9153,15
+"Nanotechnology","5+",37380,61.2
+"Neoplasms","1",32153,8.5
+"Neoplasms","2",36430,9.6
+"Neoplasms","3",34177,9
+"Neoplasms","4",34497,9.1
+"Neoplasms","5+",241938,63.8
+"Nephrology","1",9012,15
+"Nephrology","2",8468,14.1
+"Nephrology","3",6470,10.8
+"Nephrology","4",5799,9.7
+"Nephrology","5+",30192,50.4
+"Neurology","1",41264,9
+"Neurology","2",67975,14.8
+"Neurology","3",66543,14.5
+"Neurology","4",65579,14.2
+"Neurology","5+",218886,47.6
+"Neurosurgery","1",758,10.9
+"Neurosurgery","2",674,9.7
+"Neurosurgery","3",803,11.6
+"Neurosurgery","4",1021,14.7
+"Neurosurgery","5+",3693,53.1
+"Nuclear Medicine","1",662,10.4
+"Nuclear Medicine","2",1189,18.8
+"Nuclear Medicine","3",1293,20.4
+"Nuclear Medicine","4",1089,17.2
+"Nuclear Medicine","5+",2107,33.2
+"Nursing","1",91351,53.4
+"Nursing","2",30757,18
+"Nursing","3",19405,11.3
+"Nursing","4",12401,7.2
+"Nursing","5+",17309,10.1
+"Nutritional Sciences","1",9627,9.9
+"Nutritional Sciences","2",12226,12.6
+"Nutritional Sciences","3",14120,14.5
+"Nutritional Sciences","4",14538,15
+"Nutritional Sciences","5+",46565,48
+"Obstetrics","1",1765,9.4
+"Obstetrics","2",2016,10.8
+"Obstetrics","3",2845,15.2
+"Obstetrics","4",2791,14.9
+"Obstetrics","5+",9326,49.8
+"Occupational Medicine","1",3379,25.7
+"Occupational Medicine","2",1938,14.8
+"Occupational Medicine","3",2494,19
+"Occupational Medicine","4",1455,11.1
+"Occupational Medicine","5+",3866,29.4
+"Ophthalmology","1",13075,8.5
+"Ophthalmology","2",24173,15.7
+"Ophthalmology","3",28716,18.6
+"Ophthalmology","4",26759,17.3
+"Ophthalmology","5+",61544,39.9
+"Orthodontics","1",1956,20.2
+"Orthodontics","2",1196,12.4
+"Orthodontics","3",1785,18.4
+"Orthodontics","4",1847,19.1
+"Orthodontics","5+",2891,29.9
+"Orthopedics","1",7222,9.5
+"Orthopedics","2",9719,12.8
+"Orthopedics","3",12139,16
+"Orthopedics","4",13122,17.3
+"Orthopedics","5+",33778,44.5
+"Otolaryngology","1",4057,7.2
+"Otolaryngology","2",8242,14.5
+"Otolaryngology","3",11103,19.6
+"Otolaryngology","4",10153,17.9
+"Otolaryngology","5+",23133,40.8
+"Palliative Care","1",1432,26.3
+"Palliative Care","2",1070,19.7
+"Palliative Care","3",882,16.2
+"Palliative Care","4",673,12.4
+"Palliative Care","5+",1383,25.4
+"Parasitology","1",1773,6.3
+"Parasitology","2",3825,13.7
+"Parasitology","3",4593,16.4
+"Parasitology","4",4310,15.4
+"Parasitology","5+",13473,48.2
+"Pathology","1",4420,7.8
+"Pathology","2",5122,9.1
+"Pathology","3",5655,10
+"Pathology","4",6433,11.4
+"Pathology","5+",34830,61.7
+"Pediatrics","1",23581,13
+"Pediatrics","2",26813,14.8
+"Pediatrics","3",27165,15
+"Pediatrics","4",26327,14.6
+"Pediatrics","5+",76890,42.5
+"Perinatology","1",1832,17.2
+"Perinatology","2",1876,17.7
+"Perinatology","3",1527,14.4
+"Perinatology","4",1415,13.3
+"Perinatology","5+",3975,37.4
+"Pharmacology","1",26387,9.7
+"Pharmacology","2",36738,13.6
+"Pharmacology","3",40300,14.9
+"Pharmacology","4",39552,14.6
+"Pharmacology","5+",128034,47.2
+"Physical and Rehabilitation Medicine","1",3854,15.7
+"Physical and Rehabilitation Medicine","2",4019,16.3
+"Physical and Rehabilitation Medicine","3",4627,18.8
+"Physical and Rehabilitation Medicine","4",3940,16
+"Physical and Rehabilitation Medicine","5+",8144,33.1
+"Physiology","1",9175,6.1
+"Physiology","2",20305,13.5
+"Physiology","3",24368,16.2
+"Physiology","4",23584,15.7
+"Physiology","5+",72783,48.5
+"Primary Health Care","1",10677,35.9
+"Primary Health Care","2",6048,20.3
+"Primary Health Care","3",4587,15.4
+"Primary Health Care","4",3187,10.7
+"Primary Health Care","5+",5229,17.6
+"Psychiatry","1",25117,17.4
+"Psychiatry","2",20991,14.6
+"Psychiatry","3",20440,14.2
+"Psychiatry","4",18337,12.7
+"Psychiatry","5+",59109,41
+"Psychology","1",20435,15.7
+"Psychology","2",34867,26.7
+"Psychology","3",29750,22.8
+"Psychology","4",19788,15.2
+"Psychology","5+",25543,19.6
+"Psychopharmacology","1",1249,8.3
+"Psychopharmacology","2",2256,15.1
+"Psychopharmacology","3",2362,15.8
+"Psychopharmacology","4",2269,15.2
+"Psychopharmacology","5+",6825,45.6
+"Psychophysiology","1",900,8.1
+"Psychophysiology","2",1967,17.7
+"Psychophysiology","3",2098,18.9
+"Psychophysiology","4",1781,16.1
+"Psychophysiology","5+",4345,39.2
+"Public Health","1",16821,15.1
+"Public Health","2",17150,15.4
+"Public Health","3",18060,16.2
+"Public Health","4",17405,15.7
+"Public Health","5+",41709,37.5
+"Pulmonary Medicine","1",6363,13.1
+"Pulmonary Medicine","2",6598,13.5
+"Pulmonary Medicine","3",5717,11.7
+"Pulmonary Medicine","4",5554,11.4
+"Pulmonary Medicine","5+",24477,50.3
+"Radiology","1",8888,13.8
+"Radiology","2",5998,9.3
+"Radiology","3",6713,10.4
+"Radiology","4",7191,11.1
+"Radiology","5+",35723,55.4
+"Radiotherapy","1",174,6.9
+"Radiotherapy","2",184,7.3
+"Radiotherapy","3",176,7
+"Radiotherapy","4",243,9.7
+"Radiotherapy","5+",1734,69.1
+"Reproductive Medicine","1",3177,9.2
+"Reproductive Medicine","2",3932,11.4
+"Reproductive Medicine","3",4333,12.6
+"Reproductive Medicine","4",4674,13.6
+"Reproductive Medicine","5+",18259,53.1
+"Rheumatology","1",4978,10.2
+"Rheumatology","2",6028,12.3
+"Rheumatology","3",5443,11.1
+"Rheumatology","4",5705,11.7
+"Rheumatology","5+",26670,54.6
+"Sexually Transmitted Diseases","1",322,7
+"Sexually Transmitted Diseases","2",490,10.6
+"Sexually Transmitted Diseases","3",575,12.5
+"Sexually Transmitted Diseases","4",640,13.9
+"Sexually Transmitted Diseases","5+",2583,56
+"Social Sciences","1",3239,25.4
+"Social Sciences","2",3143,24.7
+"Social Sciences","3",2491,19.6
+"Social Sciences","4",1618,12.7
+"Social Sciences","5+",2243,17.6
+"Speech-Language Pathology","1",1050,16.2
+"Speech-Language Pathology","2",1805,27.8
+"Speech-Language Pathology","3",1591,24.5
+"Speech-Language Pathology","4",1019,15.7
+"Speech-Language Pathology","5+",1030,15.9
+"Sports Medicine","1",781,9.5
+"Sports Medicine","2",1511,18.3
+"Sports Medicine","3",1818,22.1
+"Sports Medicine","4",1452,17.6
+"Sports Medicine","5+",2674,32.5
+"Statistics as Topic","1",1280,16.5
+"Statistics as Topic","2",2600,33.4
+"Statistics as Topic","3",2033,26.1
+"Statistics as Topic","4",998,12.8
+"Statistics as Topic","5+",867,11.1
+"Substance-Related Disorders","1",3856,11.5
+"Substance-Related Disorders","2",4782,14.3
+"Substance-Related Disorders","3",5662,16.9
+"Substance-Related Disorders","4",5376,16.1
+"Substance-Related Disorders","5+",13773,41.2
+"Therapeutics","1",2021,15.4
+"Therapeutics","2",2417,18.4
+"Therapeutics","3",2332,17.7
+"Therapeutics","4",1866,14.2
+"Therapeutics","5+",4511,34.3
+"Toxicology","1",4682,5.2
+"Toxicology","2",11093,12.2
+"Toxicology","3",14576,16.1
+"Toxicology","4",15738,17.4
+"Toxicology","5+",44589,49.2
+"Transplantation","1",3029,8.5
+"Transplantation","2",2929,8.2
+"Transplantation","3",3086,8.6
+"Transplantation","4",3174,8.9
+"Transplantation","5+",23504,65.8
+"Traumatology","1",3657,7.8
+"Traumatology","2",5642,12
+"Traumatology","3",7499,16
+"Traumatology","4",8187,17.4
+"Traumatology","5+",21985,46.8
+"Tropical Medicine","1",1132,5.7
+"Tropical Medicine","2",1628,8.1
+"Tropical Medicine","3",2197,11
+"Tropical Medicine","4",2396,12
+"Tropical Medicine","5+",12627,63.2
+"Unclassified","1",35028,14.1
+"Unclassified","2",38692,15.6
+"Unclassified","3",40934,16.5
+"Unclassified","4",38481,15.5
+"Unclassified","5+",95576,38.4
+"Urology","1",15871,18.2
+"Urology","2",9899,11.3
+"Urology","3",9750,11.2
+"Urology","4",9688,11.1
+"Urology","5+",42171,48.3
+"Vascular Diseases","1",5892,9.7
+"Vascular Diseases","2",6521,10.8
+"Vascular Diseases","3",5867,9.7
+"Vascular Diseases","4",6042,10
+"Vascular Diseases","5+",36176,59.8
+"Veterinary Medicine","1",9589,19.8
+"Veterinary Medicine","2",5632,11.6
+"Veterinary Medicine","3",6260,12.9
+"Veterinary Medicine","4",6776,14
+"Veterinary Medicine","5+",20128,41.6
+"Virology","1",1523,2.7
+"Virology","2",5391,9.5
+"Virology","3",6717,11.8
+"Virology","4",7574,13.3
+"Virology","5+",35646,62.7
+"Vital Statistics","1",137,19.2
+"Vital Statistics","2",176,24.6
+"Vital Statistics","3",181,25.3
+"Vital Statistics","4",117,16.4
+"Vital Statistics","5+",104,14.5
+"Women's Health","1",893,17.8
+"Women's Health","2",811,16.1
+"Women's Health","3",792,15.8
+"Women's Health","4",701,13.9
+"Women's Health","5+",1831,36.4
+"Zoology","1",3350,11.7
+"Zoology","2",7340,25.7
+"Zoology","3",6780,23.7
+"Zoology","4",4392,15.4
+"Zoology","5+",6697,23.4

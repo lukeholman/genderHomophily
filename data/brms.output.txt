@@ -1,0 +1,32 @@
+ Family: gaussian 
+  Links: mu = identity; sigma = identity 
+Formula: alpha.adjusted | se(SE) ~ authors + (authors | journal) 
+   Data: alpha_by_author_number (Number of observations: 1307) 
+Samples: 4 chains, each with iter = 6000; warmup = 4000; thin = 1; 
+         total post-warmup samples = 8000
+    ICs: LOO = NA; WAIC = NA; R2 = 0.44
+ 
+Group-Level Effects: 
+~journal (Number of levels: 844) 
+                         Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+sd(Intercept)                0.09      0.01     0.08     0.11       2381 1.00
+sd(authors3)                 0.08      0.01     0.06     0.10       2084 1.00
+sd(authors4)                 0.07      0.01     0.05     0.09       1408 1.00
+sd(authors5P)                0.08      0.01     0.07     0.10       1619 1.00
+cor(Intercept,authors3)     -0.84      0.06    -0.94    -0.71       3133 1.00
+cor(Intercept,authors4)     -0.86      0.05    -0.94    -0.74       2692 1.00
+cor(authors3,authors4)       0.85      0.08     0.66     0.97       1102 1.00
+cor(Intercept,authors5P)    -0.94      0.01    -0.96    -0.91       2008 1.00
+cor(authors3,authors5P)      0.88      0.05     0.76     0.97        713 1.00
+cor(authors4,authors5P)      0.93      0.04     0.82     0.99        290 1.02
+
+Population-Level Effects: 
+          Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+Intercept     0.04      0.01     0.02     0.06       3625 1.00
+authors3      0.03      0.01     0.01     0.05       4297 1.00
+authors4      0.02      0.01     0.01     0.04       4218 1.00
+authors5P     0.03      0.01     0.01     0.04       3752 1.00
+
+Samples were drawn using sampling(NUTS). For each parameter, Eff.Sample 
+is a crude measure of effective sample size, and Rhat is the potential 
+scale reduction factor on split chains (at convergence, Rhat = 1).

@@ -30,6 +30,7 @@ library(tidyr) # spread and gather functions
 library(gridExtra) # arranging ggplots
 library(mgcv) # generalised additive models
 library(ggbeeswarm) # beeswarm plots
+library(brms) # Bayesian models for meta-analysis
 library(Cairo) # for exporting the character 'alpha' via ggsave
 
 # Using a database allows quick access to the whole PubMed dataset without loading the whole thing to memory.
@@ -42,11 +43,6 @@ journals_sqlite <- tbl(pubmed_db, "journals") # information about each journal
 ```{r echo=FALSE, results='hide'}
 library(knitr) 
 opts_chunk$set(warning=FALSE, message=FALSE) # Suppress warnings in the HTML output
-
-figure.counter <- 2  # Counters for numbering figures and tables
-supp.figure.counter <- 1
-table.counter <- 1
-supp.table.counter <- 1
 ```
 
 
@@ -68,6 +64,7 @@ retrieve.authorship.data <- function(journals,
                                      minimum.n, 
                                      start.of.time.period, 
                                      end.of.time.period, 
+                                     restrict.by.n.authors = NULL,
                                      file.name, 
                                      over.write = FALSE){
   
@@ -87,11 +84,18 @@ retrieve.authorship.data <- function(journals,
       # the gender.95 column contains author genders in a format like "MFU" - 
       # MFU means the first author was male, second female, and third was of unknown gender. 
       # Genders were only recorded as M or F if the given name is associated with one gender >=95% of the time.
+      
       focal <- pubmed_sqlite %>% 
         filter(journal == journals[i]) %>% # restrict to focal journal
         select(gender.95, date) %>%        # get these columns
         collect(n = Inf) %>%               # get the data into memory
         filter(nchar(gender.95) > 1)       # only keep papers with >1 author
+      
+      # Potentially further restrict to 2-author papers, 3-author papers... or 5 or more author papers
+      if(!is.null(restrict.by.n.authors)) {
+        if(restrict.by.n.authors != 5) focal <- focal %>% filter(nchar(gender.95) == restrict.by.n.authors)
+        else if(restrict.by.n.authors == 5) focal <- focal %>% filter(nchar(gender.95) >= 5)
+      }
       
       # Convert the data column into 'years before present', to the nearest day
       focal$date <- convert.dates(focal$date)
@@ -140,10 +144,10 @@ retrieve.authorship.data <- function(journals,
 
 
 ### Define a function to calculate Bergstrom et al.'s "coefficient of homophily", $\alpha$
+
 These two functions estimate $\alpha$ for a set of papers' author lists. The version `find.alpha.CIs()` performs bootstrapping resampling of the dataset to obtain the 95% confidence limits on $\alpha$. `find.alpha()` calculates $\alpha$ without bootstrapping, making it much faster (used later when we are calculating the null distribution of $\alpha$).
 
 $\alpha$ is defined as _p_ - _q_, and is termed "the coefficient of homophily". _p_ is the probability that a randomly-chosen co-author of a **male** author is a man, and _q_ is the probability that a randomly-chosen co-author of a **female** author is a man. Thus, positive $\alpha$ means that men coauthor with men, and women coauthor with women, more often than expected under the null model that coauthorship are random with respect to gender. Negative $\alpha$ means the opposite: men and women coauthor more often than expected. 
-
 
 For more information about $\alpha$, see this working paper by Bergstrom _et al._ http://eigenfactor.org/gender/assortativity/measuring_homophily.pdf. Also, see the comments section of this blog post: http://www.michaeleisen.org/blog/?p=1931. Bergstrom _et al._ point out that $\alpha$ is equivalent to the Peason correlation coefficient between the genders of authors on a paper.
 
@@ -447,11 +451,8 @@ gender.grouping.test.many.journals <- function(count.data, authors, output.file,
 
 ## Sample size information
 
-**Table S`r supp.table.counter`**: Sample sizes for the two datasets, which comprise papers published in the timeframes August 2005 - August 2006, and August 2015 - August 2016.
+**Table S1**: Sample sizes for the two datasets, which comprise papers published in the timeframes August 2005 - August 2006, and August 2015 - August 2016.
 
-```{r echo = FALSE, results = "hide"}
-supp.table.counter <- supp.table.counter + 1
-```
 
 
 ```{r get_data}
@@ -474,6 +475,42 @@ retrieve.authorship.data(unique.journals,
                          start.of.time.period = 11, 
                          end.of.time.period = 10, 
                          file.name = "data/older.papers.rds", 
+                         over.write = FALSE) 
+
+# Get all the data we need out of the database, and save as an RDS file - for just the 2-author papers in the last 12 months
+retrieve.authorship.data(unique.journals, 
+                         minimum.n = minimum.n, 
+                         start.of.time.period = 1, 
+                         end.of.time.period = 0, 
+                         restrict.by.n.authors = 2,
+                         file.name = "data/last.year_2author.rds", 
+                         over.write = FALSE) 
+
+# Get all the data we need out of the database, and save as an RDS file - for just the 3-author papers in the last 12 months
+retrieve.authorship.data(unique.journals, 
+                         minimum.n = minimum.n, 
+                         start.of.time.period = 1, 
+                         end.of.time.period = 0, 
+                         restrict.by.n.authors = 3,
+                         file.name = "data/last.year_3author.rds", 
+                         over.write = FALSE) 
+
+# Get all the data we need out of the database, and save as an RDS file - for just the 4-author papers in the last 12 months
+retrieve.authorship.data(unique.journals, 
+                         minimum.n = minimum.n, 
+                         start.of.time.period = 1, 
+                         end.of.time.period = 0, 
+                         restrict.by.n.authors = 4,
+                         file.name = "data/last.year_4author.rds", 
+                         over.write = FALSE) 
+
+# Get all the data we need out of the database, and save as an RDS file - for just the 5-plus-author papers in the last 12 months
+retrieve.authorship.data(unique.journals, 
+                         minimum.n = minimum.n, 
+                         start.of.time.period = 1, 
+                         end.of.time.period = 0, 
+                         restrict.by.n.authors = 5, # NB this actually means "5 or more"
+                         file.name = "data/last.year_5author.rds", 
                          over.write = FALSE) 
 
 # Get metadata about each journal (research discipline, ISI impact factor, and the country that publishes it)
@@ -584,6 +621,41 @@ gender.grouping.test.many.journals(readRDS("data/older.papers.rds"),
                                    number.of.cores = 8,
                                    over.write = FALSE)
 
+# Calculate alpha across all authorship positions for all suitable NEW papers with TWO authors
+gender.grouping.test.many.journals(readRDS("data/last.year_2author.rds"),
+                                   "all",
+                                   "data/homophily.results.2author.csv",
+                                   nBoots = 1000, 
+                                   nSimulations = 1000, 
+                                   number.of.cores = 8,
+                                   over.write = FALSE)
+
+# Calculate alpha across all authorship positions for all suitable NEW papers with THREE authors
+gender.grouping.test.many.journals(readRDS("data/last.year_3author.rds"),
+                                   "all",
+                                   "data/homophily.results.3author.csv",
+                                   nBoots = 1000, 
+                                   nSimulations = 1000, 
+                                   number.of.cores = 8,
+                                   over.write = FALSE)
+
+# Calculate alpha across all authorship positions for all suitable NEW papers with FOUR authors
+gender.grouping.test.many.journals(readRDS("data/last.year_4author.rds"),
+                                   "all",
+                                   "data/homophily.results.4author.csv",
+                                   nBoots = 1000, 
+                                   nSimulations = 1000, 
+                                   number.of.cores = 8,
+                                   over.write = FALSE)
+
+# Calculate alpha across all authorship positions for all suitable NEW papers with FIVE authors
+gender.grouping.test.many.journals(readRDS("data/last.year_5author.rds"),
+                                   "all",
+                                   "data/homophily.results.5author.csv",
+                                   nBoots = 1000, 
+                                   nSimulations = 1000, 
+                                   number.of.cores = 8,
+                                   over.write = FALSE)
 ```
 
 ### Add additional metadata to the $\alpha$ results
@@ -746,41 +818,36 @@ country.data <- read.csv("data/country.data.csv", stringsAsFactors = FALSE) %>%
 
 ### Checking that adjusted and un-adjusted $\alpha$ are very similar
 ```{r}
-master.dataset %>%
+fig_s7 <- master.dataset %>%
   ggplot(aes(x = observed.alpha, y = alpha.adjusted)) + 
   geom_abline(intercept = 0, slope = 1, colour = "darkgrey") + 
     geom_point(size=0.6, alpha=0.4) + 
   ylab("Adjusted measure of homophily (\u03B1')") + 
   xlab("Unadjusted measure of homophily (\u03B1)") + 
   theme_minimal()
+ggsave(fig_s7, file = "figures/S7 Fig.pdf", height = 5, width = 5, device = cairo_pdf)
+fig_s7
 ```
 <br></br> 
-**Figure S`r supp.figure.counter`**: There is a very strong correlation between the values of $\alpha$ and $\alpha'$ calculated for each journal, though in a handful of cases the difference is considerable. The deviation between $\alpha$ and $\alpha'$ is greatest for journals for which we have a small sample size (see next figure).
-
-```{r echo=FALSE, results='hide'}
-supp.figure.counter <- supp.figure.counter + 1
-```
+**Figure S7**: There is a very strong correlation between the values of $\alpha$ and $\alpha'$ calculated for each journal, though in a handful of cases the difference is considerable. The deviation between $\alpha$ and $\alpha'$ is greatest for journals for which there is a small sample size (see S8 Fig).
 
 
 ### Un-adjusted $\alpha$ is downwardly biased for small datasets
 As expected, unadjusted $\alpha$ is slightly downwardly biased for small datasets, because the expected value of $\alpha$ under the null is less than 0. Thus, our adjusted $\alpha'$ statistic, which is the observed $\alpha$ minus the value of $\alpha$ expected under the null, tends to be substantially higher than $\alpha$ for small datasets. All of our results do not differ qualitatively if we use the unadjusted $\alpha$, but we have elected to present the results for $\alpha'$ in light of the issues with unadjusted $\alpha$ for small datasets.
 ```{r}
-master.dataset %>%
+fig_s8 <- master.dataset %>%
   filter(Age == "New") %>%
   ggplot(aes(x = log10(n.useable.papers), 
              y = alpha.adjusted - observed.alpha)) + 
   geom_point(alpha = 0.3, size = 0.5) + 
   facet_wrap(~Subset) +
   ylab("\u03B1' - \u03B1") + 
-  xlab("Log10 sample size\n(number of papers)") + 
+  xlab("Log10 sample size (number of papers)") + 
   theme_minimal()
+ggsave(fig_s8, file = "figures/S8 Fig.pdf", height = 5, width = 5, device = cairo_pdf)
 ```
 <br></br> 
-**Figure S`r supp.figure.counter`**: For journals for which we recovered a small number of papers (<100), the unadjusted metric $\alpha$ was downwardly biased. This fits our expectations: because authors cannot be their own co-authors, small datasets will tend to produce negative estimates of $\alpha$ even if authors assort randomly with respect to gender (see main text). This suggests that $\alpha'$ is a more useful measure of homophily and heterophily, especially for small samples.
-
-```{r echo=FALSE, results='hide'}
-supp.figure.counter <- supp.figure.counter + 1
-```
+**Figure S8**: For journals for which we recovered a small number of papers (<100), the unadjusted metric $\alpha$ was downwardly biased. This fits our expectations: because authors cannot be their own co-authors, small datasets will tend to produce negative estimates of $\alpha$ even if authors assort randomly with respect to gender (see main text). This suggests that $\alpha'$ is a more useful measure of homophily and heterophily, especially for small samples.
 
 
 
@@ -788,7 +855,7 @@ supp.figure.counter <- supp.figure.counter + 1
 
 ### Create S1 Data, which holds all the $\alpha'$ estimates
 
-**S1 Data**: This spreadsheet shows the $\alpha'$ values calculated for each journal, in the 2005 and 2015 samples, and for each type of author (all authors, first authors, and last authors). The tables gives the impact factor of each journal, the sample size, $\alpha$ and $\alpha'$ and their 95% CIs, and the p-value from a 2-tailed test evaluating the null hypothesis that $\alpha$ is zero (both raw and FDR-corrected p-values are shown).
+**S1 Data**: This file gives the $\alpha'$ values calculated for each journal, in the 2005 and 2015 samples, and for each type of author (all authors, first authors, and last authors). The tables gives the impact factor of each journal, the sample size, $\alpha$ and $\alpha'$ and their 95% CIs, and the p-value from a 2-tailed test evaluating the null hypothesis that $\alpha$ is zero (both raw and FDR-corrected p-values are shown).
 
 ```{r}
 # Save and export a neat and tidy version for the supplementary material
@@ -799,9 +866,78 @@ names(neat) <- paste(toupper(substring(names(neat), 1, 1)), substring(names(neat
 names(neat) <- gsub("N", "n", names(neat))
 names(neat) <- gsub("2", "", names(neat))
 for(i in which(sapply(neat, is.numeric))) neat[,i] <- round(neat[,i], 3)
-write.csv(neat, file = "data/S1 data.csv", row.names = FALSE)
+write.csv(neat, file = "supplement/S1 data.csv", row.names = FALSE)
 rm(neat)
 ```
+
+### Create S2 Data, showing the number of papers with $n$ authors per journal
+
+**S2 Data**: This file gives the number and percentage of paper that have 1, 2, 3, 4, or ${\ge}5$ authors for each journal in the dataset of Holman et al. (2018) _PLoS Biology_. Note that the sample sizes include papers for which the gender of one or more authors was not determined by Holman et al.
+
+```{r}
+if(!file.exists("supplement/S2 data.csv")){
+  freq_multiauthor_by_journal <- pubmed_sqlite %>% 
+  select(journal, gender.95) %>% 
+  collect(n=Inf) %>% 
+  group_by(journal) %>% 
+  summarise(n1 = sum(nchar(gender.95) == 1), # Count the number of n author papers
+            n2 = sum(nchar(gender.95) == 2), 
+            n3 = sum(nchar(gender.95) == 3), 
+            n4 = sum(nchar(gender.95) == 4), 
+            `n5+` = sum(nchar(gender.95) >= 5)) %>%
+  gather(author_number, count, n1, n2, n3, n4, `n5+`) %>%
+  mutate(author_number = gsub("n", "", author_number)) %>%
+  arrange(journal, author_number) %>% 
+  left_join(journals_sqlite %>% 
+              select(short.title, Discipline) %>% 
+              collect(), by = c("journal" = "short.title")) %>%
+  distinct() %>% 
+  split(.$journal) %>% # Add a % column
+  purrr::map(function(x) {
+    x$percent <- 100 * x$count/sum(x$count)
+    x}) %>% 
+  do.call("rbind", .) %>%
+  mutate(percent = round(percent, 1))
+write.csv(freq_multiauthor_by_journal, file = "supplement/S2 data.csv", row.names = FALSE)
+}
+```
+
+### Create S3 Data, showing the number of papers with $n$ authors per discipline
+
+**S3 Data**: This file gives the number and percentage of paper that have 1, 2, 3, 4, or ${\ge}5$ authors for each discipline in the dataset of Holman et al. (2018) _PLoS Biology_. Note that the sample sizes include papers for which the gender of one or more authors was not determined by Holman et al.
+
+```{r}
+freq_multiauthor_by_discipline <- read.csv("supplement/S2 data.csv", stringsAsFactors = FALSE) %>%
+  group_by(Discipline, author_number) %>%
+  summarise(count = sum(count)) %>% 
+  split(.$Discipline) %>% 
+  purrr::map(function(x) {
+    x$percent <- 100 * x$count/sum(x$count)
+    x}) %>% 
+  do.call("rbind", .) %>%
+  mutate(percent = round(percent, 1))
+write.csv(freq_multiauthor_by_discipline, file = "supplement/S3 data.csv", row.names = FALSE)
+```
+
+### Multi-author papers are common in most disciplines
+
+```{r fig.height=14, fig.width = 11}
+big.plot <- freq_multiauthor_by_discipline %>%
+  ggplot(aes(author_number, percent, group = 1)) + 
+  geom_line() + 
+  scale_y_continuous(breaks = c(0, 40, 80)) +
+  facet_wrap(~Discipline, ncol = 8, labeller = label_wrap_gen(width = 25)) +
+  theme_bw() + 
+  theme(strip.text = element_text(size = 7.2), panel.grid.major.x = element_blank()) + 
+  xlab("Number of authors") + 
+  ylab("% of papers")
+
+ggsave(big.plot, file = "figures/S1 Fig.pdf", height = 11, width = 10)
+big.plot
+```
+<br></br>
+**Figure S1**: Plot showing the percentage of papers that have 1, 2, 3, 4, or ${\ge}5$ authors for each discipline in the dataset of Holman et al. (2018). This information can also be found in S3 Data.
+
 
 ### Distribution of gender homophily and heterophily across journals
 Most journals show gender homophily (i.e. $\alpha' > 0$), not heterophily, meaning that people are more likely to co-publish with colleagues of the same gender. 
@@ -841,11 +977,7 @@ saveRDS(c("n.journals" = n.journals, "n.sig.homo" = n.sig.homo, "n.sig.hetero" =
 
 
 
-**Table S`r supp.table.counter`**: Number of journals showing statistically significant homophily or heterophily, in two one-year periods. The significance threshold was p < 0.05, and p-values were adjused using Benjamini-Hochberg false discovery rate correction. Note that the power of our test is lower for the 2005-2006 data because fewer papers were recovered per journal: thus, it is not meaningful to compare the % significant journals (i.e. 11% vs 24%) between the two time periods.
-
-```{r echo = FALSE, results = "hide"}
-supp.table.counter <- supp.table.counter + 1
-```
+**Table S2**: Number of journals showing statistically significant homophily or heterophily, in two one-year periods. The significance threshold was p < 0.05, and p-values were adjused using Benjamini-Hochberg false discovery rate correction. Note that the power of our test is lower for the 2005-2006 data because fewer papers were recovered per journal: thus, it is not meaningful to compare the % significant journals (i.e. 11% vs 24%) between the two time periods.
 
 
 ```{r}
@@ -889,7 +1021,7 @@ old.vs.new <- master.dataset %>%
             Significant = replace(Significant, lower883.old > upper883.new, "Yes")) %>%
   filter(!is.na(alpha.old)) 
 
-old.vs.new %>%
+fig_s2 <- old.vs.new %>%
   ggplot(aes(x = alpha.new - alpha.old, fill = Significant)) + 
   geom_vline(xintercept = 0, linetype = 2) +
   geom_histogram(binwidth = 0.01, colour = "black", fill = "skyblue") + 
@@ -897,13 +1029,10 @@ old.vs.new %>%
   xlab("Change in \u03B1' over the last ten years") + 
   ylab("Number of journals") +
   theme_minimal()
+ggsave(fig_s2, file = "figures/S2 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
 ```
 <br></br>
-**Figure S`r supp.figure.counter`**: Histogram showing the distribution of differences in $\alpha'$ between the 2015-16 and 2005-6 samples, where positive numbers indicate an increase in $\alpha'$ with time. The mean is slightly positive (namely `r with(old.vs.new, mean(alpha.new - alpha.old))`), indicating a mild increase in average $\alpha'$ with time.  
-
-```{r echo=FALSE, results='hide'}
-supp.figure.counter <- supp.figure.counter + 1
-```
+**Figure S2**: Histogram showing the distribution of differences in $\alpha'$ between the 2015-16 and 2005-6 samples, where positive numbers indicate an increase in $\alpha'$ with time. The mean is slightly positive (i.e. 0.004), indicating a mild increase in average $\alpha'$ with time.
 
 
 #### Model of the average change in $\alpha$
@@ -948,14 +1077,12 @@ first.vs.last.plot <- first.vs.last.data %>%
   xlab("\u03B1' for first authors - \u03B1' for last authors") +
   ylab("Number of journals")
 
+ggsave(first.vs.last.plot, file = "figures/S3 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
 first.vs.last.plot
 ```
 <br></br>
-**Figure S`r supp.figure.counter`**: Histogram showing the difference between $\alpha'$ calculated for first and last authors. Positive values mean that $\alpha'$ was higher when calculated for first authors, and negative values mean $\alpha'$ was higher when calculated for last authors. The mean is very slightly higher than zero, indicated that $\alpha'$ tends to be higher for first authors.
+**Figure S3**: Histogram showing the difference between $\alpha'$ calculated for first and last authors. Positive values mean that $\alpha'$ was higher when calculated for first authors, and negative values mean $\alpha'$ was higher when calculated for last authors. The mean is very slightly higher than zero, indicating that $\alpha'$ tends to be higher for first authors.
 
-```{r echo=FALSE, results='hide'}
-supp.figure.counter <- supp.figure.counter + 1
-```
 
 ### Variance in gender homophily across disciplines
 When we compared the $\alpha'$ values of journals from different research disciplines, we found that the strength of homophily varied between disciplines, but not a lot. That is, the variance within disciplines was substantially greater than the variance between disciplines (see above linear mixed model: discipline explains about 4% of the variance in $\alpha'$).
@@ -1008,14 +1135,10 @@ figure2B <- gender.homophily.all %>%
 
 grid.arrange(figure2A + xlab(NULL), figure2B, nrow = 1, bottom = "Coefficient of homophily (\u03B1')")  
 
-ggsave(grid.arrange(figure2A + xlab(NULL), figure2B, nrow = 1, bottom = "Coefficient of homophily (\u03B1')"), filename = "figures/figure2.pdf", height = 8, width = 7, device = cairo_pdf)
+ggsave(grid.arrange(figure2A + xlab(NULL), figure2B, nrow = 1, bottom = "Coefficient of homophily (\u03B1')"), filename = "figures/Fig2.pdf", height = 8, width = 7, device = cairo_pdf)
 ```
 <br></br>
-**Figure `r figure.counter`**: Of the `r n.journals` journals for which we had adequate data in 2015-2016, `r n.sig.homo` showed statistically significant evidence of homophily (denoted by $\alpha' > 0$), and `r n.sig.hetero` showed statistically significant evidence of heterophily ($\alpha' < 0$), after adjusting p-values using Benjamini-Hochberg false discovery rate correction. In the left panels, the white area shows the number of journals for which homophily was significantly stronger than expected under the null hypothesis (p < 0.05), while the blue area shows the remainder. Patterns were similar whether $\alpha'$ was calculated for all authors, for first authors only, or for last authors only. The right panel shows the distribution of the $\alpha'$ values across journals, split by the research discipline of the journal. The points show the $\alpha'$ for individual journals, and the boxes show quartiles 1, 2 and 3. The boxplot whiskers show the distance of the farthest point that is within 1.5 times the interquartile range from the edge of the box.
-
-```{r echo=FALSE, results='hide'}
-figure.counter <- figure.counter + 1
-```
+**Figure 2**: Of the `r n.journals` journals for which we had adequate data in 2015-2016, `r n.sig.homo` showed statistically significant evidence of homophily (denoted by $\alpha' > 0$), and `r n.sig.hetero` showed statistically significant evidence of heterophily ($\alpha' < 0$), after adjusting p-values using Benjamini-Hochberg false discovery rate correction. In the left panels, the white area shows the number of journals for which homophily was significantly stronger than expected under the null hypothesis (p < 0.05), while the blue area shows the remainder. Patterns were similar whether $\alpha'$ was calculated for all authors, for first authors only, or for last authors only. The right panel shows the distribution of the $\alpha'$ values across journals, split by the research discipline of the journal. The points show the $\alpha'$ for individual journals, and the boxes show quartiles 1, 2 and 3. The boxplot whiskers show the distance of the farthest point that is within 1.5 times the interquartile range from the edge of the box.
 
 
 
@@ -1023,19 +1146,85 @@ figure.counter <- figure.counter + 1
 
 #### Table showing the difference in $\alpha$ between disciplines
 
-**Table S`r supp.table.counter`**: The table shows similar information to Figure S`r figure.counter`, namely the distribution of the $\alpha'$ values across journals, split by the research discipline. The gender ratio column shows the percentage of women authors in the sample used to calculate $\alpha'$, across all authorship positions. In the last two columns, the numbers outside parentheses give the number of journals that deviate statistically significantly from zero, while the numbers inside parentheses give the number that remain significant after false discovery rate correction.
-
-```{r echo=FALSE, results='hide'}
-supp.table.counter <- supp.table.counter + 1
-```
+**S4 Data**: The table shows the distribution of the $\alpha'$ values across journals, split by the research discipline. The gender ratio column shows the percentage of women authors in the sample used to calculate $\alpha'$, across all authorship positions. In the last two columns, the numbers outside parentheses give the number of journals that deviate statistically significantly from zero, while the numbers inside parentheses give the number that remain significant after false discovery rate correction.
 
 ```{r}
-disc.summary %>% filter(`n journals` > 9) %>% 
-  pander(split.cell = 40, split.table = Inf)
+s4_data <- disc.summary %>% filter(`n journals` > 9)
+write.csv(s4_data, file = "supplement/S4 data.csv", row.names = FALSE)
+
+s4_data %>% pander(split.cell = 40, split.table = Inf)
 ```
 
 
-### Gender homophily covaries with author gender ratio
+### Relationship between gender homophily and number of authors
+
+```{r}
+# Load and tidy the alpha values calculated using only papers with 2,3,4, or 5+ authors
+alpha_by_author_number <- lapply(2:5, function(i){
+  read.csv(paste("data/homophily.results.", i, "author.csv", sep = ""), 
+           stringsAsFactors = F) %>% mutate(authors = i)}) %>%
+  do.call("rbind", .) %>% 
+  select(journal, authors, alpha.adjusted, n.useable.papers, lower.95.CI2, upper.95.CI2) %>% 
+  mutate(SE = (upper.95.CI2 - alpha.adjusted)/1.96) %>% 
+  left_join(journals_sqlite %>% 
+              select(short.title, Discipline, IF) %>% 
+              collect(), 
+            by = c("journal" = "short.title")) %>% 
+  arrange(journal, authors, Discipline) %>%
+  mutate(authors = factor(replace(authors, authors == 5, "5+"), 
+                          levels = c("2", "3", "4", "5+")))
+
+if(!file.exists("data/brms.output.txt")){
+  # Run a meta-regression model using brms, which runs a Bayesian model using Stan
+meta_analysis.brms <- brm(alpha.adjusted | se(SE) ~ authors + (authors | journal), 
+                 data = alpha_by_author_number, 
+                 iter = 6000, warmup = 4000, chains = 4, cores = 4, seed = 1) %>% 
+  add_ic(ic = "R2") # The Bayesian r-squared is 0.44
+writeLines(capture.output(meta_analysis.brms), con = "data/brms.output.txt")
+
+# Get the predicted values for each group mean
+predictions <- meta.brms %>% 
+  fitted(newdata = data.frame(authors=levels(alpha_by_author_number$authors), 
+                               SE = mean(alpha_by_author_number$SE)), 
+          re_formula = NA) %>% 
+  as.data.frame() %>% 
+  mutate(authors=levels(alpha_by_author_number$authors)) %>% 
+  rename(low =  `2.5%ile`, up = `97.5%ile`)
+
+write.csv(predictions, file = "data/brms.predictions.csv", row.names = FALSE)
+}
+
+
+# Make a plot
+predictions <- read.csv("data/brms.predictions.csv", stringsAsFactors = FALSE)
+author_number_figure <- alpha_by_author_number %>% 
+  mutate(authors = as.factor(authors), Precision = 1/SE) %>%
+  ggplot(aes(authors)) + 
+  geom_violin(alpha=0.5, aes(y=alpha.adjusted, colour = authors)) + 
+  geom_jitter(aes(y=alpha.adjusted, colour = authors), size = 0.7, alpha = 0.5) + 
+  # geom_line(aes(group = journal, y=alpha.adjusted), alpha = 0.1, size=.7) + 
+  geom_errorbar(data = predictions, aes(authors, ymin = low, ymax = up), width = 0.05, size = 0.6) +
+  geom_line(data = predictions, aes(authors, Estimate, group = 1.2), size = 0.6) + 
+  geom_point(data = predictions, aes(authors, Estimate), size = 2, pch = 21, stroke = 1, fill = "white") +
+  scale_color_brewer(palette = "Dark2") + 
+  scale_fill_brewer(palette = "Dark2") + 
+  theme_bw(13) + 
+  theme(legend.position = "none", panel.grid = element_blank()) +
+  xlab("Number of authors listed on the paper") + 
+  ylab("Coefficient of homophily (\u03B1')")
+ggsave(author_number_figure, file = "figures/Fig3.pdf", height = 6, width = 6.5, device = cairo_pdf)
+author_number_figure
+```
+<br></br>
+**Figure 3**: The coefficient of homophily ($\alpha'$) was slightly less positive when calculated for two-author papers only, relative to papers with longer author lists. The individual points, whose distribution is summarised by the violin plots, correspond to individual journals. The larger white points show the mean for each group (and its 95% CIs), as calculated by a Bayesian meta-regression model accounting for repeated measures of $\alpha'$ within journals, as well as the precision with which $\alpha'$ was estimated.
+
+### Summary output of the `brms` model used to derive the means in Figure 3
+```{r}
+cat(readLines('data/brms.output.txt'), sep = '\n')
+```
+
+
+### Relationship between gender homophily and gender ratio
 Journals with a male-biased author gender ratio showed less author gender homophily, while journals with an even or female-biased author gender ratio showed more homophily. The pattern was similar whether we calculated $\alpha$ for all authors, first authors only, or last authors only. 
 ```{r fig.width=6, fig.height=5}
 gender.ratio <- master.dataset %>% 
@@ -1052,18 +1241,15 @@ gender.ratio <- master.dataset %>%
   facet_wrap(~Subset) + 
   theme_minimal() +
   theme(legend.position = "none") 
-ggsave(plot = gender.ratio, filename = "figures/figure3.pdf", 
+ggsave(plot = gender.ratio, filename = "figures/Fig4.pdf", 
        device = cairo_pdf, width=7, height=5)
 gender.ratio
 ```
 <br></br>
-**Figure `r figure.counter`**: There is a weakly positive, non-linear relationship between the gender ratio of authors publishing in a journal, and the coefficient of homophily ($\alpha'$). Specifically, journals with 50% women authors or higher tended to have more same-sex coauthorships than did journals with predominantly men authors.  This relationship held whether $\alpha'$ was calculated for all authors, first authors only, or last authors only. A negative value on the x axis denotes an excess of men authors, a positive value denotes an excess of women authors, and zero denotes gender parity. The lines were fitted using generalised additive models with the smoothing parameter $k$ set to 3. 
+**Figure 4**: There is a weakly positive, non-linear relationship between the gender ratio of authors publishing in a journal, and the coefficient of homophily ($\alpha'$). Specifically, journals with 50% women authors or higher tended to have more same-sex coauthorships than did journals with predominantly men authors.  This relationship held whether $\alpha'$ was calculated for all authors, first authors only, or last authors only. A negative value on the x axis denotes an excess of men authors, a positive value denotes an excess of women authors, and zero denotes gender parity. The lines were fitted using generalised additive models with the smoothing parameter $k$ set to 3. 
 
-```{r echo=FALSE, results='hide'}
-figure.counter <- figure.counter + 1
-```
 
-Here are the results of three generalised additive models (GAMs) fit to the data in the three panels of Figure `r figure.counter - 1`:
+Here are the results of three generalised additive models (GAMs) fit to the data in the three panels of Figure 4:
 ```{r}
 gam(alpha.adjusted ~ s(gender.ratio.of.sample), data = master.dataset %>% 
       filter(Age == "New", Subset == "All authors") %>% 
@@ -1092,7 +1278,7 @@ R2 <- model$adj.r.squared %>%
 
 model$coefficients %>% pander(split.cell = 40, split.table = Inf) # The model coefficients and p-values
 
-figure4 <- gender.homophily.all %>% 
+figure5 <- gender.homophily.all %>% 
   filter(!is.na(standardised.IF)) %>% 
   ggplot(aes(x = standardised.IF, y = alpha.adjusted)) +
   geom_hline(yintercept = 0, linetype = 2) +
@@ -1102,16 +1288,13 @@ figure4 <- gender.homophily.all %>%
   xlab("Standardised journal impact factor") + 
   ylab("Coefficient of homophily (\u03B1')") + 
   theme_minimal()
-ggsave(figure4, file = "figures/figure4.pdf", height = 5, width = 5, device = cairo_pdf)
-saveRDS(R2, "manuscript/R2_for_figure4.RData")
-figure4
+ggsave(figure5, file = "figures/Fig5.pdf", height = 5, width = 5, device = cairo_pdf)
+saveRDS(R2, "manuscript/R2_for_figure5.RData")
+figure5
 ```
 <br></br>
-**Figure `r figure.counter`**: Journal impact factor (expressed relative to the average for the discipline) is negatively correlated with $\alpha'$. The relationship is weak ($R^2$ = `r R2`), but the results suggest that journals with strong homophily tend to have lower impact factors than journals with weak homophily in the same discipline.
+**Figure 5**: Journal impact factor (expressed relative to the average for the discipline) is negatively correlated with $\alpha'$. The relationship is weak ($R^2$ = `r R2`), but the results suggest that journals with strong homophily tend to have lower impact factors than journals with weak homophily in the same discipline.
 
-```{r echo=FALSE, results='hide'}
-figure.counter <- figure.counter + 1
-```
 
 ### Gender homophily is also observed within countries
 
@@ -1130,14 +1313,12 @@ country.histo <- country.data %>%
   ylab("Number of journals") +
   theme_minimal() + 
   theme(legend.position = "top")
+ggsave(country.histo, file = "figures/S4 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
 country.histo
 ```
 <br></br>
-**Figure S`r supp.figure.counter`**: Histogram of $\alpha'$ for 325 unique combinations of journal and country, using data from August 2015 - August 2016. The white areas denote combinations for which $\alpha'$ differs significantly from zero (p < 0.05, following false discovery rate correction). 
+**Figure S4**: Histogram of $\alpha'$ for 325 unique combinations of journal and country, using data from August 2015 - August 2016. The white areas denote combinations for which $\alpha'$ differs significantly from zero (p < 0.05, following false discovery rate correction).
 
-```{r echo=FALSE, results='hide'}
-supp.figure.counter <- supp.figure.counter + 1
-```
 
 #### Sample sizes for the journal-country dataset
 
@@ -1162,7 +1343,7 @@ paste("% variance associated with journal:", round(100 * 0.001787 / (0.001069 + 
 
 ```{r fig.height= 9}
 x <- nrow(country.data[country.data$p.adjusted < 0.05, ])
-country.data %>% 
+fig_s5 <- country.data %>% 
   filter(p.adjusted < 0.05) %>%
   filter(discipline != "Multidisciplinary") %>%
   arrange(lower.95.CI2) %>% 
@@ -1175,14 +1356,11 @@ country.data %>%
   ylab("Country - journal combination") + 
   theme_minimal() + 
   theme(legend.position = "none")
+ggsave(fig_s5, file = "figures/S5 Fig.pdf", width = 7, height = 9, device = cairo_pdf)
+fig_s5
 ```
 <br></br>
-**Fig S`r supp.figure.counter`**: Plot showing the `r nrow(country.data[country.data$p.adjusted < 0.05, ])` combinations of journal and author country of affiliation for which $\alpha'$ is significantly higher than expected. 
-
-
-```{r echo=FALSE, results='hide'}
-supp.figure.counter <- supp.figure.counter + 1
-```
+**Figure S5**: Plot showing the 68 combinations of journal and author country of affiliation for which $\alpha'$ is significantly higher than expected.
 
 
 ### Estimating inflation in $\alpha'$ due to country effects
@@ -1203,25 +1381,25 @@ mean.inflation.due.to.country <- country.data %>%
   group_by(journal) %>%
   summarise(mean.inflation.due.to.country = mean(journal.alpha - alpha.adjusted)) 
 
-avg <- mean(mean.inflation.due.to.country$mean.inflation.due.to.country)
+median <- median(mean.inflation.due.to.country$mean.inflation.due.to.country)
 
-txt <- data.frame(x = avg + 0.035, y = 56, label = paste("Mean =", round(avg,3)))
+txt <- data.frame(x = median + 0.06, y = 66, label = paste("Median =", round(median,3)))
 
-mean.inflation.due.to.country %>%
+mean.inflation.due.to.country <- mean.inflation.due.to.country %>%
   ggplot(aes(mean.inflation.due.to.country)) + 
   geom_histogram(binwidth = 0.02, colour = "black", fill = "skyblue") + 
-  geom_vline(xintercept = avg, linetype = 2) + 
+  geom_vline(xintercept = median, linetype = 2) + 
   geom_text(data=txt, aes(x=x, y=y, label=label)) + 
   theme_minimal() + 
-  xlab("Estimated inflation in \u03B1' due to differences in gender ratio between countries") + 
+  xlab("Estimated inflation in \u03B1' due to\ndifferences in gender ratio between countries") + 
   ylab("Frequency")
+
+ggsave(mean.inflation.due.to.country, file = "figures/S6 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
+mean.inflation.due.to.country
 ```
 <br></br>
-**Fig S`r supp.figure.counter`**: Histogram showing the estimated degree to which $\alpha'$ is inflated by inter-country differences in author gender ratio, across the `r length(unique(country.data$journal))` journals for which we had adequate data after restricting the analysis by country. The average inflation in $\alpha'$ is negligible, suggesting that Wahlund effects resulting from inter-country differences have neglible effect on our estimates of gender homophily. 
+**Fig S6**: Histogram showing the estimated degree to which $\alpha'$ is inflated by inter-country differences in author gender ratio, across the 285 journals for which we had adequate data after restricting the analysis by country. The average inflation in $\alpha'$ is negligible, suggesting that Wahlund effects resulting from inter-country differences have a neglible effect on our estimates of gender homophily.
 
-```{r echo=FALSE, results='hide'}
-supp.figure.counter <- supp.figure.counter + 1
-```
 
 ## Theoretical expectations for $\alpha$ when there is a gender gap between career stages
 
@@ -1308,7 +1486,7 @@ simulation.figure <- results %>%
           subtitle = "Columns show % within-stage collaborations that involve two early-career researchers")
 
 simulation.figure
-ggsave(simulation.figure, file = "figures/figure5.pdf", 
+ggsave(simulation.figure, file = "figures/Fig6.pdf", 
        height = 5.6, width = 5, device = cairo_pdf)
 ```
 
