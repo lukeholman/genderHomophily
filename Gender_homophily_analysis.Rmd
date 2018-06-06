@@ -1210,8 +1210,8 @@ author_number_figure <- alpha_by_author_number %>%
   geom_point(data = predictions, aes(authors, Estimate), size = 2, pch = 21, stroke = 1, fill = "white") +
   scale_color_brewer(palette = "Dark2") + 
   scale_fill_brewer(palette = "Dark2") + 
-  theme_bw(13) + 
-  theme(legend.position = "none", panel.grid = element_blank()) +
+  theme_minimal(13) + 
+  theme(legend.position = "none") +
   xlab("Number of authors listed on the paper") + 
   ylab("Coefficient of homophily (\u03B1')")
 ggsave(author_number_figure, file = "figures/Fig3.pdf", height = 6, width = 6.5, device = cairo_pdf)
