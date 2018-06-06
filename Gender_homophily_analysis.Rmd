@@ -921,6 +921,8 @@ write.csv(freq_multiauthor_by_discipline, file = "supplement/S3 data.csv", row.n
 
 ### Multi-author papers are common in most disciplines
 
+This figure illustrates that single-author papers make up a small minority of the total, for the majority of disciplines we examined. Indeed for many disciplines, the majority of papers have at least five authors.
+
 ```{r fig.height=14, fig.width = 11}
 big.plot <- freq_multiauthor_by_discipline %>%
   ggplot(aes(author_number, percent, group = 1)) + 
@@ -1219,6 +1221,7 @@ author_number_figure
 **Figure 3**: The coefficient of homophily ($\alpha'$) was slightly less positive when calculated for two-author papers only, relative to papers with longer author lists. The individual points, whose distribution is summarised by the violin plots, correspond to individual journals. The larger white points show the mean for each group (and its 95% CIs), as calculated by a Bayesian meta-regression model accounting for repeated measures of $\alpha'$ within journals, as well as the precision with which $\alpha'$ was estimated.
 
 ### Summary output of the `brms` model used to derive the means in Figure 3
+Note that the 95% credible intervals for the population-level intercept do not overlap zero, which indicates "significant" positive $\alpha'$ among 2-author papers. Furthermore, $\alpha'$ is significantly higher for 3-, 4-, and 5-plus-author papers than for 2-author papers. The R^2 of the model is 0.44, and the random effects appear to explain non-trivial amounts of variation.
 ```{r}
 cat(readLines('data/brms.output.txt'), sep = '\n')
 ```
