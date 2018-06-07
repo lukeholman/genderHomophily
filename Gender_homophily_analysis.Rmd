@@ -1272,7 +1272,7 @@ gam(alpha.adjusted ~ s(gender.ratio.of.sample), data = master.dataset %>%
 After correcting for differences in journal impact factor between disciplines (using residuals from a mixed model), there was a negative relationship between impact factor and the coefficient of homophily, $\alpha$. This means that journals that have a high impact factor, relative to journals in their discipline, show less gender homophily than do low-impact journals.
 
 ```{r fig.width=6, fig.height=5}
-model <- summary(lm(alpha.adjusted ~ standardised.IF, data = master.dataset %>% 
+model <- summary(lm(alpha.adjusted ~ scale(standardised.IF), data = master.dataset %>% 
                       filter(Age == "New", 
                              Subset == "All authors", 
                              !is.na(standardised.IF))))
