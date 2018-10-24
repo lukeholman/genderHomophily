@@ -394,7 +394,10 @@ gender.grouping.test.one.journal <- function(nMales, nFemales, is.female = NULL,
 ### Define a function for parallelisation
 Runs `gender.grouping.test.one.journal()` on all the journals in 'journals', in parallel across multiple CPUs.
 ```{r}
-gender.grouping.test.many.journals <- function(count.data, authors, output.file, nBoots, nSimulations, number.of.cores, over.write = FALSE){
+gender.grouping.test.many.journals <- function(count.data, 
+                                               authors, output.file, 
+                                               nBoots, nSimulations, 
+                                               number.of.cores, over.write = FALSE){
   
   # Only do the test if over.write = TRUE or there is no datafile in the working directory
   if(over.write | !file.exists(output.file)){ 
@@ -452,8 +455,6 @@ gender.grouping.test.many.journals <- function(count.data, authors, output.file,
 ## Sample size information
 
 **Table S1**: Sample sizes for the two datasets, which comprise papers published in the timeframes August 2005 - August 2006, and August 2015 - August 2016.
-
-
 
 ```{r get_data}
 minimum.n <- 50   # Only include journals with at least 50 papers in the specified range of time
@@ -845,6 +846,7 @@ fig_s8 <- master.dataset %>%
   xlab("Log10 sample size (number of papers)") + 
   theme_minimal()
 ggsave(fig_s8, file = "figures/S8 Fig.pdf", height = 5, width = 5, device = cairo_pdf)
+fig_s8
 ```
 <br></br> 
 **Figure S8**: For journals for which we recovered a small number of papers (<100), the unadjusted metric $\alpha$ was downwardly biased. This fits our expectations: because authors cannot be their own co-authors, small datasets will tend to produce negative estimates of $\alpha$ even if authors assort randomly with respect to gender (see main text). This suggests that $\alpha'$ is a more useful measure of homophily and heterophily, especially for small samples.
@@ -1032,6 +1034,7 @@ fig_s2 <- old.vs.new %>%
   ylab("Number of journals") +
   theme_minimal()
 ggsave(fig_s2, file = "figures/S2 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
+fig_s2
 ```
 <br></br>
 **Figure S2**: Histogram showing the distribution of differences in $\alpha'$ between the 2015-16 and 2005-6 samples, where positive numbers indicate an increase in $\alpha'$ with time. The mean is slightly positive (i.e. 0.004), indicating a mild increase in average $\alpha'$ with time.
@@ -1221,7 +1224,7 @@ author_number_figure
 **Figure 3**: The coefficient of homophily ($\alpha'$) was slightly less positive when calculated for two-author papers only, relative to papers with longer author lists. The individual points, whose distribution is summarised by the violin plots, correspond to individual journals. The larger white points show the mean for each group (and its 95% CIs), as calculated by a Bayesian meta-regression model accounting for repeated measures of $\alpha'$ within journals, as well as the precision with which $\alpha'$ was estimated.
 
 ### Summary output of the `brms` model used to derive the means in Figure 3
-Note that the 95% credible intervals for the population-level intercept do not overlap zero, which indicates "significant" positive $\alpha'$ among 2-author papers. Furthermore, $\alpha'$ is significantly higher for 3-, 4-, and 5-plus-author papers than for 2-author papers. The R^2 of the model is 0.44, and the random effects appear to explain non-trivial amounts of variation.
+Note that the 95% credible intervals for the population-level intercept do not overlap zero, which indicates "significant" positive $\alpha'$ among 2-author papers. Furthermore, $\alpha'$ is significantly higher for 3-, 4-, and 5-plus-author papers than for 2-author papers. The $R^2$ of the model is 0.44, and the random effects appear to explain non-trivial amounts of variation.
 ```{r}
 cat(readLines('data/brms.output.txt'), sep = '\n')
 ```
@@ -1323,6 +1326,75 @@ country.histo
 **Figure S4**: Histogram of $\alpha'$ for 325 unique combinations of journal and country, using data from August 2015 - August 2016. The white areas denote combinations for which $\alpha'$ differs significantly from zero (p < 0.05, following false discovery rate correction).
 
 
+### Estimating inflation in $\alpha'$ due to country effects
+
+Using the country data, we can estimate whether the Wahlund effect created by gender differences between countries produced 'spurious' positive $\alpha'$ values in our dataset. 
+
+For journal $i$, we take the average of the differences $\alpha'_i - \alpha'_{i,j}$, where $\alpha'_i$ is the coefficient of homophily calculated for all papers from journal $i$, and $\alpha'_{i,j}$ is the coefficient of homophily calculated for papers from journal $i$, by authors from country $j$. A positive value implies that pooling authors from different countries gives a higher estimate of homophily, consistent with a Wahlund effect. 
+
+Plotting a histogram of these average differences for the `r length(unique(country.data$journal))` journals shows that the mean and median difference is essentially zero, illustrating that $\alpha'$ is not strongly inflated by Wahlund effects caused by differences in author gender ratio between countries.
+
+```{r}
+mean.inflation.due.to.country <- country.data %>%
+  left_join(master.dataset %>% 
+              filter(Age == "New", Subset == "All authors") %>% 
+              select(journal, alpha.adjusted) %>% 
+              rename(journal.alpha = alpha.adjusted), 
+            by = "journal") %>%
+  group_by(journal) %>%
+  summarise(mean.inflation.due.to.country = mean(journal.alpha - alpha.adjusted)) 
+
+median <- median(mean.inflation.due.to.country$mean.inflation.due.to.country)
+
+txt <- data.frame(x = median + 0.06, y = 66, label = paste("Median =", round(median,3)))
+
+mean.inflation.due.to.country <- mean.inflation.due.to.country %>%
+  ggplot(aes(mean.inflation.due.to.country)) + 
+  geom_histogram(binwidth = 0.02, colour = "black", fill = "skyblue") + 
+  geom_vline(xintercept = median, linetype = 2) + 
+  geom_text(data=txt, aes(x=x, y=y, label=label)) + 
+  theme_minimal() + 
+  xlab("Estimated inflation in \u03B1' due to\ndifferences in gender ratio between countries") + 
+  ylab("Frequency")
+
+ggsave(mean.inflation.due.to.country, file = "figures/S6 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
+mean.inflation.due.to.country
+```
+<br></br>
+**Fig S6**: Histogram showing the estimated degree to which $\alpha'$ is inflated by inter-country differences in author gender ratio, across the 285 journals for which we had adequate data after restricting the analysis by country. The average inflation in $\alpha'$ is negligible, suggesting that Wahlund effects resulting from inter-country differences have a neglible effect on our estimates of gender homophily.
+
+
+### Calculate $\alpha$ for the whole of PubMed
+In response to a reviewer query, we here calculate the value of $\alpha$ across all the PubMed journals in our dataset, across the whole $c.$ 15 year time period. After removing papers with at least one author of unknown gender as well as single-author papers, we were left with 3,709,136 papers in total. $\alpha$ was 0.126, which is higher than the median for individual journals, consistent with the arguments presented in Figure 1 (i.e. that combining gender data across fields and time periods inflates $\alpha$ via the Wahlund effect).
+
+```{r}
+author_counts_for_whole_of_Pubmed <- 
+  pubmed_sqlite %>% # Access the big SQLite database
+  select(gender.95) %>%  # Get the column of genders (to 95% certainty, based on genderize.io database)
+  filter(gender.95 != "U", # Remove papers with author lists like this (cannot search strings on the database side)
+         gender.95 != "UU",
+         gender.95 != "UUU",
+         gender.95 != "UUUU",
+         gender.95 != "UUUUU",
+         gender.95 != "F", # no single-author papers either
+         gender.95 != "M") %>%
+  collect(n = Inf) %>%  # Bring all the remaining data from the SQL database into R
+  filter(!str_detect(gender.95, "U")) %>% # Remove all papers with any unknown-gender authors
+  filter(nchar(gender.95) > 1) %>% # Remove single-author papers
+  mutate(nFemales = str_count(gender.95, "F"), # Count the men and women on each remaining paper
+         nMales   = str_count(gender.95, "M")) %>%
+  select(-gender.95)
+
+# Number of papers in this dataset: 3,709,136 
+# Number of authors on these papers: 16,100,616
+
+print(paste("The value of alpha for the whole of Pubmed is:",
+round(find.alpha(nMales = author_counts_for_whole_of_Pubmed$nMales, 
+           nFemales = author_counts_for_whole_of_Pubmed$nFemales), 3)))
+```
+
+
+
 #### Sample sizes for the journal-country dataset
 
 ```{r}
@@ -1366,70 +1438,56 @@ fig_s5
 **Figure S5**: Plot showing the 68 combinations of journal and author country of affiliation for which $\alpha'$ is significantly higher than expected.
 
 
-### Estimating inflation in $\alpha'$ due to country effects
-
-Using the country data, we can estimate whether the Wahlund effect created by gender differences between countries produced 'spurious' positive $\alpha'$ values in our dataset. 
-
-For journal $i$, we take the average of the differences $\alpha'_i - \alpha'_{i,j}$, where $\alpha'_i$ is the coefficient of homophily calculated for all papers from journal $i$, and $\alpha'_{i,j}$ is the coefficient of homophily calculated for papers from journal $i$, by authors from country $j$. A positive value implies that pooling authors from different countries gives a higher estimate of homophily, consistent with a Wahlund effect. 
-
-Plotting a histogram of these average differences for the `r length(unique(country.data$journal))` journals shows that the mean and median difference is essentially zero, illustrating that $\alpha'$ is not strongly inflated by Wahlund effects caused by differences in author gender ratio between countries.
-
-```{r}
-mean.inflation.due.to.country <- country.data %>%
-  left_join(master.dataset %>% 
-              filter(Age == "New", Subset == "All authors") %>% 
-              select(journal, alpha.adjusted) %>% 
-              rename(journal.alpha = alpha.adjusted), 
-            by = "journal") %>%
-  group_by(journal) %>%
-  summarise(mean.inflation.due.to.country = mean(journal.alpha - alpha.adjusted)) 
-
-median <- median(mean.inflation.due.to.country$mean.inflation.due.to.country)
-
-txt <- data.frame(x = median + 0.06, y = 66, label = paste("Median =", round(median,3)))
-
-mean.inflation.due.to.country <- mean.inflation.due.to.country %>%
-  ggplot(aes(mean.inflation.due.to.country)) + 
-  geom_histogram(binwidth = 0.02, colour = "black", fill = "skyblue") + 
-  geom_vline(xintercept = median, linetype = 2) + 
-  geom_text(data=txt, aes(x=x, y=y, label=label)) + 
-  theme_minimal() + 
-  xlab("Estimated inflation in \u03B1' due to\ndifferences in gender ratio between countries") + 
-  ylab("Frequency")
-
-ggsave(mean.inflation.due.to.country, file = "figures/S6 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
-mean.inflation.due.to.country
-```
-<br></br>
-**Fig S6**: Histogram showing the estimated degree to which $\alpha'$ is inflated by inter-country differences in author gender ratio, across the 285 journals for which we had adequate data after restricting the analysis by country. The average inflation in $\alpha'$ is negligible, suggesting that Wahlund effects resulting from inter-country differences have a neglible effect on our estimates of gender homophily.
-
 
 ## Theoretical expectations for $\alpha$ when there is a gender gap between career stages
 
-This section makes Figure 6, by deriving the expected $\alpha$ under various assumptions, assuming that there is (potentially) a gender gap between career stages but no direct choice of collaborators by gender. 
+This section makes Figure 6, by deriving the expected $\alpha$ under various assumptions, assuming that there is (potentially) a gender gap between career stages but no direct choice of collaborators by gender. The model has four parameters: 
+
+  - The proportion of women among people in career stage 1 (e.g. students), termed `GR.stage1` in the code below (this parameter is plotted on the x-axis of Figure 6)
+  - The proportion of women among people in career stage 2 (e.g. professors), termed `GR.stage2` in the code below (this parameter is plotted on the y-axis of Figure 6)
+  - The proportion of co-authorships that are between two people at career stages 1 and 2, termed `prop_between_career_stages` in the code below (this parameter is plotted in the columns of Figure 6)
+  - The proportion of within-career stage co-authorships that are between two people at career stage 1, termed `prop_within_stage_between_two_stage1s` in the code below (this parameter is plotted in the rows of Figure 6)
+  
+Note that we do not need to define a parameter for the proportion of within-career stage co-authorships that are between two people at career stage 2; this is already known, since it is defined as `1 - prop_within_stage_between_two_stage1s`.
+
+Given these 4 parameters, we can easily calculate the proportion of the three possible types of collaborations with respect to career stage: stage1 with stage1, stage1 with stage2, and stage2 with stage2. See step 1 in the code.
+
+Next, we need to calculate the proportion of collaborator pairs that are male-male, female-female, and male-female. Since we have defined the frequencies of each collaboration type with respect to career stage, as well as the gender ratios at each career stage, we can calculate the frequency of each gender combination. See step 2 in the code.
+
+Finally, we calculate $\alpha = p - q$, where $p$ and $q$ are the proportions of men and women, respectively, whose coauthor is male (step 3 in the code).
+
 
 ```{r warning=FALSE}
-simulate <- function(params){
+run_career_stage_model <- function(params){
   
-  # Attach the vectors of paramters from the dataframe input
+  # Attach the vectors of parameters from the dataframe input
+  # GR = gender ratio, so GR.stage1 means gender ratio among career stage 1 ("early-career", e.g. PhD students)
+  # and GR.stage1 means gender ratio among career stage 2 ("established", e.g. professors)
   GR.stage1 <- params$GR.stage1
   GR.stage2 <- params$GR.stage2
-  prop.student.prof <- params$prop.student.prof
-  prop.student.student <- params$prop.student.student
   
-  # This is the proportion of each type of collaboration:
-  # early-early, early-late, late-late respectively
-  p1.1 <- (1 - prop.student.prof) * prop.student.student
-  p1.2 <- prop.student.prof
-  p2.2 <- (1 - prop.student.prof) * (1-prop.student.student)
+  # Gere are the proportions of collaborations of each of the three types:
+  # between career stages, between two stage 1 researchers, and between two stage 2 researchers
+  prop_between_career_stages <- params$prop_between_career_stages
+  prop_within_career_stages <- 1 - prop_between_career_stages
+  prop_within_stage_between_two_stage1s <- params$prop_within_stage_between_two_stage1s
+  prop_within_stage_between_two_stage2s <- 1 - prop_within_stage_between_two_stage1s
+
+  # Step 1. Calculate the proportions of each type of collaboration:
+  # early-early, early-established, established-established respectively
+  p1.1 <- prop_within_career_stages * prop_within_stage_between_two_stage1s
+  p1.2 <- prop_between_career_stages
+  p2.2 <- prop_within_career_stages * prop_within_stage_between_two_stage2s
   
-  # given the gender ratio at career stages a and b, find the 
+  # Step 2
+  # Define helper functions to calculate the proportion of MM, FF, and MF collaborations.
+  # Given the gender ratio at career stages a and b, termed GR_a, GR_b, find the 
   # proportion of collaborations that are man-man, woman-woman, or mixed gender
-  man.man <- function(GR_a, GR_b) (1-GR_a) * (1-GR_b)
+  man.man <- function(GR_a, GR_b) (1 - GR_a) * (1 - GR_b)
   woman.woman <- function(GR_a, GR_b) GR_a * GR_b
-  mixed <- function(GR_a, GR_b) (1-GR_a) * GR_b + (1-GR_b) * GR_a
+  mixed <- function(GR_a, GR_b) (1 - GR_a) * GR_b + (1 - GR_b) * GR_a
   
-  # Find the frequencies of the 3 kinds of collaboration
+  # Find the frequencies of the 3 kinds of co-author pairs w.r.t. gender, i.e. MM, FF, and MF
   man.man <- p1.1 * man.man(GR.stage1, GR.stage1) +
     p1.2 * man.man(GR.stage1, GR.stage2) +
     p2.2 * man.man(GR.stage2, GR.stage2)
@@ -1442,35 +1500,39 @@ simulate <- function(params){
     p1.2 * mixed(GR.stage1, GR.stage2) +
     p2.2 * mixed(GR.stage2, GR.stage2)
   
-  # Find p and q, which are used to calculate alpha:
+  # Step 3: Find p and q, which are used to calculate alpha, as p - q:
   # p is proportion of men coauthoring with men
-  p <- 1 - mixed / (2 * man.man + mixed)
+  p <- 1 - (mixed / (2 * man.man + mixed))
   # q is proportion of women coauthoring with men
   q <- mixed / (2 * woman.woman + mixed)
   
+  # Return the calculated value of alpha, as well as the four parameters used to calculate it
   data.frame(alpha = p - q, 
              GR.stage1,
              GR.stage2,
-             prop.student.prof,
-             prop.student.student)
+             prop_between_career_stages,
+             prop_within_stage_between_two_stage1s)
 }
 
-results <- expand.grid(
+# Now run the model on a large parameter space
+results <- expand.grid( # Define the parameter space for the model
   GR.stage1 = seq(0.01, 0.7, length = 201),
   GR.stage2 = seq(0.01, 0.7, length = 201),
-  prop.student.prof = c(0.01, 0.25, 0.5, 0.75, .99), 
-  prop.student.student = c(0.01, 0.25, 0.5, 0.75, .99)) %>% 
-  filter(GR.stage1 >= GR.stage2) %>%
-  simulate() %>% 
-  mutate(GR.stage1 = round(GR.stage1 * 100),
+  prop_between_career_stages = c(0.01, 0.25, 0.5, 0.75, .99), 
+  prop_within_stage_between_two_stage1s = c(0.01, 0.25, 0.5, 0.75, .99)) %>% 
+  filter(GR.stage1 >= GR.stage2) %>% # We assume the % women is equal or lower in career 1 than in career stage 2
+  run_career_stage_model() %>%  # run the model
+  mutate(GR.stage1 = round(GR.stage1 * 100), # Convert proportions to percentages
          GR.stage2 = round(GR.stage2 * 100),
-         prop.student.prof = prop.student.prof * 100,
-         prop.student.student = prop.student.student * 100) %>%
-  filter(!duplicated(paste(GR.stage1, GR.stage2, prop.student.prof, prop.student.student)))
+         prop_between_career_stages = prop_between_career_stages * 100,
+         prop_within_stage_between_two_stage1s = prop_within_stage_between_two_stage1s * 100) %>%
+  filter(!duplicated(paste(GR.stage1, GR.stage2, prop_between_career_stages, prop_within_stage_between_two_stage1s)))
 
-simulation.figure <- results %>%
+# Plot the results to make figure 6
+# NB that I edited the top- and right-side labels in Inkscape afterwards, as it was tricky to do it entirely in R.
+model_figure <- results %>%
   ggplot(aes(GR.stage1, GR.stage2, z = round(alpha,2), fill = alpha)) + 
-  facet_grid(prop.student.prof ~ prop.student.student) + 
+  facet_grid(prop_between_career_stages ~ prop_within_stage_between_two_stage1s) + 
   geom_tile() + 
   geom_abline(colour = "grey20", size = 0.3) +
   stat_contour(breaks = c(-5:-1, 1:5)/10, colour = "grey20", size = 0.3) + 
@@ -1488,8 +1550,8 @@ simulation.figure <- results %>%
   ggtitle("Rows show % between-stage collaborations ", 
           subtitle = "Columns show % within-stage collaborations that involve two early-career researchers")
 
-simulation.figure
-ggsave(simulation.figure, file = "figures/Fig6.pdf", 
+model_figure
+ggsave(model_figure, file = "figures/Fig6.pdf", 
        height = 5.6, width = 5, device = cairo_pdf)
 ```
 
