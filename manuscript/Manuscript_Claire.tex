@@ -118,21 +118,19 @@ Interestingly, journals with a high impact factor for their discipline
 tended to have comparatively low homophily, as predicted if mixed-gender
 teams produce better research. We discuss some potential causes of
 gender homophily in science. \vspace{5mm}
-
-\par
-
-\noindent \textbf{Keywords:} Gender bias, Homophily, Research
+\par\noindent \textbf{Keywords:} Gender bias, Homophily, Research
 collaboration, Text mining, Women in STEM.
 \end{abstract}
 
-\maketitle\unmarkedfntext{*School of BioSciences, The University of Melbourne, Victoria, Australia.}
+\maketitle
+
+\unmarkedfntext{*School of BioSciences, The University of Melbourne, Victoria, Australia.}
 \maketitle\unmarkedfntext{\textsuperscript{§}Organismal and Evolutionary Biology Research Programme,
 Faculty of Biological and Environmental Sciences, University of Helsinki, Finland.}
 
 \newpage
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}
 
 Women are severely underrepresented in many branches of science,
 technology, engineering, mathematics, and medicine (STEMM), and face
@@ -229,12 +227,10 @@ than expected (gender homophily), negative when opposite-gender authors
 publish together more often than expected (heterophily), and equal to
 zero when authors assort randomly with respect to gender (see Methods).
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\section{Results}\label{results}
 
-\hypertarget{gender-homophily-by-discipline-time-period-and-authorship-position}{%
 \subsection{Gender homophily by discipline, time period, and authorship
-position}\label{gender-homophily-by-discipline-time-period-and-authorship-position}}
+position}\label{gender-homophily-by-discipline-time-period-and-authorship-position}
 
 \autoref{alpha_histograms} shows the distribution of \(\alpha'\)
 estimates in 2015-2016 across all journals for which we recovered
@@ -251,15 +247,7 @@ value of \(\alpha'\) not significantly different from zero, consistent
 with the null hypothesis of random assortment with respect to gender. We
 also confirmed that in most journals (S2 Data) and most research
 disciplines (S3 Data, S1 Fig), the majority of papers had multiple
-authors. To verify the argument put forward in Figure 1, we also
-calculated \(\alpha\) across all two-author papers in our entire 15-year
-PubMed dataset (excluding single-author papers, and papers where at
-least one author's gender was unknown; n = \textgreater{}3 million
-papers, \textgreater{}16 million authors). Across the whole dataset,
-\(\alpha\) was 0.126, which is almost double the median value for
-individual journals (Figure 2; \(\alpha = 0.070\) for `All authors'),
-suggesting that lumping together papers from different fields and
-different time periods can indeed inflate \(\alpha\).
+authors.
 
 \begin{figure}
 \centering
@@ -268,7 +256,7 @@ different time periods can indeed inflate \(\alpha\).
 2015-2016, 825 showed statistically significant evidence of gender
 homophily (denoted by \(\alpha' > 0\)), and 1 showed statistically
 significant evidence of heterophily (\(\alpha' < 0\)), after false
-discovery rate correction. In the stacked desnity plot, the white area
+discovery rate correction. In the stacked density plot, the white area
 shows the number of journals for which homophily was significantly
 stronger than expected under the null hypothesis (corrected p
 \textless{} 0.05), while the blue area shows all the remainder. Patterns
@@ -293,9 +281,8 @@ stronger predictor of the remaining authors' genders than the gender of
 the last author, i.e.~the opposite of what is predicted if senior
 scientists are causally responsible for homophily.
 
-\hypertarget{variance-in-homophily-between-disciplines}{%
 \subsection{Variance in homophily between
-disciplines}\label{variance-in-homophily-between-disciplines}}
+disciplines}\label{variance-in-homophily-between-disciplines}
 
 \autoref{alpha_histograms} illustrates the variance in journal homophily
 values (\(\alpha'\)) across scientific disciplines. All disciplines had
@@ -323,26 +310,35 @@ studies listed in the Introduction, are probably not inflated by the
 presence of disparate research topics (with variable author gender
 ratios) being published within individual journals.
 
-\hypertarget{relationship-between-gender-homophily-and-number-of-authors}{%
+Nevertheless, when we calculated \(\alpha\) across all non-single-author
+papers in our entire 15-year PubMed dataset (as before, excluding papers
+where at least one author's gender was unknown; n = \textgreater{}3
+million papers, \textgreater{}16 million authors), we found that
+\(\alpha\) was 0.126. This figure is almost double the median value of
+\(\alpha'\) for individual journals (Figure 2; \(\alpha' = 0.070\) for
+`All authors'), suggesting that lumping together papers from different
+fields and different time periods can indeed produce spurious evidence
+for gender homophily as outlined in Figure 1.
+
 \subsection{Relationship between gender homophily and number of
-authors}\label{relationship-between-gender-homophily-and-number-of-authors}}
+authors}\label{relationship-between-gender-homophily-and-number-of-authors}
 
 Papers with two authors had significantly lower (but still positive)
 \(\alpha'\) values relative to papers with more than two authors, on
 average (\autoref{author_number}; statistical results in Online
-Supplmentary Material). Papers with 3, 4 or 5+ authors had essentially
-identical average \(\alpha'\) values. The variance in \(\alpha'\) across
-journals was also a little higher for 2-authors papers compared to the
-remainder (\autoref{author_number}), though part of this variance is due
-to the reduced sample size (in terms of number of authors) for the
-2-author papers. One possible explanation for this finding is that
-2-authors papers might be more likely to have an author list that is
-evenly split between career stages (e.g.~a postgraduate student and
-their supervisor), increasing the chance that the authors are mixed
-gender (see Figure 6). The result also suggests that the processes
-responsible for gender homophily are similar in small (e.g.~3 author)
-and larger (5+ authors) collaborations (and across disciplines where
-small versus large collaborations are the norm).
+Supplmentary Material). Papers with 3, 4 or \(\ge5\) authors had
+essentially identical average \(\alpha'\) values. The variance in
+\(\alpha'\) across journals was also a little higher for 2-authors
+papers compared to the remainder (\autoref{author_number}), though part
+of this variance is due to the reduced sample size (in terms of number
+of authors) for the 2-author papers. One possible explanation for this
+finding is that 2-authors papers might be more likely to have an author
+list that is evenly split between career stages (e.g.~a postgraduate
+student and their supervisor), increasing the chance that the authors
+are mixed gender (see Figure 6). The result also suggests that the
+processes responsible for gender homophily are similar in small (e.g.~3
+author) and larger (5+ authors) collaborations (and across disciplines
+where small versus large collaborations are the norm).
 
 \begin{figure}
 \centering
@@ -357,9 +353,8 @@ measures of \(\alpha'\) within journals, as well as the precision with
 which \(\alpha'\) was estimated. \label{author_number}}
 \end{figure}
 
-\hypertarget{relationship-between-gender-homophily-and-gender-ratio}{%
 \subsection{Relationship between gender homophily and gender
-ratio}\label{relationship-between-gender-homophily-and-gender-ratio}}
+ratio}\label{relationship-between-gender-homophily-and-gender-ratio}
 
 We next tested whether researchers are more or less likely to publish
 with same-gendered colleagues in strongly gender-biased disciplines
@@ -392,9 +387,8 @@ were fitted using generalised additive models with the smoothing
 parameter \(k\) set to 3. \label{alpha_gender_ratio}}
 \end{figure}
 
-\hypertarget{relationship-between-journal-impact-factor-and-gender-homophily}{%
 \subsection{Relationship between journal impact factor and gender
-homophily}\label{relationship-between-journal-impact-factor-and-gender-homophily}}
+homophily}\label{relationship-between-journal-impact-factor-and-gender-homophily}
 
 We observed a noisy but statistically significant linear relationship
 between standardised journal impact factor and \(\alpha'\), such that
@@ -417,10 +411,9 @@ journals with weak homophily in the same discipline.
 \label{impact_factor}}
 \end{figure}
 
-\hypertarget{analysis-accounting-for-differences-in-author-gender-ratio-between-countries}{%
 \subsection{Analysis accounting for differences in author gender ratio
 between
-countries}\label{analysis-accounting-for-differences-in-author-gender-ratio-between-countries}}
+countries}\label{analysis-accounting-for-differences-in-author-gender-ratio-between-countries}
 
 When we restricted the analysis by country, we observed statistically
 significant homophily for 72 of the 325 journal-country combinations
@@ -434,24 +427,23 @@ was only 0.002 (S6 Fig). These results suggest that our findings of
 widespread homophily in the main analysis were not driven solely by a
 Wahlund effect resulting from gender differences between countries.
 
-\hypertarget{theoretical-expectations-for-alpha-when-the-gender-ratio-differs-between-career-stages}{%
 \subsection{\texorpdfstring{Theoretical expectations for \(\alpha\) when
 the gender ratio differs between career
-stages}{Theoretical expectations for \textbackslash{}alpha when the gender ratio differs between career stages}}\label{theoretical-expectations-for-alpha-when-the-gender-ratio-differs-between-career-stages}}
+stages}{Theoretical expectations for \textbackslash{}alpha when the gender ratio differs between career stages}}\label{theoretical-expectations-for-alpha-when-the-gender-ratio-differs-between-career-stages}
 
 Given that we cannot identify individual researchers or their career
 stages, we used a simple model to derive the theoretical expectations
-for \(\alpha\) when the gender ratio differs between career stages. As
-shown in \autoref{simulation}, we predict that \(\alpha\) is expected to
-be non-zero, even if collaborators are randomly selected with respect to
-gender, provided that there is a gender gap between career stages. The
-extent to which \(\alpha\) deviates from zero depends on the relative
-frequencies of collaboration within and between career stages (rows and
-columns in Figure 6), and the size of the gender gap between stages (x-
-and y-axes in Figure 6). When \textgreater{}50\% of coauthor pairs
-comprise one early-career and one established researcher, we expect
-gender heterophily (\(\alpha < 0\)) whenever the gender ratio differs
-between career stages. Conversely, when \textgreater{}50\% of
+for \(\alpha\) when the gender ratio differs between career stages (see
+Methods). As shown in \autoref{simulation}, we predict that \(\alpha\)
+is expected to be non-zero, even if collaborators are randomly selected
+with respect to gender, provided that there is a gender gap between
+career stages. The extent to which \(\alpha\) deviates from zero depends
+on the relative frequencies of collaboration within and between career
+stages (rows and columns in Figure 6), and the size of the gender gap
+between stages (x- and y-axes in Figure 6). When \textgreater{}50\% of
+coauthor pairs comprise one early-career and one established researcher,
+we expect gender heterophily (\(\alpha < 0\)) whenever the gender ratio
+differs between career stages. Conversely, when \textgreater{}50\% of
 collaborations are between people at the same career stage, we expect
 gender homophily (\(\alpha > 0\)). In a few parameter spaces (shown in
 red; \autoref{simulation}), \(\alpha\) was quite high, and overlapped
@@ -460,16 +452,21 @@ with the values that we estimated (\autoref{alpha_histograms}).
 \begin{figure}
 \centering
 \includegraphics{../figures/Fig6_inkscape.pdf}
-\caption{When there is a difference in gender ratio between early-career
-and established researchers, and collaboration is non-random with
-respect to career stage, the null expectation for \(\alpha\) deviates
-from zero. An excess of collaborations between career stages gives the
-appearance of gender heterophily (lower rows, blue areas), while an
-excess of within-career stage collaborations produced apparent gender
-homophily (upper rows, red areas). However, the conditions required for
-strong gender homophily are quite restrictive, making it unlikely that
-this issue explains all of the homophily observed in Figure 2. Contour
-lines denote increments of 0.1. \label{simulation}}
+\caption{When the gender ratio of early-career researchers is not equal
+to the gender ratio among established researchers, the null expectation
+for \(\alpha\) is not necessarily zero. Specifically, if most
+collaborations occur between career stages, there will be an excess of
+mixed-gender collaborations (\(\alpha < 0\), blue areas), while if most
+collaborator pairs comprise two people at the same career stage, there
+will be an excess of same-gender collaborations (\(\alpha > 0\), red
+areas). However, the conditions required for strong gender homophily
+(i.e.~the red areas) are quite restrictive, making it unlikely that this
+issue can fully explain the homophily observed in our study.
+Additionally, in research disciplines where between-career stage
+collaboration is common and there is a shortage of women among
+established researchers (i.e.~the blue areas), our study will
+underestimate the strength of gender homophily. Contour lines denote
+increments of 0.1. \label{simulation}}
 \end{figure}
 
 Despite this overlap, \autoref{simulation} suggests that our main
@@ -494,11 +491,10 @@ coauthorships between early-career and established researchers comprise
 \(\alpha\) is actually less than zero (blue areas in
 \autoref{simulation}). Therefore, it is possible that researchers
 preferentially assort with same-gendered collaborators even more
-strongly than implied by other results, at least for certain journals or
+strongly than implied by our results, at least for certain journals or
 research disciplines.
 
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
+\section{Discussion}\label{discussion}
 
 We found evidence that researchers work with same-gendered coauthors
 more often than expected under the null model, even after implementing
@@ -578,9 +574,9 @@ meaning that people's ideal and realised gender preferences would be
 mismatched. On a related note, Ghiasi et al. {[}51{]} argue that women
 in engineering are ``compliant {[}in reproducing{]} male-dominated
 scientific structures'' because they do not collaborate often enough
-with other women (for reference, their Figure 7 implies that
-coauthorships involving two women are 30\% more frequent than expected
-under random assortment). By contrast, we feel that it may be
+with other women (for reference, Figure 7 in {[}51{]} implies that
+coauthorships involving two women are \(c\). 30\% more frequent than
+expected under random assortment). By contrast, we feel that it may be
 counter-productive to recommend that women collaborate primarily with
 other women, e.g.~because this constrains women's options (particularly
 in fields like engineering, where 90\% of professors are men {[}1{]}).
@@ -600,28 +596,28 @@ tasks are assigned to women while more prestigious tasks are assigned to
 men {[}61{]}.
 
 Our study begs two questions: what causes gender homophily in science,
-and are our results cause for concern? These questions are closely
-related. For example, some of the homophily we observed might be caused
-by women seeking to avoid harassment or sexism from men {[}38{]}, which
-would clearly be concerning. Additionally, Sheltzer and Smith {[}66{]}
-concluded that `elite' male academics (defined as recipients of major
-honours) have a higher proportion of male students and postdocs than
-non-elite male academics. This finding could contribute to the homophily
-we observed, and is cause for concern since the results might reflect
-discrimination against women during hiring {[}20{]}, or avoidance by
-women of elite research groups (e.g.~due to gender differences in
-confidence, or a perception that some groups are sexist). We also found
-a little evidence that gender homophily is detrimental to research
-quality, in that high-impact journals tended to have weaker homophily.
-Assuming that papers published in high-impact journals are of higher
-average quality (which is contentious; {[}67{]}), our results provide
-non-experimental support for the hypothesis that mixed-gender teams
-produce better research than single-gender teams {[}42--48{]}. Another
-issue is that if many collaborations are between established
-researchers, there will be an excess of male-male collaborations in
-fields where women in senior positions are rare; some of the observed
-homophily might therefore reflect the elevated gender gap among senior
-researchers.
+and are our results cause for concern? We beleive that the answers to
+these questions are closely related. For example, some of the homophily
+we observed might be caused by women seeking to avoid harassment or
+sexism from men {[}38{]}, which would clearly be concerning.
+Additionally, Sheltzer and Smith {[}66{]} concluded that `elite' male
+academics (defined as recipients of major honours) have a higher
+proportion of male students and postdocs than non-elite male academics.
+This finding could contribute to the homophily we observed, and is cause
+for concern since the results might reflect discrimination against women
+during hiring {[}20{]}, or avoidance by women of elite research groups
+(e.g.~due to gender differences in confidence, or a perception that some
+groups are sexist). We also found a little evidence that gender
+homophily is detrimental to research quality, in that high-impact
+journals tended to have weaker homophily. Assuming that papers published
+in high-impact journals are of higher average quality (which is
+contentious; {[}67{]}), our results provide non-experimental support for
+the hypothesis that mixed-gender teams produce better research than
+single-gender teams {[}42--48{]}. Another issue is that if many
+collaborations are between established researchers, there will be an
+excess of male-male collaborations in fields where women in senior
+positions are rare; some of the observed homophily might therefore
+reflect the elevated gender gap among senior researchers.
 
 On the other hand, homophily might have more benign causes.
 Collaboration is often most enjoyable and productive when working with
@@ -637,11 +633,9 @@ division of labour {[}61{]}, working with a same-gendered colleague may
 provide exposure to new parts of the research process, and (especially
 for the minority gender) a welcome change of pace.
 
-\hypertarget{methods}{%
-\section{Methods}\label{methods}}
+\section{Methods}\label{methods}
 
-\hypertarget{the-dataset}{%
-\subsection{The dataset}\label{the-dataset}}
+\subsection{The dataset}\label{the-dataset}
 
 We used the dataset of PubMed author lists from Holman et al. {[}5{]}.
 Briefly, that dataset was created by downloading every article indexed
@@ -660,9 +654,8 @@ data (i.e.~20\textsuperscript{th} August 2016). Lastly, we excluded
 journals with fewer than 50 suitable papers. Detailed sample size
 information is given in S1 Table.
 
-\hypertarget{calculating-alpha-the-coefficient-of-homophily}{%
 \subsection{\texorpdfstring{Calculating \(\alpha\), the coefficient of
-homophily}{Calculating \textbackslash{}alpha, the coefficient of homophily}}\label{calculating-alpha-the-coefficient-of-homophily}}
+homophily}{Calculating \textbackslash{}alpha, the coefficient of homophily}}\label{calculating-alpha-the-coefficient-of-homophily}
 
 Following Bergstrom et al. {[}60{]}, we defined the coefficient of
 homophily as \(\alpha = p - q\), where \(p\) is the probability that a
@@ -731,9 +724,8 @@ that our calculation of \(\alpha'\) effectively removed the dependence
 of \(\alpha\) on sample size. We therefore used \(\alpha'\) in all
 analyses.
 
-\hypertarget{minimising-the-wahlund-effect-research-discipline-and-time-period}{%
 \subsection{Minimising the Wahlund effect: research discipline and time
-period}\label{minimising-the-wahlund-effect-research-discipline-and-time-period}}
+period}\label{minimising-the-wahlund-effect-research-discipline-and-time-period}
 
 To minimise bias in \(\alpha'\) due to the Wahlund effect, we restricted
 each set of papers to a single research specialty to the greatest extent
@@ -758,9 +750,8 @@ authors across journals is below 0.5\% {[}5{]}, and so restricting our
 dataset to a single year should prevent temporal changes in gender ratio
 from noticeably affecting our estimates of \(\alpha'\).
 
-\hypertarget{minimising-the-wahlund-effect-author-country-of-affiliation}{%
 \subsection{Minimising the Wahlund effect: author country of
-affiliation}\label{minimising-the-wahlund-effect-author-country-of-affiliation}}
+affiliation}\label{minimising-the-wahlund-effect-author-country-of-affiliation}
 
 A Wahlund effect could arise even if one calculates \(\alpha'\) for a
 single discipline and time period, because of variation in the gender
@@ -782,9 +773,8 @@ dataset in this fashion produced enough data to measure \(\alpha'\) for
 325 combinations of journal and country (median: 70 papers and 273
 authors per combination).
 
-\hypertarget{calculating-standardised-journal-impact-factor}{%
 \subsection{Calculating standardised journal impact
-factor}\label{calculating-standardised-journal-impact-factor}}
+factor}\label{calculating-standardised-journal-impact-factor}
 
 We obtained the 3-year impact factor for each journal from Clarivate
 Analytics (formerly ISI). To account for large differences in impact
@@ -796,8 +786,7 @@ the average for journals in their discipline. We then used Spearman rank
 correlation to test whether \(\alpha'\) was correlated with impact
 factor across journals.
 
-\hypertarget{statistical-analysis}{%
-\subsection{Statistical analysis}\label{statistical-analysis}}
+\subsection{Statistical analysis}\label{statistical-analysis}
 
 Previous authors {[}66,73{]} have hypothesised that senior scientists
 preferentially recruit staff and students of the same gender, and/or
@@ -844,25 +833,24 @@ number within journal, thereby allowing the response to author number to
 vary between journals. We used the default (weak) priors. The full
 output of this model can be viewed in the Online Supplementary Material.
 
-\hypertarget{theoretical-expectations-for-alpha-when-the-gender-ratio-differs-between-career-stages-1}{%
 \subsection{\texorpdfstring{Theoretical expectations for \(\alpha\) when
 the gender ratio differs between career
-stages}{Theoretical expectations for \textbackslash{}alpha when the gender ratio differs between career stages}}\label{theoretical-expectations-for-alpha-when-the-gender-ratio-differs-between-career-stages-1}}
+stages}{Theoretical expectations for \textbackslash{}alpha when the gender ratio differs between career stages}}\label{theoretical-expectations-for-alpha-when-the-gender-ratio-differs-between-career-stages-1}
 
-In most STEMM subjects, the gender ratio is more skewed among
+In most STEMM disciplines, the gender ratio is more skewed among
 established researchers relative to early-career researchers, due both
 to women leaving STEMM careers at greater rates (the `leaky pipeline'),
-and to historical shortages of women studying STEMM (`demographic
-inertia') {[}1,5{]}. We hypothesised that this difference in gender
-ratio between career stages could potentially create both Wahlund
-effects and `reverse' Wahlund effects. For example, imagine that the
-majority of collaborations in a particular field are between students
-and professors, and that the gender ratio differs between career stages:
-we would then see an excess of mixed-gender coauthorships (heterophily,
-\(\alpha < 0\)), even if gender has no direct, causal effect. Similarly,
-a hypothetical field in which students work only with students, and
-professors with professors, would have apparent gender homophily
-(\(\alpha > 0\)).
+and to historical shortages of women studying STEMM subjects at
+university (`demographic inertia') {[}1,5{]}. We hypothesised that this
+difference in gender ratio between career stages could potentially
+create both Wahlund effects and `reverse' Wahlund effects. For example,
+imagine that the majority of collaborations in a particular field are
+between students and professors, and that the gender ratio differs
+between career stages: we would then see an excess of mixed-gender
+coauthorships (heterophily, \(\alpha < 0\)), even if gender has no
+direct, causal effect. Similarly, a hypothetical field in which students
+work only with students, and professors with professors, would have
+apparent gender homophily (\(\alpha > 0\)).
 
 We can think of no tractable method of controlling for this issue using
 our dataset, which contains no information on career stage. Therefore,
@@ -891,387 +879,384 @@ the frequency of collaborators pairs comprising two women, or a woman
 and a man, and thus find \(\alpha\) (see the Online Supplementary
 Material for the annotated R code).
 
-\hypertarget{data-availability-and-reproducibility}{%
 \subsection{Data availability and
-reproducibility}\label{data-availability-and-reproducibility}}
+reproducibility}\label{data-availability-and-reproducibility}
 
 The Online Supplementary Material contains R scripts used to produce all
 results, figures and tables; it can be viewed online at
 \url{https://lukeholman.github.io/genderHomophily/}. The input data from
 Holman et al. {[}5{]} is archived at \url{https://osf.io/bt9ya/}.
 
-\hypertarget{acknowledgements}{%
-\section{Acknowledgements}\label{acknowledgements}}
+\section{Acknowledgements}\label{acknowledgements}
 
 CM was supported by the Academy of Finland (284666 to the Centre of
 Excellence in Biological Interactions). We thank Devi Stuart-Fox and
 Dominique Potvin for helpful discussion.
 
-\hypertarget{references}{%
-\section{References}\label{references}}
+\section{References}\label{references}
 
 \hypertarget{refs}{}
-\leavevmode\hypertarget{ref-Shaw_2012}{}%
+\hypertarget{ref-Shaw_2012}{}
 1. Shaw AK, Stanton DE. Leaks in the pipeline: separating demographic
 inertia from ongoing gender differences in academia. Proceedings of the
 Royal Society of London B. 2012;272: 3736--3741.
 
-\leavevmode\hypertarget{ref-Lariviere_2013}{}%
+\hypertarget{ref-Lariviere_2013}{}
 2. Larivière V, Ni C, Gingras Y, Cronin B, Sugimoto CR. Bibliometrics:
 global gender disparities in science. Nature. 2013;504: 211--213.
 
-\leavevmode\hypertarget{ref-West_2013}{}%
+\hypertarget{ref-West_2013}{}
 3. West JD, Jacquet J, King MM, Correll SJ, Bergstrom CT. The role of
 gender in scholarly authorship. PLoS ONE. 2013;8: e66212.
 
-\leavevmode\hypertarget{ref-Elsevier_report}{}%
+\hypertarget{ref-Elsevier_report}{}
 4. Elsevier Report. Gender in the global research landscape.
 elseviercom/research-intelligence/resource-library/gender-report. 2017;
 
-\leavevmode\hypertarget{ref-Holman_2018}{}%
+\hypertarget{ref-Holman_2018}{}
 5. Holman L, Stuart Fox D, Hauser CE. The gender gap in science: How
 long until women are equally represented? PLoS Biology. 2018;16:
 e2004956.
 
-\leavevmode\hypertarget{ref-Wutte_2007}{}%
+\hypertarget{ref-Wutte_2007}{}
 6. Wutte M. Closing the gender gap. Nature. 2007;448: NJ101--NJ102.
 
-\leavevmode\hypertarget{ref-Reuben_2014}{}%
+\hypertarget{ref-Reuben_2014}{}
 7. Reuben E, Sapienza P, Zingales L. How stereotypes impair women's
 careers in science. Proceedings of the National Academy of Sciences.
 2014;111: 4403--4408.
 
-\leavevmode\hypertarget{ref-Trower_2002}{}%
+\hypertarget{ref-Trower_2002}{}
 8. Trower CA, Chait RP. Faculty diversity: Why women and minorities are
 underrepresented in the professoriate, and fresh ideas to induce needed
 reform. Harvard Magazine. 2002;104: 33--37.
 
-\leavevmode\hypertarget{ref-Umbach_2007}{}%
+\hypertarget{ref-Umbach_2007}{}
 9. Umbach PD. Gender equity in the academic labor market: An analysis of
 academic disciplines. Research in Higher Education. 2007;48: 169--192.
 
-\leavevmode\hypertarget{ref-Hosek_2005}{}%
+\hypertarget{ref-Hosek_2005}{}
 10. Hosek S, Cox AG, Ghosh-Dastidar B, Kofner A, Ramphal N, Scott J, et
 al. Gender differences in major federal external grant programs. RAND
 Corporation. 2005;
 
-\leavevmode\hypertarget{ref-pohlhaus_2011}{}%
+\hypertarget{ref-pohlhaus_2011}{}
 11. Pohlhaus JR, Jiang H, Wagner RM, Schaffer WT, Pinn VW. Sex
 differences in application, success, and funding rates for NIH
 extramural programs. Academic Medicine. 2011;86: 759.
 
-\leavevmode\hypertarget{ref-Zuckerman_1987}{}%
+\hypertarget{ref-Zuckerman_1987}{}
 12. Zuckerman H. Persistence and change in the careers of men and women
 scientists and engineers. National Academy Press. 1987; 127--156.
 
-\leavevmode\hypertarget{ref-Rosenfeld_1991}{}%
+\hypertarget{ref-Rosenfeld_1991}{}
 13. Rosenfeld RA. Outcome analysis of academic careers. Review prepared
 for the Office of Scientific and Engineering Personnel, National
 Research Council. 1991;
 
-\leavevmode\hypertarget{ref-Long_1993}{}%
+\hypertarget{ref-Long_1993}{}
 14. Long JS, Paul DA, Robert M. Rank advancement in academic careers:
 Sex differences and the effects of productivity. American Sociological
 Review. 1993; 703--722.
 
-\leavevmode\hypertarget{ref-Hopkins_2013}{}%
+\hypertarget{ref-Hopkins_2013}{}
 15. Hopkins AL, Jawitz JW, McCarty C, Goldman A, Basu NB. Disparities in
 publication patterns by gender, race and ethnicity based on a survey of
 a random sample of authors. Scientometrics. 2013;96: 515--534.
 
-\leavevmode\hypertarget{ref-ODorchai_2009}{}%
+\hypertarget{ref-ODorchai_2009}{}
 16. O'Dorchai S, Meulders D, Crippa F, Margherita A. She figures
 2009--Statistics and indicators on gender equality in science.
 Publications Office of the European Union. 2009;
 
-\leavevmode\hypertarget{ref-Feldt_1986}{}%
+\hypertarget{ref-Feldt_1986}{}
 17. Feldt B. The faculty cohort study: School of medicine. Ann Arbor,
 MI: Office of Affirmative Action. 1986;
 
-\leavevmode\hypertarget{ref-Stack_2004}{}%
+\hypertarget{ref-Stack_2004}{}
 18. Stack S. Gender, children and research productivity. Scientometrics.
 2004;45: 891--920.
 
-\leavevmode\hypertarget{ref-Lariviere_2011}{}%
+\hypertarget{ref-Lariviere_2011}{}
 19. Larivière V, Vignola-Gagné E, Villeneuve C, Gélinas P, Gingras Y.
 Sex differences in research funding, productivity and impact: an
 analysis of Québec university professors. Scientometrics. 2011;87:
 483--498.
 
-\leavevmode\hypertarget{ref-Moss_2012}{}%
+\hypertarget{ref-Moss_2012}{}
 20. Moss-Racusin CA, Dovidio JF, Brescoll VL, Graham MJ, Handelsman J.
 Science faculty's subtle gender biases favor male students. Proceedings
 of the National Academy of Sciences. 2012;109: 16474--16479.
 
-\leavevmode\hypertarget{ref-Knobloch_2013}{}%
+\hypertarget{ref-Knobloch_2013}{}
 21. Knobloch-Westerwick S, Glynn CJ, Huge M. Science faculty's subtle
 gender biases favor male students. Science Communication. 2013;35:
 603--625.
 
-\leavevmode\hypertarget{ref-Lee_2005}{}%
+\hypertarget{ref-Lee_2005}{}
 22. Lee S, Bozeman B. The impact of research collaboration on scientific
 productivity. Social Studies of Science. 2005;35: 673--702.
 
-\leavevmode\hypertarget{ref-Wuchty_2007}{}%
+\hypertarget{ref-Wuchty_2007}{}
 23. Wuchty S, Jones BF, Uzzi B. The increasing dominance of teams in
 production of knowledge. Science. 2007;316: 1036--1039.
 
-\leavevmode\hypertarget{ref-Abramo_2009}{}%
+\hypertarget{ref-Abramo_2009}{}
 24. Abramo G, D'Angelo CA, Di Costa F. Research collaboration and
 productivity: is there correlation? Higher Education. 2009;57: 155--171.
 
-\leavevmode\hypertarget{ref-Lariviere_2015}{}%
+\hypertarget{ref-Lariviere_2015}{}
 25. Larivière V, Gingras Y, Sugimoto CR, Tsou A. Team size matters:
 Collaboration and scientific impact since 1900. Journal of the
 Association for Information Science and Technology. 2015;66: 1323--1332.
 
-\leavevmode\hypertarget{ref-Long_1992}{}%
+\hypertarget{ref-Long_1992}{}
 26. Long JS. Measures of sex differences in scientific productivity.
 Social Forces. 1992;71: 159--178.
 
-\leavevmode\hypertarget{ref-Bozeman_2011}{}%
+\hypertarget{ref-Bozeman_2011}{}
 27. Bozeman B, Monica G. How do men and women differ in research
 collaborations? An analysis of the collaborative motives and strategies
 of academic researchers. Research Policy. 2011;40: 1393--1402.
 
-\leavevmode\hypertarget{ref-Abramo_2013}{}%
+\hypertarget{ref-Abramo_2013}{}
 28. Abramo G, D'Angelo CA, Di Costa F. Gender differences in research
 collaboration. Journal of Informetrics. 2013;7: 811--822.
 
-\leavevmode\hypertarget{ref-Badar_2013}{}%
+\hypertarget{ref-Badar_2013}{}
 29. Badar K, Hite JM, Badir YF. Examining the relationship of
 co-authorship network centrality and gender on academic research
 performance: The case of chemistry researchers in pakistan.
 Scientometrics. 2013;94: 755--775.
 
-\leavevmode\hypertarget{ref-Lewison_2001}{}%
+\hypertarget{ref-Lewison_2001}{}
 30. Lewison G. The quantity and quality of female researchers: A
 bibliometric study of Iceland. Scientometrics. 2001;52: 29--43.
 
-\leavevmode\hypertarget{ref-Webster_2001}{}%
+\hypertarget{ref-Webster_2001}{}
 31. Webster BM. Polish women in science: A bibliometric analysis of
 Polish science and its publications. Research Evaluation. 2001;10:
 185--194.
 
-\leavevmode\hypertarget{ref-Bozeman_2004}{}%
+\hypertarget{ref-Bozeman_2004}{}
 32. Bozeman B, Corley E. Scientists' collaboration strategies:
 implications for scientific and technical human capital. Research
 Policy. 2004;33: 599--616.
 
-\leavevmode\hypertarget{ref-Long_1990}{}%
+\hypertarget{ref-Long_1990}{}
 33. Long JS. The origins of sex differences in science. Social Forces.
 1990;68: 1297--1316.
 
-\leavevmode\hypertarget{ref-Fuchs_2001}{}%
+\hypertarget{ref-Fuchs_2001}{}
 34. Fuchs S, Von Stebut J, Allmendinger J. Gender, science, and
 scientific organizations in Germany. Minerva. 2001;39: 175--201.
 
-\leavevmode\hypertarget{ref-Reskin_1978}{}%
+\hypertarget{ref-Reskin_1978}{}
 35. Reskin BF. Scientific productivity, sex, and location in the
 institution of science. American Journal of Sociology. 1978;83:
 1235--1243.
 
-\leavevmode\hypertarget{ref-Wright_2003}{}%
+\hypertarget{ref-Wright_2003}{}
 36. Wright AL, Schwindt LA, Bassford TL, Reyna VF, Shisslak PAS
 Catherine M amd Germain, Reed KL. Gender differences in academic
 advancement: Patterns, causes, and potential solutions in one U.S.
 college of medicine. Social Forces. 2003;68: 1297--1316.
 
-\leavevmode\hypertarget{ref-bleidorn2016age}{}%
+\hypertarget{ref-bleidorn2016age}{}
 37. Bleidorn W, Arslan RC, Denissen JJ, Rentfrow PJ, Gebauer JE, Potter
 J, et al. Age and gender differences in self-esteem -- a cross-cultural
 window. Journal of Personality and Social Psychology. 2016;111: 396.
 
-\leavevmode\hypertarget{ref-jagsi_2016}{}%
+\hypertarget{ref-jagsi_2016}{}
 38. Jagsi R, Griffith KA, Jones R, Perumalswami CR, Ubel P, Stewart A.
 Sexual harassment and discrimination experiences of academic medical
 faculty. JAMA. 2016;315: 2120--2121.
 
-\leavevmode\hypertarget{ref-Martin_2014}{}%
+\hypertarget{ref-Martin_2014}{}
 39. Martin JL. Ten simple rules to achieve conference speaker gender
 balance. PLoS computational biology. 2014;10: e1003903.
 
-\leavevmode\hypertarget{ref-Tower_2007}{}%
+\hypertarget{ref-Tower_2007}{}
 40. Tower G, Julie P, Brenda R. A multidisciplinary study of
 gender-based research productivity in the world's best journals. Journal
 of Diversity Management. 2007;2: 23--32.
 
-\leavevmode\hypertarget{ref-Jordan_2008}{}%
+\hypertarget{ref-Jordan_2008}{}
 41. Jordan CE, Clark SJ, Vann CE. Do gender differences exist in the
 publication productivity of accounting faculty?. Journal of Applied
 Business Research. 2008;24: 77--85.
 
-\leavevmode\hypertarget{ref-Britton_2000}{}%
+\hypertarget{ref-Britton_2000}{}
 42. Britton DM. The epistemology of the gendered organization. Gender
 and Society. 2000;14: 418--434.
 
-\leavevmode\hypertarget{ref-Reagans_2001}{}%
+\hypertarget{ref-Reagans_2001}{}
 43. Reagans R, Zuckerman EW. Networks, diversity, and productivity: The
 social capital of corporate R\&D teams. Organization Science. 2001;12:
 502--517.
 
-\leavevmode\hypertarget{ref-Hong_2004}{}%
+\hypertarget{ref-Hong_2004}{}
 44. Hong L, Page SE. Groups of diverse problem solvers can outperform
 groups of high-ability problem solvers. Proceedings of the National
 Academy of Sciences. 2004;101: 16385--16389.
 
-\leavevmode\hypertarget{ref-Whittington_2008}{}%
+\hypertarget{ref-Whittington_2008}{}
 45. Whittington KB, Smith-Doerr L. Women inventors in context:
 Disparities in patenting across academia and industry. Gender \&
 Society. 2008;22: 194--218.
 
-\leavevmode\hypertarget{ref-Bear_2011}{}%
+\hypertarget{ref-Bear_2011}{}
 46. Bear JB, Woolley AW. The role of gender in team collaboration and
 performance. Interdisciplinary Science Reviews. 2011;36: 46--153.
 
-\leavevmode\hypertarget{ref-Herrera_2012}{}%
+\hypertarget{ref-Herrera_2012}{}
 47. Herrera R, Duncan PA, Green MT, Skaggs SL. The effect of gender on
 leadership and culture. Global Business and Organizational Excellence.
 2012;31: 37--48.
 
-\leavevmode\hypertarget{ref-Campbell_2013}{}%
+\hypertarget{ref-Campbell_2013}{}
 48. Campbell LG, Mehtani S, Dozier ME, Rinehart J. Gender-heterogeneous
 working groups produce higher quality science. PloS ONE. 2013; e79147.
 
-\leavevmode\hypertarget{ref-Ferber_1980}{}%
+\hypertarget{ref-Ferber_1980}{}
 49. Ferber MA, Teiman M. Are women economists at a disadvantage in
 publishing journal articles? Eastern Economic Journal. 1980;6:
 1189--193.
 
-\leavevmode\hypertarget{ref-McDowell_1992}{}%
+\hypertarget{ref-McDowell_1992}{}
 50. McDowell JM, Smith JK. The effect of gender-sorting on propensity to
 coauthor: Implications for academic promotion. Economic Inquiry.
 1992;30: 68--82.
 
-\leavevmode\hypertarget{ref-Ghiasi_2015}{}%
+\hypertarget{ref-Ghiasi_2015}{}
 51. Ghiasi G, Larivière V, Sugimoto CR. On the compliance of women
 engineers with a gendered scientific system. PloS ONE. 2015;10:
 e0145931.
 
-\leavevmode\hypertarget{ref-Crow_2015}{}%
+\hypertarget{ref-Crow_2015}{}
 52. Crow MS, Smykla JO. An examination of author characteristics in
 national and regional criminology and criminal justice journals,
 2008-2010: Are female scholars changing the nature of publishing in
 criminology and criminal justice? American Journal of Criminal Justice.
 2015;40: 441--455.
 
-\leavevmode\hypertarget{ref-Fahmy_2017}{}%
+\hypertarget{ref-Fahmy_2017}{}
 53. Fahmy C, Young JT. Gender inequality and knowledge production in
 criminology and criminal justice. Journal of Criminal Justice Education.
 2017;28: 285--305.
 
-\leavevmode\hypertarget{ref-Zettler_2017}{}%
+\hypertarget{ref-Zettler_2017}{}
 54. Zettler HR, Stephanie M Cardwell, Jessica M C. The gendering effects
 of co-authorship in criminology \& criminal justice research. Criminal
 Justice Studies. 2017;30: 30--44.
 
-\leavevmode\hypertarget{ref-Jadidi_2017}{}%
+\hypertarget{ref-Jadidi_2017}{}
 55. Jadidi M, Karimi F, Lietz H, Wagner C. Gender disparities in
 science? Dropout, productivity, collaborations and success of male and
 female computer scientists. Advances in Complex Systems. 2017; 1750011.
 
-\leavevmode\hypertarget{ref-Teele_2017}{}%
+\hypertarget{ref-Teele_2017}{}
 56. Teele DL, Kathleen T. Gender in the journals: Publication patterns
 in political science. PS: Political Science \& Politics. 2017;50:
 433--447.
 
-\leavevmode\hypertarget{ref-Araujo_2017a}{}%
+\hypertarget{ref-Araujo_2017a}{}
 57. Araújo T, Elsa F. The specific shapes of gender imbalance in
 scientific authorships: a network approach. Journal of Informetrics.
 2017;11: 88--102.
 
-\leavevmode\hypertarget{ref-Araujo_2017b}{}%
+\hypertarget{ref-Araujo_2017b}{}
 58. Araújo T, Elsa F. Big Missing Data: are scientific memes inherited
 differently from gendered authorship? arXiv preprint arXiv. 2017;
 1706.05156.
 
-\leavevmode\hypertarget{ref-Wahlund_1928}{}%
+\hypertarget{ref-Wahlund_1928}{}
 59. Wahlund S. Zusammensetzung von populationen und
 korrelationserscheinungen vom standpunkt der vererbungslehre aus
 betrachtet. Hereditas. 1928;11: 65--106.
 
-\leavevmode\hypertarget{ref-bergstrom_2016}{}%
+\hypertarget{ref-bergstrom_2016}{}
 60. Bergstrom T, Bergstrom C, King M, Jacquet J, West J, Correll S. A
-note on measuring gender homophily among scholarly authors. 2016;
+note on measuring gender homophily among scholarly authors.
+http://eigenfactororg/gender/ assortativity/measuring\_homophilypdf.
+2016;
 
-\leavevmode\hypertarget{ref-macaluso_2016}{}%
+\hypertarget{ref-macaluso_2016}{}
 61. Macaluso B, Larivière V, Sugimoto T, Sugimoto CR. Is science built
 on the shoulders of women? A study of gender differences in
 contributorship. Academic Medicine. 2016;91: 1136--1142.
 
-\leavevmode\hypertarget{ref-Bentley_2003}{}%
+\hypertarget{ref-Bentley_2003}{}
 62. Bentley JT, Adamson R. Gender differences in the careers of academic
 scientists and engineers: A literature review. Special Report. 2003;
 
-\leavevmode\hypertarget{ref-Long_2015}{}%
+\hypertarget{ref-Long_2015}{}
 63. Long MT, Leszczynski A, Thompson KD, Wasan SK, Calderwood AH. Female
 authorship in major academic gastroenterology journals: A look over 20
 years. Gastrointestinal Endoscopy. 2015;81: 1440--1447.
 
-\leavevmode\hypertarget{ref-Bendels_2018}{}%
+\hypertarget{ref-Bendels_2018}{}
 64. Bendels MH, Bauer J, Schöffel N, Groneberg DA. The gender gap in
 schizophrenia research. Schizophrenia Research. 2018;193: 445--446.
 
-\leavevmode\hypertarget{ref-McKenzie_2017}{}%
+\hypertarget{ref-McKenzie_2017}{}
 65. McKenzie K, Ramonas M, Patlas M, Katz DS. Assessing the gap in
 female authorship in the journal emergency radiology: Trends over a
 20-year period. Emergency Radiology. 2017;24: 641--644.
 
-\leavevmode\hypertarget{ref-sheltzer_2014}{}%
+\hypertarget{ref-sheltzer_2014}{}
 66. Sheltzer JM, Smith JC. Elite male faculty in the life sciences
 employ fewer women. Proceedings of the National Academy of Sciences.
 2014;111: 10107--10112.
 
-\leavevmode\hypertarget{ref-Garfield_2006}{}%
+\hypertarget{ref-Garfield_2006}{}
 67. Garfield E. The history and meaning of the journal impact factor.
 JAMA. 2006;295: 90--93.
 
-\leavevmode\hypertarget{ref-nittrouer_2018}{}%
+\hypertarget{ref-nittrouer_2018}{}
 68. Nittrouer CL, Hebl MR, Ashburn-Nardo L, Trump-Steele RC, Lane DM,
 Valian V. Gender disparities in colloquium speakers at top universities.
 Proceedings of the National Academy of Sciences. 2018;115: 104--108.
 
-\leavevmode\hypertarget{ref-debarre_2018}{}%
+\hypertarget{ref-debarre_2018}{}
 69. Débarre F, Rode N, Ugelvig L. Gender equity at scientific events.
 Evolution Letters. 2018;in press: doi:10.1002/evl3.49.
 
-\leavevmode\hypertarget{ref-wright_1949}{}%
+\hypertarget{ref-wright_1949}{}
 70. Wright S. The genetical structure of populations. Annals of Human
 Genetics. 1949;15: 323--354.
 
-\leavevmode\hypertarget{ref-wang_2016}{}%
+\hypertarget{ref-wang_2016}{}
 71. Wang YS, Erosheva EA. On the relationship between set-based and
 network-based measures of gender homophily in scholarly publications.
 arXiv preprint arXiv:161009026. 2016;
 
-\leavevmode\hypertarget{ref-Benjamini_1995}{}%
+\hypertarget{ref-Benjamini_1995}{}
 72. Benjamini Y, Hochberg Y. Controlling the false discovery rate: a
 practical and powerful approach to multiple testing. Journal of the
 Royal Statistical Society: Series B. 1995; 289--300.
 
-\leavevmode\hypertarget{ref-Bonham_2017}{}%
+\hypertarget{ref-Bonham_2017}{}
 73. Bonham KS, Stefan MI. Women are underrepresented in computational
 biology: An analysis of the scholarly literature in biology, computer
 science and computational biology. PLoS Computational Biology. 2017;13:
 e1005134.
 
-\leavevmode\hypertarget{ref-Wren_2007}{}%
+\hypertarget{ref-Wren_2007}{}
 74. Wren JD, Kozak KZ, Johnson KR, Deakyne SJ, Schilling LM, Dellavalle
 RP. The write position: A survey of perceived contributions to papers
 based on byline position and number of authors. EMBO reports. 2007;8:
 988--991.
 
-\leavevmode\hypertarget{ref-burkner_2016}{}%
+\hypertarget{ref-burkner_2016}{}
 75. Bürkner P-C. brms: An R package for Bayesian multilevel models using
 Stan. Journal of Statistical Software. 2016;80: 1--28.
 
 \newpage
 
-\hypertarget{supporting-information}{%
-\section{Supporting information}\label{supporting-information}}
+\section{Supporting information}\label{supporting-information}
 
-\hypertarget{supplementary-figures}{%
-\subsection{Supplementary figures}\label{supplementary-figures}}
+\subsection{Supplementary figures}\label{supplementary-figures}
 
 S1 Fig. Plot showing the percentage of papers that have 1, 2, 3, 4, or
 \({\ge}5\) authors for each discipline in the dataset of Holman et al.
@@ -1321,8 +1306,7 @@ of \(\alpha\) even if authors assort randomly with respect to gender
 homophily and heterophily, though the improvement is trivial in large
 enough samples.
 
-\hypertarget{supplementary-tables}{%
-\subsection{Supplementary tables}\label{supplementary-tables}}
+\subsection{Supplementary tables}\label{supplementary-tables}
 
 S1 Table. Sample sizes for the two datasets, which comprise papers
 published in the timeframes August 2005 - August 2006, and August 2015 -
@@ -1336,8 +1320,7 @@ lower for the 2005-2006 data because fewer papers were recovered per
 journal: thus, it is not meaningful to compare the \% significant
 journals (i.e.~11\% vs 24\%) between the two time periods.
 
-\hypertarget{supplementary-datasets}{%
-\subsection{Supplementary datasets}\label{supplementary-datasets}}
+\subsection{Supplementary datasets}\label{supplementary-datasets}
 
 S1 Data: This spreadsheet shows the \(\alpha\) values calculated for
 each journal, in the 2005 and 2015 samples, and for each type of author
