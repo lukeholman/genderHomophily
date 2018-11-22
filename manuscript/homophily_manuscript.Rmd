@@ -169,7 +169,7 @@ We can think of no tractable method of controlling for this issue using our data
 The Online Supplementary Material contains R scripts used to produce all results, figures and tables; it can be viewed online at https://lukeholman.github.io/genderHomophily/. The input data from Holman et al. [-@Holman_2018] is archived at https://osf.io/bt9ya/.
 
 # Acknowledgements
-CM was supported by the Academy of Finland (284666 to the Centre of Excellence in Biological Interactions). We thank Devi Stuart-Fox and Dominique Potvin for helpful discussion.
+We thank Devi Stuart-Fox and Dominique Potvin for helpful discussion.
 
 # References
 <div id="refs"></div>
