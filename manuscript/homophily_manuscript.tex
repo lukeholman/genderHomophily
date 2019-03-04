@@ -84,17 +84,21 @@ expected across the life sciences}
     \date{}
     \predate{}\postdate{}
   
-\usepackage{microtype} \usepackage[all]{hypcap} \usepackage{amsmath}
-\usepackage{booktabs} \usepackage{caption}
-\usepackage[labelfont=bf]{caption} \usepackage{titling}
+\usepackage{microtype} \usepackage[all]{hypcap} \usepackage{amsmath} \usepackage{booktabs} \usepackage{caption} \usepackage[labelfont=bf]{caption} \usepackage{titling}
+
 \pretitle{\begin{flushleft}\LARGE}
 \posttitle{\par\end{flushleft}\vskip 0.5em}
 \preauthor{\begin{flushleft}\large \lineskip 0.5em}
 \postauthor{\par\end{flushleft}} \predate{\begin{flushleft}\large}
-\postdate{\par\end{flushleft}} \usepackage{fancyhdr} \pagestyle{fancy}
-\fancyhead[LO,LE]{\textsl{\leftmark}} \rhead[]{Gender and coauthorship}
-\usepackage[noabbrev,capitalise]{cleveref} \usepackage{titlefoot}
-\usepackage{amssymb} \usepackage{rotating} \usepackage{lineno}
+\postdate{\par\end{flushleft}}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy} \fancyhead[LO,LE]{\textsl{\leftmark}}
+\rhead[]{Gender and coauthorship}
+
+\usepackage[noabbrev,capitalise]{cleveref} \usepackage{titlefoot} \usepackage{amssymb} \usepackage{rotating} \usepackage{lineno}
+
 \linenumbers
 
 \begin{document}
@@ -151,12 +155,12 @@ dozens of studies have tested for gender differences in these areas
 be less involved in international collaboration {[}19,28,30--32{]},
 collaborate less within their own university departments {[}31{]}, have
 less prestigious collaborations {[}33{]}, and fewer collaborations in
-total {[}34{]}. These gender differences in collaboration practice
-presumably have multiple causes, which might include implicit and
-explicit gender bias {[}20{]}, differential family obligations
-{[}33,35,36{]}, gender differences in confidence or self-esteem
-{[}37{]}, concerns relating to sexual harassment {[}38{]}, and unequal
-access to conferences {[}39{]} or travel funds {[}32{]}.
+total {[}34{]}. These gender differences in collaboration presumably
+have multiple causes, which might include implicit and explicit gender
+bias {[}20{]}, differential family obligations {[}33,35,36{]}, gender
+differences in confidence or self-esteem {[}37{]}, concerns relating to
+sexual harassment {[}38{]}, and unequal access to conferences {[}39{]}
+or travel funds {[}32{]}.
 
 A high, steadily increasing proportion of research papers is written by
 more than one author {[}3{]}, making collaboration a key predictor of
@@ -168,10 +172,10 @@ have examined the author lists of published research articles in order
 to test for gender differences in collaboration frequency or pattern. To
 our knowledge, most or all such studies imply that men co-publish with
 men, and women with women, more often than expected if collaborators
-assort randomly with respect to gender {[}49--58{]}. This pattern of
-assortative publishing has often been termed `gender homophily'.
+assort randomly with respect to gender {[}49--58{]}. This non-random
+assortment is often termed `gender homophily'.
 
-However, we believe that earlier studies of gender homophily were
+We believe that most or all earlier studies of gender homophily were
 hindered by a largely unacknowledged statistical issue that we will
 refer to as the Wahlund effect (\autoref{wahlund_plot}), by analogy with
 the conceptually similar Wahlund effect in population genetics {[}59{]}.
@@ -311,9 +315,9 @@ due to the Wahlund effect. For example, the journal category
 \emph{Nature}, \emph{Science}, and \emph{PNAS} -- did not have markedly
 elevated \(\alpha'\) (\autoref{alpha_histograms}). This result suggests
 that our estimates of homophily, and estimates from some of the earlier
-studies listed in the Introduction, are probably not inflated by the
-presence of disparate research topics (with variable author gender
-ratios) being published within individual journals.
+studies listed in the Introduction, are probably not markedly inflated
+by the presence of disparate research topics (with variable author
+gender ratios) being published within individual journals.
 
 Nevertheless, when we calculated \(\alpha\) across all non-single-author
 papers in our entire 15-year PubMed dataset (as before, excluding papers
@@ -540,12 +544,12 @@ that it is likely that some researchers preferentially select
 same-gendered collaborators, although it is difficult to ascertain what
 proportion of people show such a preference, or how much the strength of
 the preference varies between individuals. We also note that even in a
-world in which collaboration was completely random with respect to
-gender, a high proportion of individual researchers would have entirely
-same-gendered collaborators by chance alone (especially in gender-biased
-disciplines); thus, individuals who only have same-gendered co-authors
-are not necessarily doing anything differently from people with
-gender-balanced co-authors.
+world in which everyone selected their collaborators at random with
+respect to gender, a high proportion of individual researchers would
+have entirely same-gendered collaborators by chance alone (especially in
+gender-biased disciplines); thus, individuals who only have
+same-gendered co-authors are not necessarily doing anything differently
+from people with gender-balanced co-authors.
 
 We hypothesised that disciplines with a strongly skewed gender ratio
 might show the strongest gender homophily, e.g.~because being in the
