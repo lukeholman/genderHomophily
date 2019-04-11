@@ -177,29 +177,28 @@ assortment is often termed `gender homophily'.
 
 We believe that most or all earlier studies of gender homophily were
 hindered by a largely unacknowledged statistical issue that we will
-refer to as the Wahlund effect (\autoref{wahlund_plot}), by analogy with
-the conceptually similar Wahlund effect in population genetics {[}59{]}.
-The Wahlund effect makes it deceptively difficult to infer gender-based
-preferences simply by counting the number of same- and mixed-gender
-coauthorships. Essentially, whenever coauthorship data are sampled from
-two or more discrete sets of literature, which vary in the author gender
-ratio and which are largely not connected by collaboration, the number
-of same-gendered coauthors will be inflated. This can give the
-impression that authors preferentially publish with same-gendered
-colleagues even if no gender preferences exist, or if the true
-preference is for opposite-gendered colleagues (`gender heterophily').
-For example, a sample of literature containing a mixture of
-bioinformatics and cell biology papers will probably contain an excess
-of mostly-male and mostly-female author lists, simply because
+refer to as the Wahlund effect (Fig 1), by analogy with the conceptually
+similar Wahlund effect in population genetics {[}59{]}. The Wahlund
+effect makes it deceptively difficult to test for gender-based co-author
+choice simply by counting the relative number of same- and mixed-gender
+coauthorships. Essentially, the Wahlund effect means that whenever
+coauthorship data are sampled from two or more discrete sets of
+literature, which vary in the author gender ratio and which are largely
+unconnected by collaboration, the number of same-gendered coauthors will
+be inflated. This can give the impression that authors preferentially
+publish with same-gendered colleagues even if no gender preferences
+exist, or if the true preference is for opposite-gendered colleagues
+(`gender heterophily'). For example, a sample of literature containing a
+mixture of bioinformatics and cell biology papers will probably contain
+an excess of mostly-male and mostly-female author lists, simply because
 researchers usually collaborate within their own discipline, and because
 the author gender ratio is more male-biased in bioinformatics than in
 cell biology {[}5{]}.
 
-\begin{figure}
-\centering
-\includegraphics{../figures/Fig1.pdf}
-\caption{The Wahlund effect can make it appear as if authors publish
-with same-gendered colleagues disproportionately often, even if
+\vspace{2cm}
+
+\textbf{Fig 1}: The Wahlund effect can make it appear as if authors
+publish with same-gendered colleagues disproportionately often, even if
 collaboration is completely random with respect to gender. Here,
 coloured circles represent male and female authors, and coauthors are
 linked with lines. Across the whole set of ten papers, there is an
@@ -213,25 +212,25 @@ gender heterophily). The Wahlund effect will tend to inflate the
 frequency of same-gender coauthorships whenever the data is composed of
 two or more disconnected subsets of literature with different author
 gender ratios; these subsets could be research disciplines, older versus
-newer papers, or papers from authors in different countries. The example
-countries and disciplines were selected based on data in {[}5{]}.
-\label{wahlund_plot}}
-\end{figure}
+newer papers, or papers from authors based in different countries. The
+example countries and disciplines were selected based on data in
+{[}5{]}. \vspace{2cm}
 
 In the present study, we test whether life sciences researchers tend to
 co-publish with same-gendered colleagues, while controlling for the
-Wahlund effect as strictly as possible. We use a recently-published
+Wahlund effect as strictly as we are able. We use a recently-published
 dataset describing the gender of 35.5 million authors from 9.15 million
 articles indexed on PubMed {[}5{]}. Holman et al. {[}5{]} reported large
 differences in the gender ratio of authors across research disciplines,
 journals, countries, and across the years 2002-2016. We therefore tested
 for gender homophily while restricting our analysis to particular
-journals (i.e.~research specialties), time periods, and countries. We
-quantified gender assortment using a metric called \(\alpha'\) {[}60{]},
-which is positive when same-gender authors publish together more often
-than expected (gender homophily), negative when opposite-gender authors
-publish together more often than expected (heterophily), and equal to
-zero when authors assort randomly with respect to gender (see Methods).
+journals (a proxy for research specialties), time periods, and
+countries. We quantified gender assortment using a metric called
+\(\alpha'\) {[}60{]}, which is positive when same-gender authors publish
+together more often than expected (gender homophily), negative when
+opposite-gender authors publish together more often than expected
+(heterophily), and equal to zero when authors assort randomly with
+respect to gender (see Methods).
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -240,16 +239,16 @@ zero when authors assort randomly with respect to gender (see Methods).
 \subsection{Gender homophily by discipline, time period, and authorship
 position}\label{gender-homophily-by-discipline-time-period-and-authorship-position}}
 
-\autoref{alpha_histograms} shows the distribution of \(\alpha'\)
-estimates in 2015-2016 across all journals for which we recovered
-sufficient data, when \(\alpha'\) was calculated for all authors, first
-authors only, or last authors only. Most journals had positive values of
-\(\alpha'\) (77-92\%, depending on time period and author type; S1
-Data), and for many of these the false discovery rate (FDR)-corrected
-p-values suggested that \(\alpha'\) was significantly greater than zero
-(1469/2077 journals were significant in 2015-16, and 404/1192 in 2005-6;
-S1 Data). Only 2/2077 journals had statistically significant heterophily
-(i.e. \(\alpha' < 0\)) in 2015-16, and 1/1192 in 2005-6 (S2 Table). The
+Fig 2 shows the distribution of \(\alpha'\) estimates in 2015-2016
+across all journals for which we recovered sufficient data, when
+\(\alpha'\) was calculated for all authors, first authors only, or last
+authors only. Most journals had positive values of \(\alpha'\) (77-92\%,
+depending on time period and author type; S1 Data), and for many of
+these the false discovery rate (FDR)-corrected p-values suggested that
+\(\alpha'\) was significantly greater than zero (1469/2077 journals were
+significant in 2015-16, and 404/1192 in 2005-6; S1 Data). Only 2/2077
+journals had statistically significant heterophily (i.e.
+\(\alpha' < 0\)) in 2015-16, and 1/1192 in 2005-6 (S2 Table). The
 remaining 606 or 787 journals (in 2015 and 2005 respectively) had a
 value of \(\alpha'\) not significantly different from zero, consistent
 with the null hypothesis of random assortment with respect to gender. We
@@ -257,10 +256,9 @@ also confirmed that in most journals (S2 Data) and most research
 disciplines (S3 Data, S1 Fig), the majority of papers had multiple
 authors.
 
-\begin{figure}
-\centering
-\includegraphics{../figures/Fig2.pdf}
-\caption{Of the 2116 journals for which we had adequate data in
+\vspace{2cm}
+
+\textbf{Fig 2}: Of the 2116 journals for which we had adequate data in
 2015-2016, 825 showed statistically significant evidence of gender
 homophily (denoted by \(\alpha' > 0\)), and 1 showed statistically
 significant evidence of heterophily (\(\alpha' < 0\)), after false
@@ -270,8 +268,7 @@ stronger than expected under the null hypothesis (corrected p
 \textless{} 0.05), while the blue area shows all the remainder. Patterns
 were similar whether \(\alpha'\) was calculated for all authors, for
 first authors only, or for last authors only. Points in the right panel
-show \(\alpha'\) for individual journals.\label{alpha_histograms}}
-\end{figure}
+show \(\alpha'\) for individual journals. \vspace{2cm}
 
 \(\alpha'\) was significantly higher in the literature sample from
 2015-16 relative to 2005-6, though the difference in means was small (S2
@@ -293,75 +290,73 @@ scientists are causally responsible for homophily.
 \subsection{Variance in homophily between
 disciplines}\label{variance-in-homophily-between-disciplines}}
 
-\autoref{alpha_histograms} illustrates the variance in journal homophily
-values (\(\alpha'\)) across scientific disciplines. All disciplines had
-positive mean \(\alpha'\) (averaged over journals), although homophily
-appeared somewhat stronger in some disciplines than others (e.g.~mean
-\(\alpha'\) was \(0.12{\pm}0.02\) for Urology journals and
-\(0.03{\pm}0.01\) for Veterinary Medicine journals;
-\autoref{alpha_histograms}, S4 Data). However, there was no formal
-evidence for consistent differences in \(\alpha'\) between disciplines:
-the random factor `Discipline' explained around 1\% of the variance in
-\(\alpha'\) in the two linear mixed models described in the previous
-section (see \autoref{alpha_histograms} and mixed models in Online
-Supplementary Material). Thus, whatever processes are responsible for
-producing positive \(\alpha'\) values appear to be similarly strong in
-all the disciplines we examined.
+Fig 2 illustrates the variance in journal homophily values (\(\alpha'\))
+across scientific disciplines. All disciplines had positive mean
+\(\alpha'\) (averaged over journals), although homophily appeared
+somewhat stronger in some disciplines than others (e.g.~mean \(\alpha'\)
+was \(0.12{\pm}0.02\) for Urology journals and \(0.03{\pm}0.01\) for
+Veterinary Medicine journals; Fig 2, S4 Data). However, there was no
+formal evidence for consistent differences in \(\alpha'\) between
+disciplines: the random factor `Discipline' explained around 1\% of the
+variance in \(\alpha'\) in the two linear mixed models described in the
+previous section (see Fig 2 and mixed models in Online Supplementary
+Material). Thus, the causal mechanisms underlying the observed positive
+\(\alpha'\) values appear to be similarly strong in all the disciplines
+we examined.
 
 There was no indication that journals publishing on a wide range of
-topics have higher \(\alpha'\) values than more specialised journals,
-due to the Wahlund effect. For example, the journal category
-`Multidisciplinary' -- which includes journals like \emph{PLOS ONE},
-\emph{Nature}, \emph{Science}, and \emph{PNAS} -- did not have markedly
-elevated \(\alpha'\) (\autoref{alpha_histograms}). This result suggests
+topics have higher \(\alpha'\) values than more specialised journals due
+to the Wahlund effect (Fig 1). For example, the journal category
+`Multidisciplinary' -- which includes general interest journals like
+\emph{PLOS ONE}, \emph{Nature}, \emph{Science}, and \emph{PNAS} -- did
+not have markedly elevated \(\alpha'\) (Fig 2). This result suggests
 that our estimates of homophily, and estimates from some of the earlier
-studies listed in the Introduction, are probably not markedly inflated
-by the presence of disparate research topics (with variable author
-gender ratios) being published within individual journals.
+studies of homophily listed in the Introduction, are probably not
+markedly inflated by the presence of disparate research topics (with
+variable author gender ratios) being published within individual
+journals.
 
 Nevertheless, when we calculated \(\alpha\) across all non-single-author
 papers in our entire 15-year PubMed dataset (as before, excluding papers
 where at least one author's gender was unknown; n = \textgreater{}3
 million papers, \textgreater{}16 million authors), we found that
 \(\alpha\) was 0.126. This figure is almost double the median value of
-\(\alpha'\) for individual journals (Figure 2; \(\alpha' = 0.070\) for
-`All authors'), suggesting that lumping together papers from different
-fields and different time periods can indeed produce spurious evidence
-for gender homophily as outlined in Figure 1.
+\(\alpha'\) for individual journals (Fig 2; \(\alpha' = 0.070\) for `All
+authors'), suggesting that lumping together papers from different fields
+and different time periods can indeed produce spurious evidence for
+gender homophily as outlined in Fig 1.
 
 \hypertarget{relationship-between-gender-homophily-and-number-of-authors}{%
 \subsection{Relationship between gender homophily and number of
 authors}\label{relationship-between-gender-homophily-and-number-of-authors}}
 
 Papers with two authors had significantly lower (but still positive)
-\(\alpha'\) values relative to papers with more than two authors, on
-average (\autoref{author_number}; statistical results in Online
-Supplementary Material). Papers with 3, 4 or \(\ge5\) authors had
-essentially identical average \(\alpha'\) values. The variance in
-\(\alpha'\) across journals was also a little higher for 2-author papers
-compared to the remainder (\autoref{author_number}), though part of this
-variance is due to the reduced sample size (in terms of number of
-authors) for the 2-author papers. One possible explanation for this
-finding is that 2-authors papers might be more likely to have an author
-list that is evenly split between career stages (e.g.~a postgraduate
-student and their supervisor), increasing the chance that the authors
-are mixed gender (see Figure 6). The result also suggests that the
-processes responsible for gender homophily are similar in small
-(e.g.~3-author) and larger (5+ author) collaborations (and across
-disciplines where small versus large collaborations are the norm).
+\(\alpha'\) values relative to papers with more than two authors, while
+papers with 3, 4 or \(\ge5\) authors had essentially identical average
+\(\alpha'\) values (Fig 3). Specifically, the posterior estimate of mean
+\(\alpha'\) was 0.014 (95\% CIs: 0.002 - 0.026) for 2-author papers and
+0.065 (95\% CIs: 0.056 - 0.074) for 3-author papers (and roughly the
+same for 4- and \(\ge5\)-author papers; Fig 3). One possible explanation
+for this finding is that 2-authors papers are more likely to have an
+author list that is evenly split between career stages (e.g.~a
+postgraduate student and their supervisor), increasing the chance that
+the authors are mixed gender (see section `Theoretical expectations for
+\(\alpha\) when the gender ratio differs between career stages'). The
+result also suggests that the causal mechanisms responsible for gender
+homophily are similar in small (e.g.~3-author) and larger (\(\ge5\)
+author) collaborations (and across disciplines where small versus large
+collaborations are the norm).
 
-\begin{figure}
-\centering
-\includegraphics{../figures/Fig3.pdf}
-\caption{The coefficient of homophily (\(\alpha'\)) was slightly less
-positive when calculated for two-author papers only, relative to papers
-with longer author lists. The individual points, whose distribution is
-summarised by the violin plots, correspond to individual journals. The
-larger white points show the mean for each group (and its 95\% CIs), as
-calculated by a Bayesian meta-regression model accounting for repeated
-measures of \(\alpha'\) within journals, as well as the precision with
-which \(\alpha'\) was estimated. \label{author_number}}
-\end{figure}
+\vspace{2cm}
+
+\textbf{Fig 3}: The coefficient of homophily (\(\alpha'\)) was slightly
+less positive when calculated for two-author papers only, relative to
+papers with longer author lists. The individual points, whose
+distribution is summarised by the violin plots, correspond to individual
+journals. The larger white points show the mean for each group (and its
+95\% CIs), as calculated by a Bayesian meta-regression model accounting
+for repeated measures of \(\alpha'\) within journals, as well as the
+precision with which \(\alpha'\) was estimated. \vspace{2cm}
 
 \hypertarget{relationship-between-gender-homophily-and-gender-ratio}{%
 \subsection{Relationship between gender homophily and gender
@@ -371,32 +366,14 @@ We next tested whether researchers are more or less likely to publish
 with same-gendered colleagues in strongly gender-biased disciplines
 (e.g.~Surgery or Nursing), relative to disciplines with a comparatively
 gender-balanced workforce (e.g.~Psychiatry). We found a positive,
-non-linear relationship between the overall gender ratio of all authors
+non-linear relationship between the gender ratio across all the authors
 publishing in a particular journal {[}5{]}, and the estimated value of
-\(\alpha'\) for all authors and for first authors
-(\autoref{alpha_gender_ratio}). Journals with a balanced or
-female-biased author gender ratio tended to have higher \(\alpha'\)
-(i.e.~stronger homophily) than journals with a male-biased author gender
-ratio (GAM smooth terms p \textless{} 0.001; Online Supplementary
-Material). The relationship was not statistically significant when
-\(\alpha'\) was calculated for last authors (GAM, p = 0.142), though the
-trend appeared similar (\autoref{alpha_gender_ratio}).
-
-\begin{figure}
-\centering
-\includegraphics{../figures/Fig4.pdf}
-\caption{There is a weakly positive, non-linear relationship between the
-gender ratio of authors publishing in a journal, and the coefficient of
-homophily (\(\alpha'\)). Specifically, journals with 50\% women authors
-or higher tended to have more same-sex coauthorships than did journals
-with predominantly men authors. This relationship held whether
-\(\alpha'\) was calculated for all authors, first authors only, or last
-authors only. A negative value on the x-axis denotes an excess of men
-authors, a positive value denotes an excess of women authors, and zero
-denotes gender parity (i.e.~equal numbers of men and women). The lines
-were fitted using generalised additive models with the smoothing
-parameter \(k\) set to 3. \label{alpha_gender_ratio}}
-\end{figure}
+\(\alpha'\) for all authors and for first authors, but not last authors
+(S4 Fig). Journals with a balanced or female-biased author gender ratio
+tended to have higher \(\alpha'\) (i.e.~stronger homophily) than
+journals with a male-biased author gender ratio (GAM smooth term p =
+0.0002 for all-author homophily, p \textless{} 0.0001 for first-author
+homophily, and p = 0.13 for last-author homophily).
 
 \hypertarget{relationship-between-journal-impact-factor-and-gender-homophily}{%
 \subsection{Relationship between journal impact factor and gender
@@ -406,22 +383,21 @@ We observed a noisy but statistically significant linear relationship
 between standardised journal impact factor and \(\alpha'\), such that
 journals with a high impact factor for their discipline had weaker
 gender homophily than did journals with a low impact factor for their
-discipline (\autoref{impact_factor}; linear regression: \(R^2\) = 0.043,
-\(t_{1415}\) = -8.0, p \textless{} 0.0001). The slope of the regression
-was \(-0.012{\pm}0.0015\), indicating that increasing the
+discipline (Fig 4; linear regression: \(R^2\) = 0.043, \(t_{1415}\) =
+-8.0, p \textless{} 0.0001). The slope of the regression was
+\(-0.012{\pm}0.0015\), indicating that increasing the
 discipline-standardised impact factor by one standard deviation is
-associated with a reduction in \(\alpha'\) of 0.012.
+associated with a reduction in \(\alpha'\) of 0.012. The Spearman
+correlation coefficient was -0.19 (p \textless{} 0.0001).
 
-\begin{figure}
-\centering
-\includegraphics{../figures/Fig5.pdf}
-\caption{Journal impact factor (expressed relative to the average for
-the discipline) is negatively correlated with \(\alpha'\). The
-relationship is noisy (\(R^2\) = 0.043), but the results suggest that
-journals with strong homophily tend to have lower impact factors than
-journals with weak homophily in the same discipline.
-\label{impact_factor}}
-\end{figure}
+\vspace{2cm}
+
+\textbf{Fig 4}: Journal impact factor (expressed relative to the average
+for the discipline) is negatively correlated with \(\alpha'\). The
+relationship is noisy (\(R^2\) = 0.043, Spearman correlation = -0.19),
+but the results indicate that journals with strong gender homophily tend
+to have lower impact factors than journals from the same discipline that
+have weaker homophily. \vspace{2cm}
 
 \hypertarget{analysis-accounting-for-differences-in-author-gender-ratio-between-countries}{%
 \subsection{Analysis accounting for differences in author gender ratio
@@ -431,14 +407,14 @@ countries}\label{analysis-accounting-for-differences-in-author-gender-ratio-betw
 When we restricted the analysis by country, we observed statistically
 significant homophily for 72 of the 325 journal-country combinations
 tested (64 unique journals and 18 unique countries), and no significant
-heterophily (S4-S5 Fig). Additionally, the values of \(\alpha'\)
+heterophily (S5-S6 Fig). Additionally, the values of \(\alpha'\)
 calculated for each journal-country combination were only very slightly
 lower than the \(\alpha'\) values calculated for the journal as a whole
 (i.e.~when pooling papers from different countries, as was done to make
-\autoref{alpha_histograms}): on average, the difference in \(\alpha'\)
-was only 0.002 (S6 Fig). These results suggest that our findings of
-widespread homophily in the main analysis were not driven solely by a
-Wahlund effect resulting from gender differences between countries.
+Fig 2): on average, the difference in \(\alpha'\) was only 0.002 (S7
+Fig). These results suggest that our findings of widespread homophily in
+the main analysis were not driven solely by a Wahlund effect resulting
+from gender differences between countries.
 
 \hypertarget{theoretical-expectations-for-alpha-when-the-gender-ratio-differs-between-career-stages}{%
 \subsection{\texorpdfstring{Theoretical expectations for \(\alpha\) when
@@ -448,134 +424,130 @@ stages}{Theoretical expectations for \textbackslash{}alpha when the gender ratio
 Given that we cannot identify individual researchers or their career
 stages, we used a simple model to derive the theoretical expectations
 for \(\alpha\) when the gender ratio differs between career stages (see
-Methods). As shown in \autoref{simulation}, we predict that \(\alpha\)
-is expected to be non-zero, even if collaborators are randomly selected
-with respect to gender, provided that there is a gender gap between
-career stages. The extent to which \(\alpha\) deviates from zero depends
-on the relative frequencies of collaboration within and between career
-stages (rows and columns in Figure 6), and the size of the gender gap
-between stages (x- and y-axes in Figure 6). When \textgreater{}50\% of
-coauthor pairs comprise one early-career and one established researcher,
-we expect gender heterophily (\(\alpha < 0\)) whenever the gender ratio
-differs between career stages. Conversely, when \textgreater{}50\% of
+Methods). As shown in Fig 5, we predict that \(\alpha\) is expected to
+be non-zero, even if collaborators are randomly selected with respect to
+gender, provided that there is a gender gap between career stages. The
+extent to which \(\alpha\) deviates from zero depends on the relative
+frequencies of collaboration within and between career stages (rows and
+columns in Fig 5), and the size of the gender gap between stages (\(x\)-
+and \(y\)-axes in Fig 5). When \textgreater{}50\% of coauthor pairs
+comprise one early-career and one established researcher, we expect
+gender heterophily (\(\alpha < 0\)) whenever the gender ratio differs
+between career stages. Conversely, when \textgreater{}50\% of
 collaborations are between people at the same career stage, we expect
 gender homophily (\(\alpha > 0\)). In a few parameter spaces (shown in
-red; \autoref{simulation}), \(\alpha\) was quite high, and overlapped
-with the values that we estimated (\autoref{alpha_histograms}).
+red; Fig 5), \(\alpha\) was quite high, and overlapped with the values
+that we estimated (Fig 2).
 
-\begin{figure}
-\centering
-\includegraphics{../figures/Fig6_inkscape.pdf}
-\caption{When the gender ratio of early-career researchers is not equal
-to the gender ratio among established researchers, the null expectation
-for \(\alpha\) is not necessarily zero. Specifically, if most
-collaborations occur between career stages, there will be an excess of
-mixed-gender collaborations (\(\alpha < 0\), blue areas), while if most
-collaborator pairs comprise two people at the same career stage, there
-will be an excess of same-gender collaborations (\(\alpha > 0\), red
-areas). However, the conditions required for strong gender homophily
+\vspace{2cm}
+
+\textbf{Fig 5}: When the gender ratio of early-career researchers is not
+equal to the gender ratio among established researchers, the null
+expectation for \(\alpha\) is not necessarily zero. Specifically, if
+most collaborations occur between career stages, there will be an excess
+of mixed-gender collaborations (\(\alpha < 0\), blue areas), while if
+most collaborator pairs comprise two people at the same career stage,
+there will be an excess of same-gender collaborations (\(\alpha > 0\),
+red areas). However, the conditions required for strong gender homophily
 (i.e.~the red areas) are quite restrictive, making it unlikely that this
 issue can fully explain the homophily observed in our study.
 Additionally, in research disciplines where between-career stage
 collaboration is common and there is a shortage of women among
 established researchers (i.e.~the blue areas), our study will
-underestimate the strength of gender homophily. Contour lines denote
-increments of 0.1. \label{simulation}}
-\end{figure}
+underestimate the strength of gender homophily. Contour lines mark
+increments of 0.1. \vspace{2cm}
 
-Despite this overlap, \autoref{simulation} suggests that our main
-conclusions (and those of other studies of gender homophily) are
-probably robust to this career stage issue. We only expect strongly
-positive \(\alpha\) when A) the gender ratio is highly skewed across
-career stages (e.g.~a 5-fold difference), and B) collaborations between
-early and established researchers are very rare (e.g. \textless{}10\% of
-the total). Both of these conditions seem unlikely to be true for most
-fields: the gender gap across careers stages is generally less
-pronounced {[}1,5{]}, and it is very common for early-career researchers
-to co-publish with an established mentor {[}61{]}. However, one can get
-\(\alpha > 0\) for realistic combinations of parameters, e.g.~a moderate
-shortage of women in senior positions coupled with a moderate excess of
-within-career stage collaboration, suggesting this effect might
-contribute to some of the homophily observed by this and previous
-studies.
+Despite this overlap, Fig 5 suggests that our main conclusions (and
+those of other studies of gender homophily) are probably robust to this
+career stage issue. We only expect strongly positive \(\alpha\) when A)
+the gender ratio is highly skewed across career stages (e.g.~a 5-fold
+difference), and B) collaborations between early and established
+researchers are very rare (e.g. \textless{}10\% of the total). Both of
+these conditions seem unlikely to be true for most fields: the gender
+gap across careers stages is generally less pronounced {[}1,5{]}, and it
+is very common for early-career researchers to co-publish with an
+established mentor {[}61{]}. However, one can get \(\alpha > 0\) for
+realistic combinations of parameters, e.g.~a moderate shortage of women
+in senior positions coupled with a moderate excess of within-career
+stage collaboration, suggesting this effect might contribute to some of
+the homophily observed by this and previous studies.
 
 Lastly, we note that if there is a gender gap between career stages and
 coauthorships between early-career and established researchers comprise
 \textgreater{}50\% of the total, then the baseline expectation for
-\(\alpha\) is actually less than zero (blue areas in
-\autoref{simulation}). Therefore, it is possible that researchers
-preferentially assort with same-gendered collaborators even more
-strongly than implied by our results, at least for certain journals or
-research disciplines.
+\(\alpha\) is actually less than zero (blue areas in Fig 5). Therefore,
+it is possible that researchers preferentially assort with same-gendered
+collaborators even more strongly than implied by our results, at least
+for certain journals or research disciplines.
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
 We found evidence that researchers work with same-gendered coauthors
 more often than expected under the null model, even after implementing
-stringent controls for Wahlund effects (\autoref{wahlund_plot}). Our
-study therefore reaffirms earlier studies' conclusions {[}49--57,62{]}
-using stricter methodology, and generalises their results across the
-life sciences. Relatively few journals had \(\alpha'\) values below
-zero, and almost no journals showed statistically significant gender
-heterophily after controlling for multiple testing. The excess of
-same-gender coauthorships was quite large: many journals had
-\(\alpha' > 0.1\), indicating that the gender ratio of men's and women's
-coauthors differs by \textgreater{}10\% in absolute terms. In relative
-terms, our findings are even more striking: for example, if men have
-20\% female coauthors and women have 30\% (i.e. \(\alpha' = 0.1\) in a
-field with a typical gender ratio {[}5{]}), then women publish with
-women 50\% more often than men do.
+stringent controls for Wahlund effects of the kind illustrated in Fig 1.
+Our study therefore reaffirms earlier studies' conclusions
+{[}49--57,62{]} using stricter methodology, and generalises their
+results across the life sciences. Relatively few journals had
+\(\alpha'\) values below zero, and almost no journals showed
+statistically significant gender heterophily after controlling for
+multiple testing. The excess of same-gender coauthorships was quite
+large: many journals had \(\alpha' > 0.1\), indicating that the gender
+ratio of men's and women's coauthors differs by \textgreater{}10\% in
+absolute terms. In relative terms, our findings are even more striking:
+for example, if men have 20\% female coauthors and women have 30\% (i.e.
+\(\alpha' = 0.1\) in a field with a typical gender ratio {[}5{]}), then
+women publish with women 50\% more often than men do.
 
 An important limitation of our study is that we cannot reliably
 determine the cause(s) of the observed excess of same-gender
 coauthorships. As well as the obvious interpretation -- conscious or
-unconscious selection of same-gender collaborators by men, by women, or
-both -- our results could be partly explained by uncontrolled Wahlund
-effects. However, we suspect the contribution of these uncontrolled
-artefacts to be minor, for four reasons: we found positive \(\alpha'\)
-after controlling for three obvious sources of Wahlund effect; there was
-no inflation of \(\alpha'\) in highly multidisciplinary journals
-relative to specialised journals; restricting the data by country
-yielded similar estimates of \(\alpha'\); and we used a simple model to
-show that differences in gender ratio between career stages are unlikely
-to fully explain our results. On balance, we believe the data suggest
-that it is likely that some researchers preferentially select
-same-gendered collaborators, although it is difficult to ascertain what
-proportion of people show such a preference, or how much the strength of
-the preference varies between individuals. We also note that even in a
-world in which everyone selected their collaborators at random with
-respect to gender, a high proportion of individual researchers would
-have entirely same-gendered collaborators by chance alone (especially in
-gender-biased disciplines); thus, individuals who only have
-same-gendered co-authors are not necessarily doing anything differently
-from people with gender-balanced co-authors.
+unconscious selection of same-gendered collaborators by men, women, or
+both genders -- our results could be partly explained by uncontrolled
+Wahlund effects. However, we suspect the contribution of these
+uncontrolled artefacts to be minor, for four reasons: we found positive
+\(\alpha'\) after controlling for three obvious sources of Wahlund
+effect; there was no inflation of \(\alpha'\) in highly
+multidisciplinary journals relative to specialised journals; restricting
+the data by country yielded similar estimates of \(\alpha'\); and our
+modelling work suggested that differences in gender ratio between career
+stages are unlikely to fully explain our results. On balance, we believe
+the data suggest that it is likely that some researchers preferentially
+select same-gendered collaborators, although it is difficult to
+ascertain what proportion of people show such a preference, or how much
+the strength of the preference varies between individual researchers. We
+also note that even in a world in which everyone selected their
+collaborators at random with respect to gender, a high proportion of
+individual researchers would have entirely same-gendered collaborators
+by chance alone (especially in gender-biased disciplines); thus,
+individuals who only have same-gendered co-authors are not necessarily
+doing anything differently from people with gender-balanced co-authors.
 
 We hypothesised that disciplines with a strongly skewed gender ratio
 might show the strongest gender homophily, e.g.~because being in the
-minority might increase people's motivation to seek out same-gendered
+minority might increase one's motivation to seek out same-gendered
 colleagues. Contrary to this hypothesis, we found no evidence that
 gender homophily is restricted to particular disciplines: \(\alpha'\)
-was similarly high across the board (\autoref{alpha_histograms}).
-Interestingly, gender homophily was weakest for journals with a
-male-biased author gender ratio, and strongest in journals with a
-female-biased author gender ratio. One possible reason is that men are
-more likely to preferentially seek out male collaborators in fields
-where men are a minority, relative to the homophily displayed by women
-in fields where women are a minority. However, this latter result only
-has tentative statistical support since our sample contains few journals
-in which most authors are women (\autoref{alpha_gender_ratio}).
+was similarly high across the board (Fig 2). Interestingly, gender
+homophily was weakest for journals with a male-biased author gender
+ratio, and strongest in journals with a female-biased author gender
+ratio. One possible reason is that men are more likely to preferentially
+seek out male collaborators in fields where men are a minority, relative
+to the homophily displayed by women in fields where women are a
+minority. However, this latter result only has tentative statistical
+support since our sample contains few journals in which most authors are
+women (S4 Fig).
 
 We also found that gender homophily was marginally stronger in 2015-2016
 relative to 2005-2006. Although this trend might reflect a change in the
 gender preferences of researchers seeking collaborators, there are
 alternative (and perhaps more likely) explanations. For example, this
 trend might result from the increasing number of women working in senior
-positions in STEMM over the past decade {[}63--65{]}. As shown in
-\autoref{simulation}, if enough coauthorships are between junior and
-senior researchers, a large gender gap between career stages can give
-the appearance of heterophily. As this gender gap between career stages
-lessens, the observed values of \(\alpha'\) may increase.
+positions in STEMM over the past decade {[}63--65{]}. As shown in Fig 5,
+if enough coauthorships are between junior and senior researchers, a
+large gender gap between career stages can give the appearance of
+heterophily. As this gender gap between career stages lessens, the
+observed values of \(\alpha'\) may increase.
 
 Regarding our finding of weaker homophily among 2-author papers, we
 suspect that many 2-author teams comprise a student/postdoc and a senior
@@ -594,27 +566,27 @@ coauthorships involving two women are \(c\). 30\% more frequent than
 expected under random assortment). By contrast, we feel that it may be
 counter-productive to recommend that women collaborate primarily with
 other women, e.g.~because this constrains women's options (particularly
-in fields like engineering, where 90\% of professors are men {[}1{]}).
-Instead, we suggest that researchers of both genders can help to close
-the gender gap in STEMM. In the context of collaboration, one way to do
-this is to undertake self-examination to ensure that one is not
-inadvertently overlooking or excluding women among potential students
-and colleagues. One should also take care to treat male and female
-collaborators equally, e.g.~in terms of training and mentoring,
-allocation of work, how one frames or promotes the collaboration
-(e.g.~in conference presentations or on a website), and in terms of the
-credit afforded to collaborators' contributions. Experimental work
-suggests that unconscious bias causes people to undervalue women's
-research achievements {[}20{]}, and a study of author contribution
-statements found observational evidence that menial or under-valued
-tasks are assigned to women while more prestigious tasks are assigned to
-men {[}61{]}.
+in fields like the one studied by Ghiasi et al. -- engineering -- where
+90\% of professors are men {[}1{]}). Instead, we suggest that
+researchers of both genders can help to close the gender gap in STEMM.
+In the context of collaboration, one way to do this is to undertake
+self-examination to ensure that one is not inadvertently overlooking or
+excluding women among potential students and colleagues. One should also
+take care to treat male and female collaborators equally, e.g.~in terms
+of training and mentoring, allocation of work, and how one descibes the
+collaboration to other people (e.g.~in conference presentations, on the
+lab website, or in the `Author contributions' section of a paper).
+Experimental work suggests that unconscious bias causes people to
+undervalue women's research achievements {[}20{]}, and a study of author
+contribution statements found observational evidence that menial or
+under-valued tasks are more often assigned to women while more
+prestigious tasks are assigned to men {[}61{]}.
 
 Our study begs two questions: what causes gender homophily in science,
 and are our results cause for concern? We believe that the answers to
 these questions are closely related. For example, some of the homophily
 we observed might be caused by women seeking to avoid harassment or
-sexism from men {[}38{]}, which would clearly be concerning.
+sexism from men {[}38{]}, which would clearly be very concerning.
 Additionally, Sheltzer and Smith {[}66{]} concluded that `elite' male
 academics (defined as recipients of major honours) have a higher
 proportion of male students and postdocs than non-elite male academics.
@@ -624,29 +596,29 @@ during hiring {[}20{]}, or avoidance by women of elite research groups
 (e.g.~due to gender differences in confidence, or a perception that some
 groups are sexist). We also found a little evidence that gender
 homophily is detrimental to research quality, in that high-impact
-journals tended to have weaker homophily. Assuming that papers published
-in high-impact journals are of higher average quality (which is
-contentious; {[}67{]}), our results provide non-experimental support for
-the hypothesis that mixed-gender teams produce better research than
-single-gender teams {[}42--48{]}. Another issue is that if many
-collaborations are between established researchers, there will be an
-excess of male-male collaborations in fields where women in senior
-positions are rare; some of the observed homophily might therefore
-reflect the elevated gender gap among senior researchers.
+journals tended to have weaker homophily (though the relationship was
+very noisy). Assuming that papers published in high-impact journals are
+of higher average quality (which is contentious; {[}67{]}), our results
+provide non-experimental support for the hypothesis that mixed-gender
+teams produce better research than single-gender teams {[}42--48{]}.
+Another issue is that if many collaborations are between established
+researchers, there will be an excess of male-male collaborations in
+fields where women in senior positions are rare; some of the observed
+homophily might therefore reflect the elevated gender gap among senior
+researchers.
 
 On the other hand, homophily might have more benign causes.
 Collaboration is often most enjoyable and productive when working with
 like-minded people, who might tend to be same-gendered more often than
 not. We also suppose that some people consciously choose to
 preferentially collaborate with women in order to help close the gender
-gap in the workforce; this would create homophily if women do this more
-than men. In support of this interpretation, there is some evidence that
-women are more likely than men to promote the work of female colleagues
-by inviting them to give talks {[}68,69{]}. Given that many
-collaborative research projects unfortunately involve a gendered
-division of labour {[}61{]}, working with a same-gendered colleague may
-provide exposure to new parts of the research process, and (especially
-for the minority gender) a welcome change of pace.
+gap in the workforce; this would create homophily if women adopt this
+strategy more often than men. In support of this interpretation, there
+is some evidence that women are more likely than men to promote the work
+of female colleagues by inviting them to give talks {[}68,69{]}. Given
+that many collaborative research projects unfortunately involve a
+gendered division of labour {[}61{]}, working with a same-gendered
+colleague may provide exposure to new parts of the research process.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -656,10 +628,10 @@ for the minority gender) a welcome change of pace.
 
 We used the dataset of PubMed author lists from Holman et al. {[}5{]}.
 Briefly, that dataset was created by downloading every article indexed
-on PubMed and attempting to infer each author's gender from their given
-name using computational methods. Each journal was assigned to one of
-107 scientific disciplines, using PubMed's journal categorisations in
-the interests of objectivity. Because the present study focuses on
+on PubMed and attempting to infer gender from each authors' given name
+using computational methods. Each journal was assigned to one of 107
+scientific disciplines, using PubMed's journal categorisations in the
+interests of objectivity. Because the present study focuses on
 co-authorship, all single-author papers were discarded. We also
 discarded all papers for which we could not determine the gender of
 every author with \({\ge}95\%\) certainty, in order to simplify the
@@ -714,9 +686,10 @@ Our test assumes that the expected value of \(\alpha\) is zero if
 authors randomly assort, but for small datasets this assumption is not
 always true. Essentially, this issue arises because a person cannot be
 their own co-author. In a small dataset comprising \(m\) men and \(f\)
-women, a man can co-author with \(m - 1\) men while women can co-author
-with \(m\) men. Thus, the null expectation for \(\alpha\) is a negative
-number -- potentially a large one if \(m\) and \(f\) are very small.
+women authors, a man can co-author with \(m - 1\) men while a woman can
+co-author with \(m\) men. Thus, the null expectation for \(\alpha\) is a
+negative number -- potentially a large one if \(m\) and \(f\) are very
+small.
 
 To control for the fact that the null expectation for \(\alpha\) is not
 zero for small datasets, we devised an adjusted version of the
@@ -734,9 +707,9 @@ defined as the proportion of null simulations for which
 (FDR) correction to each set of p-values to account for multiple testing
 {[}72{]}.
 
-As expected, \(\alpha'\) was usually almost identical to \(\alpha\) (S7
+As expected, \(\alpha'\) was usually almost identical to \(\alpha\) (S8
 Fig), but \(\alpha\) was downwardly biased relative to \(\alpha'\) for
-small datasets (S8 Fig). Additionally, the correlation between
+the smallest datasets (S9 Fig). Additionally, the correlation between
 \(\alpha'\) and sample size was negligible (\(R^2 < 0.01\)), suggesting
 that our calculation of \(\alpha'\) effectively removed the dependence
 of \(\alpha\) on sample size. We therefore used \(\alpha'\) in all
@@ -776,12 +749,11 @@ affiliation}\label{minimising-the-wahlund-effect-author-country-of-affiliation}}
 A Wahlund effect could arise even if one calculates \(\alpha'\) for a
 single discipline and time period, because of variation in the gender
 ratio of researchers from different countries. For example, Holman et
-al. {[}5{]} found that PubMed-indexed authors based in Serbia are more
-than twice as likely to be women as are authors based in Japan.
-Therefore, a dataset containing a mix of papers from teams of authors
-based in these two countries would contain an excess of same-sex
-coauthorships, even if collaboration were random with respect to gender
-within each country.
+al. {[}5{]} found that PubMed-indexed authors based in Serbia are far
+more likely to be women than are authors based in Japan. Therefore, a
+dataset containing a mix of papers from teams of authors based in these
+two countries would contain an excess of same-sex coauthorships, even if
+collaboration were random with respect to gender within each country.
 
 To address this issue, we also analysed every combination of journal and
 author country of affiliation for which we had enough data (i.e.~50 or
@@ -803,9 +775,9 @@ factor between disciplines, we took the the residuals from a model with
 \(log_{10}\) impact factor as the response and the research discipline
 of the journal as a random effect. Thus, journals with a positive
 standardised impact factor have a higher mean number of citations than
-the average for journals in their discipline. We then used Spearman rank
-correlation to test whether \(\alpha'\) was correlated with impact
-factor across journals.
+the average for journals in their discipline. We then used linear
+regression and Spearman rank correlation to examine the relationship
+between \(\alpha'\) and impact factor across journals.
 
 \hypertarget{statistical-analysis}{%
 \subsection{Statistical analysis}\label{statistical-analysis}}
@@ -841,7 +813,7 @@ estimated for all authors (not first/last authors) as the response
 variable.
 
 The relationship between the gender ratio of authors publishing in a
-journal and its \(\alpha'\) value appeared nonlinear (see Results). We
+journal and its \(\alpha'\) value appeared nonlinear (S4 Fig). We
 therefore fit a generalised additive model with thin plate regression
 spline smoothing, implemented using the \texttt{mgcv} package for R.
 
@@ -871,50 +843,52 @@ imagine that the majority of collaborations in a particular field are
 between students and professors, and that the gender ratio differs
 between career stages: we would then see an excess of mixed-gender
 coauthorships (heterophily, \(\alpha < 0\)), even if gender has no
-direct, causal effect. Similarly, a hypothetical field in which students
-work only with students, and professors with professors, would have
-apparent gender homophily (\(\alpha > 0\)).
+direct, causal effect on the choice of coauthors. Similarly, a
+hypothetical field in which students work only with students, and
+professors with professors, would have apparent gender homophily
+(\(\alpha > 0\)).
 
 We can think of no tractable method of controlling for this issue using
-our dataset, which contains no information on career stage. Therefore,
-we instead decided to derive theoretical expectations for \(\alpha\)
-when there is a difference in gender ratio across career stages, in
-order to determine if and how this effect should alter our inferences.
-For simplicity, our calculations assume there are only two career stages
-(`early-career' and `established'), though we expect that the general
-conclusions would also apply to a multi-tier career ladder. Under the
-null model that gender has no causal effect on collaboration, we
-calculated \(\alpha\) for various combinations of the four free
+our dataset, which contains no reliable information on career stage.
+Therefore, we instead decided to derive theoretical expectations for
+\(\alpha\) when there is a difference in gender ratio across career
+stages, in order to determine if and how this effect should alter our
+inferences. For simplicity, our calculations assume there are only two
+career stages (`early-career' and `established'), though we expect that
+the general conclusions would also apply to a multi-tier career ladder.
+Under the null model that gender has no causal effect on collaboration,
+we calculated \(\alpha\) for various combinations of the four free
 parameters in our simple model. These parameters are: the gender ratio
-among early-career researchers (x-axis of Figure 6), the gender ratio
-among established researchers (y-axis of Figure 6), the frequency of
-within- versus between career stage collaborator pairs (rows in Figure
-6), and lastly the frequency of within-stage collaborations that are
-between two early-career researchers as opposed to two late-career
-researchers (columns in Figure 6). When these four parameters are
-specified, one can easily calculate the relative frequencies of
-collaborator pairs that involve two men, two women, or a man and a
-woman. In short, if we have specified the frequency of women at both
-career stages, as well as the frequency of the three possible types of
-collaboration with respect to career stage (early-early,
-early-established, and established-established), then we can calculate
-the frequency of collaborators pairs comprising two women, or a woman
-and a man, and thus find \(\alpha\) (see the Online Supplementary
-Material for the annotated R code).
+among early-career researchers (\(x\)-axis of Fig 5), the gender ratio
+among established researchers (\(y\)-axis of Fig 5), the frequency of
+within- versus between career stage collaborator pairs (rows in Fig 5),
+and lastly the frequency of within-stage collaborations that are between
+two early-career researchers as opposed to two late-career researchers
+(columns in Fig 5). When these four parameters are specified, one can
+easily calculate the relative frequencies of collaborator pairs that
+involve two men, two women, or a man and a woman. In short, if we have
+specified the frequency of women at both career stages, as well as the
+frequency of the three possible types of collaboration with respect to
+career stage (early-early, early-established, and
+established-established), then we can calculate the frequency of
+collaborators pairs comprising two women, or a woman and a man, and thus
+calcualte \(\alpha\) (see the Online Supplementary Material for the
+annotated R code).
 
-\hypertarget{data-availability-and-reproducibility}{%
-\subsection{Data availability and
-reproducibility}\label{data-availability-and-reproducibility}}
+\hypertarget{data-and-code-availability}{%
+\subsection{Data and code
+availability}\label{data-and-code-availability}}
 
-The Online Supplementary Material contains R scripts used to produce all
-results, figures and tables; it can be viewed online at
-\url{https://lukeholman.github.io/genderHomophily/}. The input data from
-Holman et al. {[}5{]} is archived at \url{https://osf.io/bt9ya/}.
+The R scripts used to produce all results, figures and tables can be
+viewed online at \url{https://lukeholman.github.io/genderHomophily/}.
+The input data from Holman et al. {[}5{]} is archived at
+\url{https://osf.io/bt9ya/}.
 
 \hypertarget{acknowledgements}{%
 \section{Acknowledgements}\label{acknowledgements}}
 
-We thank Devi Stuart-Fox and Dominique Potvin for helpful discussion.
+We thank Devi Stuart-Fox and Dominique Potvin for their very helpful
+comments on the manuscript.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
@@ -1282,47 +1256,61 @@ Stan. Journal of Statistical Software. 2016;80: 1--28.
 \hypertarget{supplementary-figures}{%
 \subsection{Supplementary figures}\label{supplementary-figures}}
 
-S1 Fig. Plot showing the percentage of papers that have 1, 2, 3, 4, or
-\({\ge}5\) authors for each discipline in the dataset of Holman et al.
-(2018). This information can also be found in S3 Data.
+\textbf{S1 Fig}: Plot showing the percentage of papers that have 1, 2,
+3, 4, or \({\ge}5\) authors for each discipline in the dataset of Holman
+et al. (2018). This information can also be found in S3 Data.
 
-S2 Fig. Histogram showing the distribution of differences in \(\alpha'\)
-between the 2015-16 and 2005-6 samples, where positive numbers indicate
-an increase in \(\alpha'\) with time. The mean is slightly positive
-(i.e.~0.004), indicating a mild increase in average \(\alpha'\) with
-time.
+\textbf{S2 Fig}: Histogram showing the distribution of differences in
+\(\alpha'\) between the 2015-16 and 2005-6 samples, where positive
+numbers indicate an increase in \(\alpha'\) with time. The mean is
+slightly positive (i.e.~0.004), indicating a mild increase in average
+\(\alpha'\) with time.
 
-S3 Fig. Histogram showing the difference between \(\alpha'\) calculated
-for first and last authors. Positive values mean that \(\alpha'\) was
-higher when calculated for first authors, and negative values mean
-\(\alpha'\) was higher when calculated for last authors. The mean is
-very slightly higher than zero, indicating that \(\alpha'\) tends to be
-higher for first authors.
+\textbf{S3 Fig}: Histogram showing the difference between \(\alpha'\)
+calculated for first and last authors. Positive values mean that
+\(\alpha'\) was higher when calculated for first authors, and negative
+values mean \(\alpha'\) was higher when calculated for last authors. The
+mean is very slightly higher than zero, indicating that \(\alpha'\)
+tends to be higher for first authors.
 
-S4 Fig. Histogram of \(\alpha'\) for 325 unique combinations of journal
-and country, using data from August 2015 - August 2016. The white areas
-denote combinations for which \(\alpha'\) differs significantly from
-zero (p \textless{} 0.05, following false discovery rate correction).
+\textbf{S4 Fig}: There is a weakly positive, non-linear relationship
+between the gender ratio of authors publishing in a journal, and the
+coefficient of homophily (\(\alpha'\)). Specifically, journals with 50\%
+women authors or higher tended to have more same-sex coauthorships than
+did journals in which most authors are men. This relationship held
+whether \(\alpha'\) was calculated for all authors or first authors
+only, but not for last authors only. A negative value on the x-axis
+denotes an excess of men authors, a positive value denotes an excess of
+women authors, and zero denotes gender parity (i.e.~equal numbers of
+male and female authors). The lines were fitted using generalised
+additive models with the smoothing parameter \(k\) set to 3.
 
-S5 Fig. Plot showing the 68 combinations of journal and author country
-of affiliation for which \(\alpha'\) is significantly higher than
-expected.
+\textbf{S5 Fig}: Histogram of \(\alpha'\) for 325 unique combinations of
+journal and country, using data from August 2015 - August 2016. The
+white areas denote combinations for which \(\alpha'\) differs
+significantly from zero (p \textless{} 0.05, following false discovery
+rate correction).
 
-S6 Fig. Histogram showing the estimated degree to which \(\alpha'\) is
-inflated by inter-country differences in author gender ratio, across the
-285 journals for which we had adequate data after restricting the
-analysis by country. The average inflation in \(\alpha'\) is negligible,
-suggesting that Wahlund effects resulting from inter-country differences
-have a negligible effect on our estimates of gender homophily.
+\textbf{S6 Fig}: Plot showing the 68 combinations of journal and author
+country of affiliation for which \(\alpha'\) is significantly higher
+than expected.
 
-S7 Fig. There is a very strong correlation between the values of
-\(\alpha\) and \(\alpha'\) calculated for each journal, though in a
+\textbf{S7 Fig}: Histogram showing the estimated degree to which
+\(\alpha'\) is inflated by inter-country differences in author gender
+ratio, across the 285 journals for which we had adequate data after
+restricting the analysis by country. The average inflation in
+\(\alpha'\) is negligible, suggesting that Wahlund effects resulting
+from inter-country differences have a negligible effect on our estimates
+of gender homophily.
+
+\textbf{S8 Fig}: There is a very strong correlation between the values
+of \(\alpha\) and \(\alpha'\) calculated for each journal, though in a
 handful of cases the difference is considerable. The deviation between
 \(\alpha\) and \(\alpha'\) is greatest for journals for which there is a
-small sample size (see S8 Fig).
+small sample size (see S9 Fig).
 
-S8 Fig. For journals for which we recovered a small number of papers
-(\textless{}100), the unadjusted metric \(\alpha\) was downwardly
+\textbf{S9 Fig}: For journals for which we recovered a small number of
+papers (\textless{}100), the unadjusted metric \(\alpha\) was downwardly
 biased. This fits our expectations: because researchers cannot be their
 own co-authors, small datasets will tend to produce negative estimates
 of \(\alpha\) even if authors assort randomly with respect to gender
@@ -1333,44 +1321,44 @@ enough samples.
 \hypertarget{supplementary-tables}{%
 \subsection{Supplementary tables}\label{supplementary-tables}}
 
-S1 Table. Sample sizes for the two datasets, which comprise papers
-published in the timeframes August 2005 - August 2006, and August 2015 -
-August 2016.
+\textbf{S1 Table}: Sample sizes for the two datasets, which comprise
+papers published in the timeframes August 2005 - August 2006, and August
+2015 - August 2016.
 
-S2 Table. Number of journals showing statistically significant homophily
-or heterophily, in two one-year periods. The significance threshold was
-p \textless{} 0.05, and p-values were adjusted using Benjamini-Hochberg
-false discovery rate correction. Note that the power of our test is
-lower for the 2005-2006 data because fewer papers were recovered per
-journal: thus, it is not meaningful to compare the \% significant
-journals (i.e.~11\% vs 24\%) between the two time periods.
+\textbf{S2 Table}: Number of journals showing statistically significant
+homophily or heterophily, in two one-year periods. The significance
+threshold was p \textless{} 0.05, and p-values were adjusted using
+Benjamini-Hochberg false discovery rate correction. Note that the power
+of our test is lower for the 2005-2006 data because fewer papers were
+recovered per journal: thus, it is not meaningful to compare the \%
+significant journals (i.e.~11\% vs 24\%) between the two time periods.
 
 \hypertarget{supplementary-datasets}{%
 \subsection{Supplementary datasets}\label{supplementary-datasets}}
 
-S1 Data: This spreadsheet shows the \(\alpha\) values calculated for
-each journal, in the 2005 and 2015 samples, and for each type of author
-(all authors, first authors, and last authors). The tables gives the
-impact factor of each journal, the sample size, \(\alpha\) and
-\(\alpha'\) and their 95\% CIs, and the p-value from a 2-tailed test
-evaluating the null hypothesis that \(\alpha\) is zero (both raw and
-FDR-corrected p-values are shown).
+\textbf{S1 Data}: This spreadsheet shows the \(\alpha\) values
+calculated for each journal, in the 2005 and 2015 samples, and for each
+type of author (all authors, first authors, and last authors). The
+tables gives the impact factor of each journal, the sample size,
+\(\alpha\) and \(\alpha'\) and their 95\% CIs, and the p-value from a
+2-tailed test evaluating the null hypothesis that \(\alpha\) is zero
+(both raw and FDR-corrected p-values are shown).
 
-S2 Data: This file gives the number and percentage of papers that have
-1, 2, 3, 4, or \({\ge}5\) authors for each \emph{journal} in the dataset
-of Holman et al. (2018) \emph{PLOS Biology}. Note that the sample sizes
-include papers for which the gender of one or more authors was not
-determined by Holman et al.
-
-S3 Data: This file gives the number and percentage of papers that have
-1, 2, 3, 4, or \({\ge}5\) authors for each \emph{discipline} in the
-dataset of Holman et al. (2018) \emph{PLOS Biology}. Note that the
+\textbf{S2 Data}: This file gives the number and percentage of papers
+that have 1, 2, 3, 4, or \({\ge}5\) authors for each \emph{journal} in
+the dataset of Holman et al. (2018) \emph{PLOS Biology}. Note that the
 sample sizes include papers for which the gender of one or more authors
 was not determined by Holman et al.
 
-S4 Data. The table shows the distribution of the \(\alpha'\) values
-across journals, split by the research discipline. The gender ratio
-column shows the percentage of women authors in the sample used to
+\textbf{S3 Data}: This file gives the number and percentage of papers
+that have 1, 2, 3, 4, or \({\ge}5\) authors for each \emph{discipline}
+in the dataset of Holman et al. (2018) \emph{PLOS Biology}. Note that
+the sample sizes include papers for which the gender of one or more
+authors was not determined by Holman et al.
+
+\textbf{S4 Data}: The table shows the distribution of the \(\alpha'\)
+values across journals, split by the research discipline. The gender
+ratio column shows the percentage of women authors in the sample used to
 calculate \(\alpha'\), across all authorship positions. In the last two
 columns, the numbers outside parentheses give the number of journals
 that deviate statistically significantly from zero, while the numbers

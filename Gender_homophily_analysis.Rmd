@@ -819,24 +819,24 @@ country.data <- read.csv("data/country.data.csv", stringsAsFactors = FALSE) %>%
 
 ### Checking that adjusted and un-adjusted $\alpha$ are very similar
 ```{r}
-fig_s7 <- master.dataset %>%
+fig_s8 <- master.dataset %>%
   ggplot(aes(x = observed.alpha, y = alpha.adjusted)) + 
   geom_abline(intercept = 0, slope = 1, colour = "darkgrey") + 
     geom_point(size=0.6, alpha=0.4) + 
   ylab("Adjusted measure of homophily (\u03B1')") + 
   xlab("Unadjusted measure of homophily (\u03B1)") + 
   theme_minimal()
-ggsave(fig_s7, file = "figures/S7 Fig.pdf", height = 5, width = 5, device = cairo_pdf)
-fig_s7
+ggsave(fig_s8, file = "figures/S8 Fig.pdf", height = 5, width = 5, device = cairo_pdf)
+fig_s8
 ```
 <br></br> 
-**Figure S7**: There is a very strong correlation between the values of $\alpha$ and $\alpha'$ calculated for each journal, though in a handful of cases the difference is considerable. The deviation between $\alpha$ and $\alpha'$ is greatest for journals for which there is a small sample size (see S8 Fig).
+**S8 Figure**: There is a very strong correlation between the values of $\alpha$ and $\alpha'$ calculated for each journal, though in a handful of cases the difference is considerable. The deviation between $\alpha$ and $\alpha'$ is greatest for journals for which there is a small sample size (see S9 Fig).
 
 
 ### Un-adjusted $\alpha$ is downwardly biased for small datasets
 As expected, unadjusted $\alpha$ is slightly downwardly biased for small datasets, because the expected value of $\alpha$ under the null is less than 0. Thus, our adjusted $\alpha'$ statistic, which is the observed $\alpha$ minus the value of $\alpha$ expected under the null, tends to be substantially higher than $\alpha$ for small datasets. All of our results do not differ qualitatively if we use the unadjusted $\alpha$, but we have elected to present the results for $\alpha'$ in light of the issues with unadjusted $\alpha$ for small datasets.
 ```{r}
-fig_s8 <- master.dataset %>%
+fig_s9 <- master.dataset %>%
   filter(Age == "New") %>%
   ggplot(aes(x = log10(n.useable.papers), 
              y = alpha.adjusted - observed.alpha)) + 
@@ -845,11 +845,11 @@ fig_s8 <- master.dataset %>%
   ylab("\u03B1' - \u03B1") + 
   xlab("Log10 sample size (number of papers)") + 
   theme_minimal()
-ggsave(fig_s8, file = "figures/S8 Fig.pdf", height = 5, width = 5, device = cairo_pdf)
-fig_s8
+ggsave(fig_s9, file = "figures/S9 Fig.pdf", height = 5, width = 5, device = cairo_pdf)
+fig_s9
 ```
 <br></br> 
-**Figure S8**: For journals for which we recovered a small number of papers (<100), the unadjusted metric $\alpha$ was downwardly biased. This fits our expectations: because authors cannot be their own co-authors, small datasets will tend to produce negative estimates of $\alpha$ even if authors assort randomly with respect to gender (see main text). This suggests that $\alpha'$ is a more useful measure of homophily and heterophily, especially for small samples.
+**S9 Figure**: For journals for which we recovered a small number of papers (<100), the unadjusted metric $\alpha$ was downwardly biased. This fits our expectations: because authors cannot be their own co-authors, small datasets will tend to produce negative estimates of $\alpha$ even if authors assort randomly with respect to gender (see main text). This suggests that $\alpha'$ is a more useful measure of homophily and heterophily, especially for small samples.
 
 
 
@@ -940,7 +940,7 @@ ggsave(big.plot, file = "figures/S1 Fig.pdf", height = 11, width = 10)
 big.plot
 ```
 <br></br>
-**Figure S1**: Plot showing the percentage of papers that have 1, 2, 3, 4, or ${\ge}5$ authors for each discipline in the dataset of Holman et al. (2018). This information can also be found in S3 Data.
+**S1 Figure**: Plot showing the percentage of papers that have 1, 2, 3, 4, or ${\ge}5$ authors for each discipline in the dataset of Holman et al. (2018). This information can also be found in S3 Data.
 
 
 ### Distribution of gender homophily and heterophily across journals
@@ -1037,7 +1037,7 @@ ggsave(fig_s2, file = "figures/S2 Fig.pdf", width = 5, height = 5, device = cair
 fig_s2
 ```
 <br></br>
-**Figure S2**: Histogram showing the distribution of differences in $\alpha'$ between the 2015-16 and 2005-6 samples, where positive numbers indicate an increase in $\alpha'$ with time. The mean is slightly positive (i.e. 0.004), indicating a mild increase in average $\alpha'$ with time.
+**S2 Figure**: Histogram showing the distribution of differences in $\alpha'$ between the 2015-16 and 2005-6 samples, where positive numbers indicate an increase in $\alpha'$ with time. The mean is slightly positive (i.e. 0.004), indicating a mild increase in average $\alpha'$ with time.
 
 
 #### Model of the average change in $\alpha$
@@ -1086,7 +1086,7 @@ ggsave(first.vs.last.plot, file = "figures/S3 Fig.pdf", width = 5, height = 5, d
 first.vs.last.plot
 ```
 <br></br>
-**Figure S3**: Histogram showing the difference between $\alpha'$ calculated for first and last authors. Positive values mean that $\alpha'$ was higher when calculated for first authors, and negative values mean $\alpha'$ was higher when calculated for last authors. The mean is very slightly higher than zero, indicating that $\alpha'$ tends to be higher for first authors.
+**S3 Figure**: Histogram showing the difference between $\alpha'$ calculated for first and last authors. Positive values mean that $\alpha'$ was higher when calculated for first authors, and negative values mean $\alpha'$ was higher when calculated for last authors. The mean is very slightly higher than zero, indicating that $\alpha'$ tends to be higher for first authors.
 
 
 ### Variance in gender homophily across disciplines
@@ -1247,12 +1247,12 @@ gender.ratio <- master.dataset %>%
   facet_wrap(~Subset) + 
   theme_minimal() +
   theme(legend.position = "none") 
-ggsave(plot = gender.ratio, filename = "figures/Fig4.pdf", 
+ggsave(plot = gender.ratio, filename = "figures/S4 Fig.pdf", 
        device = cairo_pdf, width=7, height=5)
 gender.ratio
 ```
 <br></br>
-**Figure 4**: There is a weakly positive, non-linear relationship between the gender ratio of authors publishing in a journal, and the coefficient of homophily ($\alpha'$). Specifically, journals with 50% women authors or higher tended to have more same-sex coauthorships than did journals with predominantly men authors.  This relationship held whether $\alpha'$ was calculated for all authors, first authors only, or last authors only. A negative value on the x axis denotes an excess of men authors, a positive value denotes an excess of women authors, and zero denotes gender parity. The lines were fitted using generalised additive models with the smoothing parameter $k$ set to 3. 
+**S4 Figure**: There is a weakly positive, non-linear relationship between the gender ratio of authors publishing in a journal, and the coefficient of homophily ($\alpha'$). Specifically, journals with 50% women authors or higher tended to have more same-sex coauthorships than did journals with predominantly men authors.  This relationship held whether $\alpha'$ was calculated for all authors, first authors only, or last authors only. A negative value on the x axis denotes an excess of men authors, a positive value denotes an excess of women authors, and zero denotes gender parity. The lines were fitted using generalised additive models with the smoothing parameter $k$ set to 3. 
 
 
 Here are the results of three generalised additive models (GAMs) fit to the data in the three panels of Figure 4:
@@ -1284,7 +1284,7 @@ R2 <- model$adj.r.squared %>%
 
 model$coefficients %>% pander(split.cell = 40, split.table = Inf) # The model coefficients and p-values
 
-figure5 <- gender.homophily.all %>% 
+figure4 <- gender.homophily.all %>% 
   filter(!is.na(standardised.IF)) %>% 
   ggplot(aes(x = standardised.IF, y = alpha.adjusted)) +
   geom_hline(yintercept = 0, linetype = 2) +
@@ -1294,12 +1294,21 @@ figure5 <- gender.homophily.all %>%
   xlab("Standardised journal impact factor") + 
   ylab("Coefficient of homophily (\u03B1')") + 
   theme_minimal()
-ggsave(figure5, file = "figures/Fig5.pdf", height = 5, width = 5, device = cairo_pdf)
-saveRDS(R2, "manuscript/R2_for_figure5.RData")
-figure5
+ggsave(figure4, file = "figures/Fig4.pdf", height = 5, width = 5, device = cairo_pdf)
+saveRDS(R2, "manuscript/R2_for_figure4.RData")
+figure4
 ```
 <br></br>
-**Figure 5**: Journal impact factor (expressed relative to the average for the discipline) is negatively correlated with $\alpha'$. The relationship is weak ($R^2$ = `r R2`), but the results suggest that journals with strong homophily tend to have lower impact factors than journals with weak homophily in the same discipline.
+**Figure 4**: Journal impact factor (expressed relative to the average for the discipline) is negatively correlated with $\alpha'$. The relationship is weak ($R^2$ = `r R2`), but the results suggest that journals with strong homophily tend to have lower impact factors than journals with weak homophily in the same discipline.
+
+#### Spearman correlation for the relationship in Figure 4
+
+```{r}
+with(master.dataset %>% 
+       filter(Age == "New", 
+              Subset == "All authors", 
+              !is.na(standardised.IF)), cor.test(alpha.adjusted, scale(standardised.IF), method = "spearman"))
+```
 
 
 ### Gender homophily is also observed within countries
@@ -1319,11 +1328,11 @@ country.histo <- country.data %>%
   ylab("Number of journals") +
   theme_minimal() + 
   theme(legend.position = "top")
-ggsave(country.histo, file = "figures/S4 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
+ggsave(country.histo, file = "figures/S5 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
 country.histo
 ```
 <br></br>
-**Figure S4**: Histogram of $\alpha'$ for 325 unique combinations of journal and country, using data from August 2015 - August 2016. The white areas denote combinations for which $\alpha'$ differs significantly from zero (p < 0.05, following false discovery rate correction).
+**S5 Figure**: Histogram of $\alpha'$ for 325 unique combinations of journal and country, using data from August 2015 - August 2016. The white areas denote combinations for which $\alpha'$ differs significantly from zero (p < 0.05, following false discovery rate correction).
 
 
 ### Estimating inflation in $\alpha'$ due to country effects
@@ -1357,11 +1366,11 @@ mean.inflation.due.to.country <- mean.inflation.due.to.country %>%
   xlab("Estimated inflation in \u03B1' due to\ndifferences in gender ratio between countries") + 
   ylab("Frequency")
 
-ggsave(mean.inflation.due.to.country, file = "figures/S6 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
+ggsave(mean.inflation.due.to.country, file = "figures/S7 Fig.pdf", width = 5, height = 5, device = cairo_pdf)
 mean.inflation.due.to.country
 ```
 <br></br>
-**Fig S6**: Histogram showing the estimated degree to which $\alpha'$ is inflated by inter-country differences in author gender ratio, across the 285 journals for which we had adequate data after restricting the analysis by country. The average inflation in $\alpha'$ is negligible, suggesting that Wahlund effects resulting from inter-country differences have a neglible effect on our estimates of gender homophily.
+**S7 Figure**: Histogram showing the estimated degree to which $\alpha'$ is inflated by inter-country differences in author gender ratio, across the 285 journals for which we had adequate data after restricting the analysis by country. The average inflation in $\alpha'$ is negligible, suggesting that Wahlund effects resulting from inter-country differences have a neglible effect on our estimates of gender homophily.
 
 
 ### Calculate $\alpha$ for the whole of PubMed
@@ -1418,7 +1427,7 @@ paste("% variance associated with journal:", round(100 * 0.001787 / (0.001069 + 
 
 ```{r fig.height= 9}
 x <- nrow(country.data[country.data$p.adjusted < 0.05, ])
-fig_s5 <- country.data %>% 
+fig_s6 <- country.data %>% 
   filter(p.adjusted < 0.05) %>%
   filter(discipline != "Multidisciplinary") %>%
   arrange(lower.95.CI2) %>% 
@@ -1431,22 +1440,22 @@ fig_s5 <- country.data %>%
   ylab("Country - journal combination") + 
   theme_minimal() + 
   theme(legend.position = "none")
-ggsave(fig_s5, file = "figures/S5 Fig.pdf", width = 7, height = 9, device = cairo_pdf)
-fig_s5
+ggsave(fig_s6, file = "figures/S6 Fig.pdf", width = 7, height = 9, device = cairo_pdf)
+fig_s6
 ```
 <br></br>
-**Figure S5**: Plot showing the 68 combinations of journal and author country of affiliation for which $\alpha'$ is significantly higher than expected.
+**S6 Figure**: Plot showing the 68 combinations of journal and author country of affiliation for which $\alpha'$ is significantly higher than expected.
 
 
 
 ## Theoretical expectations for $\alpha$ when there is a gender gap between career stages
 
-This section makes Figure 6, by deriving the expected $\alpha$ under various assumptions, assuming that there is (potentially) a gender gap between career stages but no direct choice of collaborators by gender. The model has four parameters: 
+This section makes Figure 5, by deriving the expected $\alpha$ under various assumptions, assuming that there is (potentially) a gender gap between career stages but no direct choice of collaborators by gender. The model has four parameters: 
 
-  - The proportion of women among people in career stage 1 (e.g. students), termed `GR.stage1` in the code below (this parameter is plotted on the x-axis of Figure 6)
-  - The proportion of women among people in career stage 2 (e.g. professors), termed `GR.stage2` in the code below (this parameter is plotted on the y-axis of Figure 6)
-  - The proportion of co-authorships that are between two people at career stages 1 and 2, termed `prop_between_career_stages` in the code below (this parameter is plotted in the columns of Figure 6)
-  - The proportion of within-career stage co-authorships that are between two people at career stage 1, termed `prop_within_stage_between_two_stage1s` in the code below (this parameter is plotted in the rows of Figure 6)
+  - The proportion of women among people in career stage 1 (e.g. students), termed `GR.stage1` in the code below (this parameter is plotted on the x-axis of Figure 5)
+  - The proportion of women among people in career stage 2 (e.g. professors), termed `GR.stage2` in the code below (this parameter is plotted on the y-axis of Figure 5)
+  - The proportion of co-authorships that are between two people at career stages 1 and 2, termed `prop_between_career_stages` in the code below (this parameter is plotted in the columns of Figure 5)
+  - The proportion of within-career stage co-authorships that are between two people at career stage 1, termed `prop_within_stage_between_two_stage1s` in the code below (this parameter is plotted in the rows of Figure 5)
   
 Note that we do not need to define a parameter for the proportion of within-career stage co-authorships that are between two people at career stage 2; this is already known, since it is defined as `1 - prop_within_stage_between_two_stage1s`.
 
@@ -1528,7 +1537,7 @@ results <- expand.grid( # Define the parameter space for the model
          prop_within_stage_between_two_stage1s = prop_within_stage_between_two_stage1s * 100) %>%
   filter(!duplicated(paste(GR.stage1, GR.stage2, prop_between_career_stages, prop_within_stage_between_two_stage1s)))
 
-# Plot the results to make figure 6
+# Plot the results to make figure 5
 # NB that I edited the top- and right-side labels in Inkscape afterwards, as it was tricky to do it entirely in R.
 model_figure <- results %>%
   ggplot(aes(GR.stage1, GR.stage2, z = round(alpha,2), fill = alpha)) + 
@@ -1551,9 +1560,12 @@ model_figure <- results %>%
           subtitle = "Columns show % within-stage collaborations that involve two early-career researchers")
 
 model_figure
-ggsave(model_figure, file = "figures/Fig6.pdf", 
+ggsave(model_figure, file = "figures/Fig5.pdf", 
        height = 5.6, width = 5, device = cairo_pdf)
 ```
+<br></br>
+**Figure 5**: When the gender ratio of early-career researchers is not equal to the gender ratio among established researchers, the null expectation for $\alpha$ is not necessarily zero. Specifically, if most collaborations occur between career stages, there will be an excess of mixed-gender collaborations ($\alpha < 0$, blue areas), while if most collaborator pairs comprise two people at the same career stage, there will be an excess of same-gender collaborations ($\alpha > 0$, red areas). However, the conditions required for strong gender homophily (i.e. the red areas) are quite restrictive, making it unlikely that this issue can fully explain the homophily observed in our study. Additionally, in research disciplines where between-career stage collaboration is common and there is a shortage of women among established researchers (i.e. the blue areas), our study will underestimate the strength of gender homophily. Contour lines denote increments of 0.1.
+
 
 ### R session info
 ```{r}
